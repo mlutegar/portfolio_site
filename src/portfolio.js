@@ -131,7 +131,7 @@ const educationInfo = {
   schools: [
     {
       schoolName: "IBMEC",
-      logo: require("./assets/images/harvardLogo.png"), // Será necessário adicionar logo do IBMEC
+      logo: require("./assets/images/ibmec.png"),
       subHeader: "Engenharia da Computação",
       duration: "2022 - 2026 (Previsão)",
       desc: "Reconhecido pela faculdade por estar entre os três alunos com maior Coeficiente de Rendimento (CR) do curso durante cinco períodos consecutivos.",
@@ -142,7 +142,7 @@ const educationInfo = {
     },
     {
       schoolName: "Senac",
-      logo: require("./assets/images/stanfordLogo.png"), // Será necessário adicionar logo do Senac
+      logo: require("./assets/images/senac.png"),
       subHeader: "Técnico em T.I.",
       duration: "Concluído em 06/2024",
       desc: "Formação técnica completa em Tecnologia da Informação.",
@@ -180,7 +180,7 @@ const workExperiences = {
     {
       role: "Desenvolvedor Front-End",
       company: "Lime Labs",
-      companylogo: require("./assets/images/facebookLogo.png"), // Será necessário adicionar logo da Lime Labs
+      companylogo: require("./assets/images/limelabs.jpg"),
       date: "09/2024 – Atual",
       desc: "Desenvolvimento de sites e soluções de e-commerce na plataforma VTEX IO, com personalização de componentes e implementação de interfaces responsivas.",
       descBullets: [
@@ -192,14 +192,14 @@ const workExperiences = {
     {
       role: "Assistente de Laboratório",
       company: "IBMEC",
-      companylogo: require("./assets/images/quoraLogo.png"), // Será necessário adicionar logo do IBMEC
+      companylogo: require("./assets/images/ibmec.png"),
       date: "08/2023 – Atual",
       desc: "Responsável pela organização do laboratório, manutenção de equipamentos e orientação de alunos em atividades práticas."
     },
     {
       role: "Estagiário em Análise de Dados",
       company: "Editora Globo",
-      companylogo: require("./assets/images/airbnbLogo.png"), // Será necessário adicionar logo da Editora Globo
+      companylogo: require("./assets/images/editora_globo.webp"),
       date: "08/2022 – 08/2023",
       desc: "Criação e atualização de planilhas no Excel, elaboração de relatórios em Excel e Power BI para facilitar a tomada de decisão gerencial."
     }
@@ -221,7 +221,7 @@ const bigProjects = {
   subtitle: "PRINCIPAIS PROJETOS DESENVOLVIDOS EM DIFERENTES CONTEXTOS",
   projects: [
     {
-      image: require("./assets/images/saayaHealthLogo.webp"), // Será necessário adicionar imagem do projeto
+      image: require("./assets/images/ibmec.png"),
       projectName: "Sistema de Empréstimo - IBMEC",
       projectDesc: "Sistema completo para cadastro de alunos e gestão de empréstimo/devolução de equipamentos com painel em React e API Django Rest Framework.",
       footerLink: [
@@ -232,7 +232,7 @@ const bigProjects = {
       ]
     },
     {
-      image: require("./assets/images/nextuLogo.webp"), // Será necessário adicionar imagem do projeto
+      image: require("./assets/images/ufrj.png"),
       projectName: "Jogo Multiplayer - UFRJ",
       projectDesc: "Jogo multiplayer online desenvolvido em Construct 3 para até 5 usuários simultâneos, com back-end em Python para análise de dados de IA.",
       footerLink: [
@@ -243,7 +243,7 @@ const bigProjects = {
       ]
     },
     {
-      image: require("./assets/images/saayaHealthLogo.webp"), // Será necessário adicionar imagem do projeto
+      image: require("./assets/images/tedx.png"),
       projectName: "Cronograma TEDx",
       projectDesc: "Cronograma dinâmico com exibição de palestrantes e quizzes, desenvolvido com React Hooks e backend Django para gestão de conteúdos.",
       footerLink: [
@@ -254,7 +254,7 @@ const bigProjects = {
       ]
     },
     {
-      image: require("./assets/images/nextuLogo.webp"), // Será necessário adicionar imagem do projeto
+      image: require("./assets/images/okka.png"),
       projectName: "Ferramenta de Relatórios - Okka",
       projectDesc: "Web app para registro de atividades corporativas com workflow de aprovação em múltiplos níveis e exportação de relatórios em PDF.",
       footerLink: [
@@ -281,7 +281,7 @@ const achievementSection = {
       title: "Reconhecimento Acadêmico IBMEC",
       subtitle:
         "Reconhecido pela faculdade por estar entre os três alunos com maior Coeficiente de Rendimento (CR) do curso durante cinco períodos consecutivos.",
-      image: require("./assets/images/codeInLogo.webp"), // Será necessário adicionar imagem do IBMEC
+      image: require("./assets/images/ibmec_star.png"),
       imageAlt: "IBMEC Logo",
       footerLink: [
         {
@@ -294,7 +294,7 @@ const achievementSection = {
       title: "Certificação Cisco",
       subtitle:
         "Networking Essentials Certificate - Certificação em fundamentos de redes.",
-      image: require("./assets/images/googleAssistantLogo.webp"), // Será necessário adicionar logo da Cisco
+      image: require("./assets/images/cisco.png"),
       imageAlt: "Cisco Logo",
       footerLink: [
         {
@@ -307,7 +307,7 @@ const achievementSection = {
     {
       title: "Formação Técnica Senac",
       subtitle: "Técnico em T.I. - Formação completa em Tecnologia da Informação concluída em 2024.",
-      image: require("./assets/images/pwaLogo.webp"), // Será necessário adicionar logo do Senac
+      image: require("./assets/images/senac.png"),
       imageAlt: "Senac Logo",
       footerLink: [
         {name: "Certificado", url: ""}
@@ -320,7 +320,7 @@ const achievementSection = {
 // Blogs Section
 
 const blogSection = {
-  title: "Blogs",
+  title: "Blog",
   subtitle:
     "With Love for Developing cool stuff, I love to write and teach others what I have learnt.",
   displayMediumBlogs: "true", // Set true to display fetched medium blogs instead of hardcoded ones
@@ -344,7 +344,7 @@ const blogSection = {
 // Talks Sections
 
 const talkSection = {
-  title: "TALKS",
+  title: "Palestras",
   subtitle: emoji(
     "I LOVE TO SHARE MY LIMITED KNOWLEDGE AND GET A SPEAKER BADGE 😅"
   ),
@@ -375,7 +375,7 @@ const podcastSection = {
 
 // Resume Section
 const resumeSection = {
-  title: "Resume",
+  title: "Currículo",
   subtitle: "Feel free to download my resume",
 
   // Please Provide with Your Podcast embeded Link
