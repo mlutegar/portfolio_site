@@ -1,0 +1,75 @@
+@import "../../_globalColor";
+
+.skill-dots-container {
+  margin-bottom: 2rem;
+}
+
+.skill-name {
+  color: $textColor;
+  font-size: 1.25rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+.dots-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.dot {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.dot.filled {
+  background-color: $buttonColor;
+}
+
+.dot.empty {
+  background-color: #F3EFEF;
+}
+
+/* Dark mode styles */
+.dark-mode .skill-name {
+  color: $textColorDark;
+}
+
+.dark-mode .dot.empty {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .dots-container {
+    gap: 6px;
+  }
+  
+  .dot {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .skill-name {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dots-container {
+    gap: 4%;
+  }
+  
+  .dot {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .skill-name {
+    font-size: 1rem;
+  }
+}
