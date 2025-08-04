@@ -36,6 +36,7 @@ const socialMediaLinks = {
   github: "https://github.com/mlutegar",
   linkedin: "https://www.linkedin.com/in/mlutegar/",
   gmail: "mlutegar@gmail.com",
+  whatsapp: "5521998795887", // Substitua pelo seu número com código do país
   gitlab: "",
   facebook: "",
   medium: "",
@@ -233,12 +234,12 @@ const bigProjects = {
     },
     {
       image: require("./assets/images/ufrj.png"),
-      projectName: "Jogo Multiplayer - UFRJ",
-      projectDesc: "Jogo multiplayer online desenvolvido em Construct 3 para até 5 usuários simultâneos, com back-end em Python para análise de dados de IA.",
+      projectName: "Mensuração de Habilidades Colaborativas com Instrumento Gamificado",
+      projectDesc: "Apoio no desenvolvimento de jogo multiplayer para tese de doutorado (UFRJ) em neurociência, criado como instrumento para mensurar a colaboração em grupo.",
       footerLink: [
         {
           name: "Ver Projeto",
-          url: "https://github.com/mlutegar" // Adicionar link real do projeto
+          url: "https://github.com/mlutegar" // TODO: Adicionar o link real do projeto
         }
       ]
     },

@@ -3,6 +3,7 @@ import "./SplashScreen.css";
 import DisplayLottie from "../../components/displayLottie/DisplayLottie";
 import {greeting, splashScreen} from "../../portfolio";
 import StyleContext from "../../contexts/StyleContext";
+import LogoSvg from "../../assets/svg/Logo";
 
 export default function SplashScreen() {
   const {isDark} = useContext(StyleContext);
@@ -12,9 +13,12 @@ export default function SplashScreen() {
         <DisplayLottie animationData={splashScreen.animation} />
       </div>
       <div className="splash-title-container">
-        <span className="grey-color"> &lt;</span>
-        <span className="splash-title">{greeting.username}</span>
-        <span className="grey-color">/&gt;</span>
+        <LogoSvg 
+          circulo="#db5715" 
+          m="white" 
+          lutegar={isDark ? "white" : "black"}
+          style={{width: "200px", height: "auto"}}
+        />
       </div>
     </div>
   );
