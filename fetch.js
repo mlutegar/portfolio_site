@@ -3,7 +3,7 @@ const https = require("https");
 process = require("process");
 require("dotenv").config();
 
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
 const GITHUB_USERNAME = process.env.GITHUB_USERNAME;
 const USE_GITHUB_DATA = process.env.USE_GITHUB_DATA;
 const MEDIUM_USERNAME = process.env.MEDIUM_USERNAME;
@@ -20,6 +20,7 @@ if (USE_GITHUB_DATA === "true") {
   if (GITHUB_USERNAME === undefined) {
     throw new Error(ERR.noUserName);
   }
+  
 
   console.log(`Fetching profile data for ${GITHUB_USERNAME}`);
   var data = JSON.stringify({
