@@ -4,4 +4,4 @@
 
 [build.environment]
   SECRETS_SCAN_OMIT_PATHS = "public/blogs.json,public/profile.json,curriculo.md"
-  SECRETS_SCAN_OMIT_KEYS = "MEDIUM_USERNAME"
+  SECRETS_SCAN_OMIT_KEYS = "MEDIUM_USERNAME,GITHUB_USERNAME,REACT_APP_GITHUB_TOKEN"
