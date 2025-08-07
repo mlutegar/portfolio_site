@@ -33,9 +33,9 @@ const greeting = {
 // Social Media Links
 
 const socialMediaLinks = {
-  github: "https://github.com/mlutegar",
+  github: `https://github.com/${process.env.REACT_APP_GITHUB_USERNAME || "mlutegar"}`,
   linkedin: "https://www.linkedin.com/in/mlutegar/",
-  gmail: "mlutegar@gmail.com",
+  gmail: process.env.REACT_APP_EMAIL || "mlutegar@gmail.com",
   whatsapp: "5521998795887", // Substitua pelo seu número com código do país
   gitlab: "",
   facebook: "",
@@ -240,7 +240,7 @@ const bigProjects = {
       footerLink: [
         {
           name: "Ver Projeto",
-          url: "https://github.com/mlutegar" // Adicionar link real do projeto
+          url: `https://github.com/${process.env.REACT_APP_GITHUB_USERNAME || "mlutegar"}` // Adicionar link real do projeto
         }
       ]
     },
@@ -251,7 +251,7 @@ const bigProjects = {
       footerLink: [
         {
           name: "Ver Projeto",
-          url: "https://github.com/mlutegar" // TODO: Adicionar o link real do projeto
+          url: `https://github.com/${process.env.REACT_APP_GITHUB_USERNAME || "mlutegar"}` // TODO: Adicionar o link real do projeto
         }
       ]
     },
@@ -262,7 +262,7 @@ const bigProjects = {
       footerLink: [
         {
           name: "Ver Projeto",
-          url: "https://github.com/mlutegar" // Adicionar link real do projeto
+          url: `https://github.com/${process.env.REACT_APP_GITHUB_USERNAME || "mlutegar"}` // Adicionar link real do projeto
         }
       ]
     },
@@ -273,7 +273,7 @@ const bigProjects = {
       footerLink: [
         {
           name: "Ver Projeto",
-          url: "https://github.com/mlutegar" // Adicionar link real do projeto
+          url: `https://github.com/${process.env.REACT_APP_GITHUB_USERNAME || "mlutegar"}` // Adicionar link real do projeto
         }
       ]
     }
@@ -400,7 +400,7 @@ const contactInfo = {
   subtitle:
     "Quer discutir um projeto ou apenas dizer olá? Minha caixa de entrada está aberta para todos.",
   number: "(21) 99879-5887",
-  email_address: "mlutegar@gmail.com"
+  email_address: process.env.REACT_APP_EMAIL || "mlutegar@gmail.com"
 };
 
 // Twitter Section

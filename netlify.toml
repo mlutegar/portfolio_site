@@ -1,0 +1,7 @@
+[build]
+  publish = "build"
+  command = "npm run build"
+
+[build.environment]
+  SECRETS_SCAN_OMIT_PATHS = "public/blogs.json,public/profile.json,curriculo.md"
+  SECRETS_SCAN_OMIT_KEYS = "MEDIUM_USERNAME"
