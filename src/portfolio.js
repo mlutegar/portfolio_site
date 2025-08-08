@@ -227,6 +227,71 @@ const openSource = {
   display: true // Set false to hide this section, defaults to true
 };
 
+// Web Portfolio Section - Live Websites
+
+const webPortfolio = {
+  title: "Portfólio Web",
+  subtitle: "SITES DESENVOLVIDOS E PUBLICADOS ONLINE",
+  projects: [
+    {
+      image: require("./assets/images/useriu.jpg"),
+      projectName: "Useriu",
+      projectDesc: "Site de roupas femininas com design vibrante e navegação intuitiva. Desenvolvido com React para proporcionar uma experiência de compra moderna e responsiva.",
+      footerLink: [
+        {
+          name: "Visitar Site",
+          url: "https://useriu.com.br"
+        }
+      ]
+    },
+    {
+      image: require("./assets/images/pilotage.png"),
+      projectName: "Pilotage Gestão de Recursos",
+      projectDesc: "Site institucional para empresa autorizada pela CVM, focada em gestão de recursos financeiros. Desenvolvido com WordPress para máxima flexibilidade de conteúdo.",
+      footerLink: [
+        {
+          name: "Visitar Site",
+          url: "https://pilotage.com.br"
+        }
+      ]
+    },
+    {
+      image: require("./assets/images/charlote.jpg"),
+      projectName: "Charlote",
+      projectDesc: "Site para marca de salgadinhos com catálogo de produtos e design atrativo. Implementado com Tailwind CSS para um visual moderno e performance otimizada.",
+      footerLink: [
+        {
+          name: "Visitar Site",
+          url: "https://charlote.com.br"
+        }
+      ]
+    },
+    {
+      image: require("./assets/images/pvr.jpg"),
+      projectName: "PVR Capital",
+      projectDesc: "Site institucional para empresa de soluções financeiras com foco em emissão de dívida e M&A. Backend desenvolvido em Node.js para robustez e escalabilidade.",
+      footerLink: [
+        {
+          name: "Visitar Site",
+          url: "https://pvr.capital"
+        }
+      ]
+    },
+    {
+      image: require("./assets/images/brazilroute.png"),
+      projectName: "Brazilroute",
+      projectDesc: "Site para consultoria estratégica voltada a empresas de tecnologia expandindo no Brasil. Desenvolvido em React com design profissional que reflete parceria estratégica.",
+      footerLink: [
+        {
+          name: "Visitar Site",
+          url: "https://brazilroute.com"
+        }
+      ]
+    }
+  ],
+  display: true
+};
+
 // Some big projects you have worked on
 
 const bigProjects = {
@@ -422,6 +487,7 @@ export {
   techStack,
   workExperiences,
   openSource,
+  webPortfolio,
   bigProjects,
   achievementSection,
   blogSection,
