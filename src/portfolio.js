@@ -227,11 +227,11 @@ const openSource = {
   display: true // Set false to hide this section, defaults to true
 };
 
-// Web Portfolio Section - Live Websites
+// Works Section - Combined Projects
 
-const webPortfolio = {
-  title: "Portfólio Web",
-  subtitle: "SITES DESENVOLVIDOS E PUBLICADOS ONLINE",
+const works = {
+  title: "Trabalhos",
+  subtitle: "Uma coleção de projetos que eu trabalhei.",
   projects: [
     {
       image: require("./assets/images/useriu.jpg"),
@@ -246,7 +246,7 @@ const webPortfolio = {
     },
     {
       image: require("./assets/images/pilotage.png"),
-      projectName: "Pilotage Gestão de Recursos",
+      projectName: "Pilotage",
       projectDesc: "Site institucional para empresa autorizada pela CVM, focada em gestão de recursos financeiros. Desenvolvido com WordPress para máxima flexibilidade de conteúdo.",
       footerLink: [
         {
@@ -287,36 +287,26 @@ const webPortfolio = {
           url: "https://brazilroute.com"
         }
       ]
-    }
-  ],
-  display: true
-};
-
-// Some big projects you have worked on
-
-const bigProjects = {
-  title: "Projetos Relevantes",
-  subtitle: "PRINCIPAIS PROJETOS DESENVOLVIDOS EM DIFERENTES CONTEXTOS",
-  projects: [
+    },
     {
       image: require("./assets/images/ibmec.png"),
-      projectName: "Sistema de Empréstimo - IBMEC",
+      projectName: "IBMEC Empréstimos",
       projectDesc: "Sistema completo para cadastro de alunos e gestão de empréstimo/devolução de equipamentos com painel em React e API Django Rest Framework.",
       footerLink: [
         {
           name: "Ver Projeto",
-          url: `https://github.com/${process.env.REACT_APP_GITHUB_USERNAME || "mlutegar"}` // Adicionar link real do projeto
+          url: `https://github.com/${process.env.REACT_APP_GITHUB_USERNAME || "mlutegar"}`
         }
       ]
     },
     {
       image: require("./assets/images/ufrj.png"),
-      projectName: "Mensuração de Habilidades Colaborativas com Instrumento Gamificado",
+      projectName: "UFRJ - Pesquisa",
       projectDesc: "Apoio no desenvolvimento de jogo multiplayer para tese de doutorado (UFRJ) em neurociência, criado como instrumento para mensurar a colaboração em grupo.",
       footerLink: [
         {
           name: "Ver Projeto",
-          url: `https://github.com/${process.env.REACT_APP_GITHUB_USERNAME || "mlutegar"}` // TODO: Adicionar o link real do projeto
+          url: `https://github.com/${process.env.REACT_APP_GITHUB_USERNAME || "mlutegar"}`
         }
       ]
     },
@@ -327,23 +317,23 @@ const bigProjects = {
       footerLink: [
         {
           name: "Ver Projeto",
-          url: `https://github.com/${process.env.REACT_APP_GITHUB_USERNAME || "mlutegar"}` // Adicionar link real do projeto
+          url: `https://github.com/${process.env.REACT_APP_GITHUB_USERNAME || "mlutegar"}`
         }
       ]
     },
     {
       image: require("./assets/images/okka.png"),
-      projectName: "Ferramenta de Relatórios - Okka",
+      projectName: "Okka Relatórios",
       projectDesc: "Web app para registro de atividades corporativas com workflow de aprovação em múltiplos níveis e exportação de relatórios em PDF.",
       footerLink: [
         {
           name: "Ver Projeto",
-          url: `https://github.com/${process.env.REACT_APP_GITHUB_USERNAME || "mlutegar"}` // Adicionar link real do projeto
+          url: `https://github.com/${process.env.REACT_APP_GITHUB_USERNAME || "mlutegar"}`
         }
       ]
     }
   ],
-  display: true // Set false to hide this section, defaults to true
+  display: true
 };
 
 // Achievement Section
@@ -487,8 +477,7 @@ export {
   techStack,
   workExperiences,
   openSource,
-  webPortfolio,
-  bigProjects,
+  works,
   achievementSection,
   blogSection,
   talkSection,
