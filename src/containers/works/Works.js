@@ -1,7 +1,6 @@
 import React from "react";
 import "./Works.scss";
 import {works} from "../../portfolio";
-import {Fade} from "react-reveal";
 
 export default function Works() {
   function openUrlInNewTab(url) {
@@ -45,44 +44,46 @@ export default function Works() {
   );
 
   return (
-    <Fade bottom duration={1000} distance="20px">
-      <div className="works-main" id="works">
-        <div className="works-header">
-          <h1 className="works-title">{works.title}</h1>
-          <p className="works-subtitle">{works.subtitle}</p>
-        </div>
+    <div className="works-main" id="works">
+      <div className="works-header">
+        <h1 className="works-title">{works.title}</h1>
+        <p className="works-subtitle">{works.subtitle}</p>
+      </div>
 
-        <div className="works-grid">
-          {works.projects.map((project, i) => {
-            const isWebsite = project.footerLink?.some(link => link.name === "Visitar Site");
-            
-            return (
-              <div key={i} className="work-card">
-                <div className="work-card-container">
-                  <div
-                    className="work-card-image"
-                    style={{
-                      background: `url(${project.image}) lightgray -0.186px 0px / cover no-repeat`
-                    }}
-                  ></div>
-                  <h3 className="work-card-title">{project.projectName}</h3>
-                  <p className="work-card-description">{project.projectDesc}</p>
-                  <div className="work-card-icons">
-                    {isWebsite ? <WebsiteIcon /> : <GithubIcon />}
-                    {project.footerLink?.map((link, linkIndex) => (
-                      <div
-                        key={linkIndex}
-                        className="work-icon-clickable"
-                        onClick={() => openUrlInNewTab(link.url)}
-                      />
-                    ))}
-                  </div>
+      <div className="works-grid">
+        {works.projects.map((project, i) => {
+          const isWebsite = project.footerLink?.some(link => link.name === "Visitar Site");
+          
+          return (
+            <div key={i} className="work-card">
+              <div className="work-card-container">
+                <div
+                  className="work-card-image"
+                  style={{
+                    backgroundImage: `url(${project.image})`,
+                    backgroundColor: 'lightgray',
+                    backgroundPosition: 'center center',
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat'
+                  }}
+                ></div>
+                <h3 className="work-card-title">{project.projectName}</h3>
+                <p className="work-card-description">{project.projectDesc}</p>
+                <div className="work-card-icons">
+                  {isWebsite ? <WebsiteIcon /> : <GithubIcon />}
+                  {project.footerLink?.map((link, linkIndex) => (
+                    <div
+                      key={linkIndex}
+                      className="work-icon-clickable"
+                      onClick={() => openUrlInNewTab(link.url)}
+                    />
+                  ))}
                 </div>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
-    </Fade>
+    </div>
   );
 }
