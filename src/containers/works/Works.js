@@ -1,8 +1,7 @@
-import React, {useContext} from "react";
+import React from "react";
 import "./Works.scss";
 import {works} from "../../portfolio";
 import {Fade} from "react-reveal";
-import StyleContext from "../../contexts/StyleContext";
 
 export default function Works() {
   function openUrlInNewTab(url) {
@@ -13,7 +12,6 @@ export default function Works() {
     win.focus();
   }
 
-  const {isDark} = useContext(StyleContext);
   if (!works.display) {
     return null;
   }
