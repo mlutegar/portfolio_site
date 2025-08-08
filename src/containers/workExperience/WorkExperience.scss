@@ -7,14 +7,17 @@
 .experience-heading {
   font-size: 56px;
   font-weight: 400;
+  text-align: center;
 }
 
 .experience-container {
   display: flex;
+  flex-direction: column;
   width: 90%;
   padding: 20px 10px;
   margin: 0px auto;
   margin-top: 2rem;
+  align-items: center;
 }
 
 .experience-container > * {

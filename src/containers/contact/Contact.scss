@@ -2,6 +2,8 @@
 
 .contact-div-main {
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .dark-mode a {
@@ -15,6 +17,7 @@
 .contact-title {
   font-size: 65px;
   font-weight: 400;
+  text-align: center;
 }
 
 .contact-detail,

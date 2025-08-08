@@ -61,11 +61,12 @@ export default function Works() {
             return (
               <div key={i} className="work-card">
                 <div className="work-card-container">
-                  <img
-                    src={project.image}
-                    alt={project.projectName}
+                  <div
                     className="work-card-image"
-                  />
+                    style={{
+                      background: `url(${project.image}) lightgray -0.186px 0px / cover no-repeat`
+                    }}
+                  ></div>
                   <h3 className="work-card-title">{project.projectName}</h3>
                   <p className="work-card-description">{project.projectDesc}</p>
                   <div className="work-card-icons">

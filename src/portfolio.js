@@ -23,7 +23,7 @@ const greeting = {
   username: "Michel Lutegar",
   title: "Olá, eu sou Michel",
   subTitle: emoji(
-    "Desenvolvedor Full-Stack apaixonado 🚀 com experiência em React/JSX no front-end e Django/Python no back-end, criando aplicações web completas, escaláveis e de alta performance."
+    "Sou Michel Lutegar, desenvolvedor Full-Stack. Especializo-me em criar aplicações web completas que geram resultados reais - desde plataformas de e-commerce que aumentam conversões até sistemas acadêmicos que otimizam processos, sempre priorizando código de qualidade e experiência do usuário."
   ),
   resumeLink:
     "", // Set to empty to hide the button
@@ -205,7 +205,7 @@ const workExperiences = {
     {
       role: "Assistente de Laboratório",
       company: "IBMEC",
-      companylogo: require("./assets/images/ibmec.png"),
+      companylogo: require("./assets/images/ibmeclogo.png"),
       date: "08/2023 – Atual",
       desc: "Responsável pela organização do laboratório, manutenção de equipamentos e orientação de alunos em atividades práticas."
     },
@@ -224,7 +224,7 @@ To know how to get github key look at readme.md */
 
 const openSource = {
   showGithubProfile: "true", // Set true or false to show Contact profile using Github, defaults to true
-  display: true // Set false to hide this section, defaults to true
+  display: false // Set false to hide this section, defaults to true
 };
 
 // Works Section - Combined Projects
@@ -256,7 +256,7 @@ const works = {
       ]
     },
     {
-      image: require("./assets/images/charlote.jpg"),
+      image: require("./assets/images/charlote.png"),
       projectName: "Charlote",
       projectDesc: "Site para marca de salgadinhos com catálogo de produtos e design atrativo. Implementado com Tailwind CSS para um visual moderno e performance otimizada.",
       footerLink: [

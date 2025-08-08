@@ -8,6 +8,9 @@
 
 .skills-text-div {
   margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .skills-main-div > * {
@@ -23,6 +26,7 @@
 .skills-heading {
   font-size: 56px;
   font-weight: 400;
+  text-align: center;
 }
 .subTitle {
   color: $subTitle;
