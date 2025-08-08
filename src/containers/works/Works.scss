@@ -64,10 +64,9 @@
 }
 
 .work-card-image {
-  width: 22.8125rem;
-  height: 9.75rem;
+  width: 365px;
+  height: 156px;
   flex-shrink: 0;
-  aspect-ratio: 241/103;
   position: absolute;
   left: 16px;
   top: 21px;
@@ -173,7 +172,8 @@
 
 @media (max-width: 480px) {
   .works-main {
-    padding: 40px 20px;
+    padding: 40px 20px !important;
+    display: block !important;
   }
   
   .works-header {
@@ -189,44 +189,62 @@
   }
   
   .works-grid {
+    display: block !important;
+    grid-template-columns: none !important;
     max-width: 100%;
   }
   
   .work-card {
-    width: 100%;
-    height: auto;
-    min-height: 480px;
+    width: 100% !important;
+    height: 500px !important;
+    margin-bottom: 30px;
+    position: relative !important;
+    display: block !important;
   }
   
   .work-card-container {
-    width: 100%;
-    height: auto;
-    min-height: 480px;
+    width: 100% !important;
+    height: 500px !important;
+    position: static !important;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
   }
   
   .work-card-image {
-    width: calc(100% - 32px);
-    height: 140px;
-    left: 16px;
-    top: 16px;
+    width: 100% !important;
+    height: 150px !important;
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    margin-bottom: 20px;
+    flex-shrink: 0;
   }
   
   .work-card-title {
-    left: 20px;
-    top: 170px;
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
     font-size: 22px;
+    margin-bottom: 15px;
   }
   
   .work-card-description {
-    width: calc(100% - 40px);
-    left: 20px;
-    top: 200px;
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
     font-size: 18px;
+    flex-grow: 1;
+    margin-bottom: 20px;
   }
   
   .work-card-icons {
-    left: 20px;
-    bottom: 20px;
+    position: static !important;
+    left: auto !important;
+    bottom: auto !important;
+    margin-top: auto;
   }
 }
 
