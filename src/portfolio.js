@@ -120,6 +120,22 @@ https://fontawesome.com/icons?d=gallery */
     {
       skillName: "bootstrap",
       fontAwesomeClassname: "fab fa-bootstrap"
+    },
+    {
+      skillName: "go",
+      fontAwesomeClassname: "fab fa-google"
+    },
+    {
+      skillName: "c",
+      fontAwesomeClassname: "fas fa-code"
+    },
+    {
+      skillName: "construct3",
+      fontAwesomeClassname: "fas fa-gamepad"
+    },
+    {
+      skillName: "orange",
+      fontAwesomeClassname: "fas fa-chart-line"
     }
   ],
   display: true // Set false to hide this section, defaults to true
@@ -132,7 +148,7 @@ const educationInfo = {
   schools: [
     {
       schoolName: "IBMEC",
-      logo: require("./assets/images/ibmec.png"),
+      logo: require("./assets/images/ibmeclogo.png"),
       subHeader: "Engenharia da Computação",
       duration: "2022 - 2026 (Previsão)",
       desc: "Reconhecido pela faculdade por estar entre os três alunos com maior Coeficiente de Rendimento (CR) do curso durante cinco períodos consecutivos.",
@@ -155,7 +171,7 @@ const educationInfo = {
 // Your top 3 proficient stacks/tech experience
 
 const techStack = {
-  viewSkillBars: true, //Set it to true to show Proficiency Section
+  viewSkillBars: false, //Set it to true to show Proficiency Section
   experience: [
     {
       Stack: "Frontend/React", //Insert stack or technology you have experience in
