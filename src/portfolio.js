@@ -209,7 +209,7 @@ const workExperiences = {
     {
       role: "Desenvolvedor de Sistemas & Analista Fullstack",
       company: "ABRAPA",
-      companylogo: require("./assets/images/ufrj.png"), // Substitua pelo logo da ABRAPA quando disponível
+      companylogo: require("./assets/images/abrapa.png"),
       date: "11/2025 – Atual",
       desc: "Arquitetura, desenvolvimento e manutenção da plataforma MAIA — sistema psicopedagógico de avaliação clínica utilizado em atendimento real de crianças, em parceria com pesquisadora da UFRJ.",
       descBullets: [
