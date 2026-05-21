@@ -207,23 +207,39 @@ const workExperiences = {
   display: true, //Set it to true to show workExperiences Section
   experience: [
     {
-      role: "Desenvolvedor Front-End",
-      company: "Lime Labs",
-      companylogo: require("./assets/images/limelabs.jpg"),
-      date: "09/2024 – Atual",
-      desc: "Desenvolvimento de sites e soluções de e-commerce na plataforma VTEX IO, com personalização de componentes e implementação de interfaces responsivas.",
+      role: "Desenvolvedor de Sistemas & Analista Fullstack",
+      company: "ABRAPA",
+      companylogo: require("./assets/images/ufrj.png"), // Substitua pelo logo da ABRAPA quando disponível
+      date: "11/2025 – Atual",
+      desc: "Arquitetura, desenvolvimento e manutenção da plataforma MAIA — sistema psicopedagógico de avaliação clínica utilizado em atendimento real de crianças, em parceria com pesquisadora da UFRJ.",
       descBullets: [
-        "Desenvolvimento do site Silva Nutrition (www.silvanutrition.com.br)",
-        "Implementação de interfaces em React, HTML, CSS e TypeScript",
-        "Integrações com APIs para funcionalidades de checkout e carrinho"
+        "Implementação de pipeline de entrega contínua (CI/CD) e gerenciamento de infraestrutura em produção no Fly.io",
+        "Desenvolvimento de módulos analíticos de dados: gráficos de dispersão, perfis radar e relatórios estatísticos",
+        "Conformidade técnica com as diretrizes da LGPD e garantia de alta disponibilidade e segurança dos dados"
       ]
     },
     {
-      role: "Assistente de Laboratório",
+      role: "Desenvolvedor Front-End / E-commerce",
+      company: "Lime Labs",
+      companylogo: require("./assets/images/limelabs.jpg"),
+      date: "09/2024 – 06/2025",
+      desc: "Atuação direta no desenvolvimento de plataformas para clientes externos (VTEX IO), realizando levantamento de requisitos a partir do briefing, análise de escopo e entrega técnica.",
+      descBullets: [
+        "Integração de APIs complexas de checkout e arquitetura de componentes em React e TypeScript",
+        "Entrega de ponta a ponta de grandes projetos: Silva Nutrition, Festival Vale do Café e Casarão dos Lustres",
+        "Garantia de performance e escalabilidade dos produtos entregues"
+      ]
+    },
+    {
+      role: "Técnico de Laboratório & Desenvolvedor",
       company: "IBMEC",
       companylogo: require("./assets/images/ibmeclogo.png"),
       date: "08/2023 – Atual",
-      desc: "Responsável pela organização do laboratório, manutenção de equipamentos e orientação de alunos em atividades práticas."
+      desc: "Suporte especializado à infraestrutura técnica de laboratórios de redes e eletrônica, gerenciando ambientes e orientando usuários em atividades práticas.",
+      descBullets: [
+        "Desenvolvimento do sistema interno de gestão e governança de ativos (impressoras 3D, plotters e cortadoras laser)",
+        "Otimização do fluxo de agendamento e empréstimo de insumos da instituição"
+      ]
     },
     {
       role: "Estagiário em Análise de Dados",
