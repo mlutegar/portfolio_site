@@ -378,9 +378,9 @@ const achievementSection = {
 
   achievementsCards: [
     {
-      title: "Reconhecimento Acadêmico IBMEC",
+      title: "Destaque Acadêmico IBMEC – 6 períodos",
       subtitle:
-        "Reconhecido pela faculdade por estar entre os três alunos com maior Coeficiente de Rendimento (CR) do curso durante cinco períodos consecutivos.",
+        "Reconhecido pela faculdade por estar entre os três alunos com maior CR do curso durante seis períodos: 2022.2, 2023.1, 2023.2, 2024.1, 2024.2 e 2025.2 — com médias de 10, 9.9, 9.6, 9.8, 9.8 e 10.",
       image: require("./assets/images/ibmec_star.png"),
       imageAlt: "IBMEC Logo",
       footerLink: [
