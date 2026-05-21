@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/portfolio_site/static/css/main.c2aee379.css",
-    "main.js": "/portfolio_site/static/js/main.30d12240.js",
+    "main.js": "/portfolio_site/static/js/main.812113e6.js",
     "static/css/769.0663467f.chunk.css": "/portfolio_site/static/css/769.0663467f.chunk.css",
     "static/js/769.bda0d7b7.chunk.js": "/portfolio_site/static/js/769.bda0d7b7.chunk.js",
     "static/media/pilotage.png": "/portfolio_site/static/media/pilotage.840847fa0601ffc89ad8.png",
@@ -10,6 +10,7 @@
     "static/media/Montserrat-Regular.ttf": "/portfolio_site/static/media/Montserrat-Regular.3cd786652b8a2e9d41f2.ttf",
     "static/media/senac.png": "/portfolio_site/static/media/senac.f3105f36dd63785ec2a2.png",
     "static/media/limelabs.jpg": "/portfolio_site/static/media/limelabs.ed1626e30a77a3a82a36.jpg",
+    "static/media/abrapa.png": "/portfolio_site/static/media/abrapa.c51fcf50baab5bcd192f.png",
     "static/media/Agustina.woff": "/portfolio_site/static/media/Agustina.eb0c59dda4cc308cba96.woff",
     "static/media/ufrj.png": "/portfolio_site/static/media/ufrj.5ad7bbcde326888b42a1.png",
     "static/media/manOnTable.svg": "/portfolio_site/static/media/manOnTable.8f117eb207e57ed8f89d67d595aceb45.svg",
@@ -27,12 +28,12 @@
     "index.html": "/portfolio_site/index.html",
     "static/media/talksCardBack.svg": "/portfolio_site/static/media/talksCardBack.73ed1545d58273ba64b0.svg",
     "main.c2aee379.css.map": "/portfolio_site/static/css/main.c2aee379.css.map",
-    "main.30d12240.js.map": "/portfolio_site/static/js/main.30d12240.js.map",
+    "main.812113e6.js.map": "/portfolio_site/static/js/main.812113e6.js.map",
     "769.0663467f.chunk.css.map": "/portfolio_site/static/css/769.0663467f.chunk.css.map",
     "769.bda0d7b7.chunk.js.map": "/portfolio_site/static/js/769.bda0d7b7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c2aee379.css",
-    "static/js/main.30d12240.js"
+    "static/js/main.812113e6.js"
   ]
 }
