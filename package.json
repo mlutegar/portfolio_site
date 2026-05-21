@@ -2,6 +2,7 @@
   "name": "developerfolio",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mlutegar.github.io/portfolio_site",
   "dependencies": {
     "colorthief": "^2.3.0",
     "enzyme": "^3.11.0",
