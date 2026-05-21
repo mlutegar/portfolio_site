@@ -151,10 +151,10 @@ const educationInfo = {
       logo: require("./assets/images/ibmeclogo.png"),
       subHeader: "Engenharia da Computação",
       duration: "2022 - 2026 (Previsão)",
-      desc: "Reconhecido pela faculdade por estar entre os três alunos com maior Coeficiente de Rendimento (CR) do curso durante cinco períodos consecutivos.",
+      desc: "Reconhecido pela faculdade por estar entre os três alunos com maior Coeficiente de Rendimento (CR) do curso durante seis períodos (2022.2, 2023.1, 2023.2, 2024.1, 2024.2 e 2025.2).",
       descBullets: [
-        "Médias: 10.0, 9.9, 9.6, 9.8, 9.8 nos últimos períodos",
-        "Assistente de Laboratório desde 08/2023"
+        "Médias: 10, 9.9, 9.6, 9.8, 9.8 e 10 nos seis períodos de destaque",
+        "Técnico de Laboratório & Desenvolvedor desde 08/2023"
       ]
     },
     {
