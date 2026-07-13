@@ -94,12 +94,30 @@ code {
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  /* Compensa a barra fixa ao pular para âncoras (usa a altura real medida no
+     Header, com folga; cai para 80px se a variável ainda não existir). */
+  scroll-padding-top: calc(var(--header-h, 76px) + 12px);
   background-color: var(--bg-1);
   /* clip recorta o excesso horizontal no nível raiz (pegando elementos
      ancorados à viewport) SEM criar container de rolagem — então o
      scroll vertical NÃO fica preso (diferente de overflow: hidden). */
   overflow-x: clip;
+}
+
+/* Reforço: elementos com id (alvos de âncora) reservam espaço para a barra fixa
+   ao serem rolados até (complementa o scroll-padding-top do html). */
+[id] {
+  scroll-margin-top: calc(var(--header-h, 76px) + 12px);
+}
+
+/* Container de seção padronizado (largura máxima centralizada). Utilitário
+   compartilhável para novas seções manterem alinhamento consistente. */
+.section-container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 body {

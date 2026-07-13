@@ -15,6 +15,10 @@ import {
 import LogoSvg from "../../assets/svg/Logo";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import {useScrollY} from "../../hooks/useScrollY";
+import {useScrollLock} from "../../hooks/useScrollLock";
+import {useScrollSpy} from "../../hooks/useScrollSpy";
+
+const MENU_ID = "primary-navigation";
 
 // Navegação orientada a dados: cada item aparece só se a seção estiver visível.
 const NAV_ITEMS = [
@@ -45,37 +49,59 @@ function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const headerRef = useRef(null);
   const menuRef = useRef(null);
+  // Guarda o elemento que abriu o menu, para devolver o foco ao fechar.
+  const openerRef = useRef(null);
 
   const navItems = NAV_ITEMS.filter(item => item.show);
+  const navIds = navItems.map(item => item.href.slice(1));
 
-  // Mede a altura real do header e a expõe em --header-h, para o painel mobile
-  // (position: fixed) ancorar exatamente abaixo da barra, independente do tema
-  // ou do tamanho da fonte.
+  // Item de navegação da seção atualmente visível (scrollspy).
+  const activeId = useScrollSpy(navIds);
+
+  // Mede a altura real do header e a expõe em --header-h (no :root, para que
+  // tanto o menu mobile quanto o `scroll-padding-top` do <html> a enxerguem).
+  //
+  // Usa ResizeObserver para remedir sempre que a altura muda por QUALQUER motivo
+  // — em especial a carga da webfont "Agustina Regular" (que aumenta a barra
+  // depois do primeiro render). Sem isso, --header-h ficava desatualizada e o
+  // menu subia por baixo da logo, sobrepondo o 1º item.
   useEffect(() => {
     const el = headerRef.current;
     if (!el) return undefined;
-    const setVar = () =>
-      el.style.setProperty("--header-h", `${el.offsetHeight}px`);
-    setVar();
-    window.addEventListener("resize", setVar);
-    return () => window.removeEventListener("resize", setVar);
-  }, [scrolled]);
-
-  // Trava o scroll de fundo enquanto o menu mobile está aberto, PRESERVANDO a
-  // posição. position:fixed no body evita o salto para o topo do iOS Safari; a
-  // barra do header também vira fixed (classe no wrapper) para seguir visível.
-  useEffect(() => {
-    if (!menuOpen) return undefined;
-    const body = document.body;
-    const scrollPos = window.scrollY;
-    body.style.top = `-${scrollPos}px`;
-    body.classList.add("no-scroll");
-    return () => {
-      body.classList.remove("no-scroll");
-      body.style.top = "";
-      window.scrollTo(0, scrollPos);
+    let frame = null;
+    const setVar = () => {
+      // Agrupa no próximo frame: evita o warning "ResizeObserver loop" e
+      // arredonda para px inteiro (menos reflows por frações).
+      if (frame !== null) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = null;
+        const h = Math.round(el.getBoundingClientRect().height);
+        document.documentElement.style.setProperty("--header-h", `${h}px`);
+      });
     };
-  }, [menuOpen]);
+    setVar();
+
+    // Reforço: remede quando as fontes terminam de carregar.
+    if (typeof document !== "undefined" && document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(setVar).catch(() => {});
+    }
+
+    let ro;
+    if (typeof ResizeObserver !== "undefined") {
+      ro = new ResizeObserver(setVar);
+      ro.observe(el);
+    } else {
+      window.addEventListener("resize", setVar);
+    }
+    return () => {
+      if (frame !== null) window.cancelAnimationFrame(frame);
+      if (ro) ro.disconnect();
+      else window.removeEventListener("resize", setVar);
+    };
+  }, []);
+
+  // Trava o scroll de fundo (preservando a posição) enquanto o menu está aberto.
+  useScrollLock(menuOpen);
 
   // Fecha o menu ao voltar para o layout desktop
   useEffect(() => {
@@ -89,6 +115,11 @@ function Header() {
   // fica preso dentro do painel (focus trap) — o fundo não é alcançável.
   useEffect(() => {
     if (!menuOpen) return undefined;
+    // Lembra quem tinha o foco (o botão do menu) para devolvê-lo ao fechar.
+    openerRef.current =
+      document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null;
     const panel = menuRef.current;
     const focusables = panel
       ? panel.querySelectorAll(
@@ -97,7 +128,7 @@ function Header() {
       : [];
     const first = focusables[0];
     const last = focusables[focusables.length - 1];
-    if (first) first.focus();
+    if (first) first.focus({preventScroll: true});
 
     const onKeyDown = e => {
       if (e.key === "Escape") {
@@ -107,17 +138,51 @@ function Header() {
       if (e.key !== "Tab" || focusables.length === 0) return;
       if (e.shiftKey && document.activeElement === first) {
         e.preventDefault();
-        last.focus();
+        last.focus({preventScroll: true});
       } else if (!e.shiftKey && document.activeElement === last) {
         e.preventDefault();
-        first.focus();
+        first.focus({preventScroll: true});
       }
     };
     document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      // Devolve o foco ao elemento que abriu o menu (acessibilidade).
+      const opener = openerRef.current;
+      if (opener && typeof opener.focus === "function") {
+        opener.focus({preventScroll: true});
+      }
+    };
   }, [menuOpen]);
 
   const closeMenu = () => setMenuOpen(false);
+
+  // Navegação por âncora que fecha o menu ANTES de rolar. Necessário porque o
+  // scroll-lock (body position:fixed) engoliria o pulo nativo do href no iOS:
+  // esperamos o desbloqueio (2x rAF) e então rolamos até a seção.
+  const handleNavClick = (e, href) => {
+    if (!href || !href.startsWith("#")) return;
+    const target = document.getElementById(href.slice(1));
+    if (!target) {
+      // Seção inexistente: mantém o comportamento padrão, mas fecha o menu.
+      setMenuOpen(false);
+      return;
+    }
+    e.preventDefault();
+    const reduce =
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setMenuOpen(false);
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        target.scrollIntoView({behavior: reduce ? "auto" : "smooth"});
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, "", href);
+        }
+      });
+    });
+  };
 
   const headerClass = [
     "header",
@@ -159,6 +224,7 @@ function Header() {
             menuOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"
           }
           aria-expanded={menuOpen}
+          aria-controls={MENU_ID}
         >
           <span className={isDark ? "navicon navicon-dark" : "navicon"}></span>
         </label>
@@ -169,15 +235,32 @@ function Header() {
         />
         <ul
           ref={menuRef}
+          id={MENU_ID}
           className={isDark ? "dark-menu menu" : "menu"}
-          onClick={closeMenu}
+          role={menuOpen ? "dialog" : undefined}
+          aria-modal={menuOpen ? "true" : undefined}
+          aria-label={menuOpen ? "Menu de navegação" : undefined}
         >
-          {navItems.map(item => (
-            <li key={item.href}>
-              <a href={item.href}>{item.label}</a>
-            </li>
-          ))}
-          <li className="header-toggle-li" onClick={e => e.stopPropagation()}>
+          {navItems.map((item, i) => {
+            const isActive = activeId === item.href.slice(1);
+            return (
+              <li key={item.href} style={{"--i": i}}>
+                <a
+                  href={item.href}
+                  className={isActive ? "is-active" : undefined}
+                  aria-current={isActive ? "true" : undefined}
+                  onClick={e => handleNavClick(e, item.href)}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })}
+          <li
+            className="header-toggle-li"
+            style={{"--i": navItems.length}}
+            onClick={e => e.stopPropagation()}
+          >
             <ToggleSwitch />
           </li>
         </ul>

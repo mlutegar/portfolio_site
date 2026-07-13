@@ -15,11 +15,11 @@ export default function Skills() {
       <div className="skills-main-div skills-main-div--centered">
         <Fade bottom duration={1000}>
           <div className="skills-text-div">
-            <h1
+            <h2
               className={isDark ? "dark-mode skills-heading" : "skills-heading"}
             >
               {skillsSection.title}{" "}
-            </h1>
+            </h2>
             <p
               className={
                 isDark

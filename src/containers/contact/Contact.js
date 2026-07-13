@@ -528,7 +528,7 @@ export default function Contact() {
     <Fade bottom duration={1000} distance="20px">
       <div className="main contact-margin-top" id="contact" ref={rootRef}>
         <div className="contact-header-txt">
-          <h1 className="heading contact-title">{contactInfo.title}</h1>
+          <h2 className="heading contact-title">{contactInfo.title}</h2>
           <p
             className={
               isDark

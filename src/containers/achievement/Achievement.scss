@@ -17,7 +17,16 @@
   color: $subTitle;
 }
 
-/* Layout em faixas: painel herÃ³i (largura total) + fileira de credenciais */
+/* Container centralizado (alinha a seção ao restante do site).
+   952px = 2 cards de 440px + gap de 24px + padding lateral, para que o painel
+   herói e a fileira de credenciais tenham a MESMA largura (sem "degrau"). */
+.achievement-main-div {
+  max-width: 952px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Layout em faixas: painel herói (largura total) + fileira de credenciais */
 .achievement-cards-div {
   display: flex;
   flex-direction: column;
@@ -26,7 +35,10 @@
 
 .credentials-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* Limita a largura de cada card e centraliza a fileira: com 1 ou 2 cards
+     eles ficam centralizados, sem esticar de borda a borda. */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 440px));
+  justify-content: center;
   align-items: stretch;
   gap: 1.5rem;
 }
@@ -47,7 +59,7 @@
     line-height: normal;
     text-align: center;
   }
-  .achievement-cards-div {
+  .achievement-main-div {
     padding-left: 16px;
     padding-right: 16px;
   }

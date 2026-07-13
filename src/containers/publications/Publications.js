@@ -56,7 +56,7 @@ export default function Publications() {
         />
         <div className="publications-main-div">
           <div className="publications-header">
-            <h1
+            <h2
               className={
                 isDark
                   ? "dark-mode heading publications-heading"
@@ -64,7 +64,7 @@ export default function Publications() {
               }
             >
               {publicationsSection.title}
-            </h1>
+            </h2>
             <p
               className={
                 isDark

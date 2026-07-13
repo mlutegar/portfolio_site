@@ -216,7 +216,13 @@ function AchievementHero({cardInfo, isDark}) {
       {stats && stats.length > 0 && (
         <div className="hero-chart-panel">
           <span className="hero-chart-caption">Média (CR) por período</span>
-          <div className="cr-chart">
+          <div
+            className="cr-chart"
+            role="img"
+            aria-label={`Média (CR) por período — ${stats
+              .map(s => `${s.label}: ${s.value}`)
+              .join("; ")}`}
+          >
             {stats.map((s, i) => (
               <div className="cr-bar-col" key={s.label}>
                 <span className="cr-bar-value">{s.value}</span>

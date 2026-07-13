@@ -37,6 +37,11 @@
   max-width: 100%;
   padding: 14px 24px;
   margin: 0px auto;
+  /* Contém os filhos flutuantes (.logo / .menu-icon) para que a altura do
+     header reflita o logo real. Sem isso a altura colapsa (~padding) e o menu
+     mobile, ancorado em var(--header-h), abre por baixo do logo, sobrepondo o
+     1º item. No desktop o @media usa display:flex e sobrescreve isto. */
+  display: flow-root;
   border-bottom: 1px solid transparent;
   transition: background-color var(--dur) var(--ease),
     box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
@@ -78,6 +83,13 @@
 .header .menu-btn:hover {
   background-color: var(--header-hover);
   color: var(--brand);
+}
+
+/* Item da seção atualmente visível (scrollspy) */
+.header li a.is-active {
+  color: var(--brand);
+  background-color: var(--header-hover);
+  font-weight: 700;
 }
 
 .header-toggle-li {
@@ -129,6 +141,18 @@
   transition: max-height 0.25s ease-out;
 }
 
+/* Entrada escalonada (stagger) dos itens quando o menu abre */
+.header .menu > li {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.header .menu-btn:checked ~ .menu > li {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--i, 0) * 35ms + 80ms);
+}
+
 /* Backdrop que cobre o restante da pÃ¡gina; fecha o menu ao tocar fora. */
 .header .menu-backdrop {
   position: fixed;
@@ -138,6 +162,8 @@
   bottom: 0;
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.25s ease, visibility 0.25s ease;
@@ -253,9 +279,53 @@
   .header .menu-backdrop {
     display: none;
   }
+  /* Indicador do item ativo: underline animada (mais elegante no desktop). */
+  .header .menu > li > a {
+    position: relative;
+  }
+  .header .menu > li > a::after {
+    content: "";
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 2px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--brand);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s var(--ease, ease);
+  }
+  .header .menu > li > a.is-active::after,
+  .header .menu > li > a:hover::after {
+    transform: scaleX(1);
+  }
+  /* No desktop o fundo do item ativo é dispensável (a underline já indica). */
+  .header li a.is-active {
+    background-color: transparent;
+  }
+  /* No desktop o menu é sempre visível: anula o stagger do mobile. */
+  .header .menu > li {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
   /* No desktop o menu nunca abre; o wrapper permanece sticky. */
   .header-wrapper--menu-open {
     position: sticky;
+  }
+}
+
+/* Respeita quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  .header .menu,
+  .header .menu > li,
+  .header .menu > li > a::after,
+  .header .menu-backdrop {
+    transition: none;
+  }
+  .header .menu-btn:checked ~ .menu > li {
+    transition-delay: 0s;
   }
 }
 @media (max-width: 960px) and (min-width: 768px) {

@@ -7,7 +7,7 @@ export default function Education() {
   if (educationInfo.display) {
     return (
       <div className="education-section" id="education">
-        <h1 className="education-heading">Formação acadêmica</h1>
+        <h2 className="education-heading">Formação acadêmica</h2>
         <div className="education-timeline">
           {educationInfo.schools.map((school, index) => (
             <EducationCard key={index} school={school} />

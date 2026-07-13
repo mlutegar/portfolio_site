@@ -16,7 +16,7 @@ export default function Achievement() {
       <div className="main" id="achievements">
         <div className="achievement-main-div">
           <div className="achievement-header">
-            <h1
+            <h2
               className={
                 isDark
                   ? "dark-mode heading achievement-heading"
@@ -24,7 +24,7 @@ export default function Achievement() {
               }
             >
               {achievementSection.title}
-            </h1>
+            </h2>
             <p
               className={
                 isDark
