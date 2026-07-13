@@ -41,10 +41,15 @@ export default function Achievement() {
                   isDark={isDark}
                   cardInfo={{
                     title: card.title,
+                    category: card.category,
+                    date: card.date,
                     description: card.subtitle,
                     image: card.image,
                     imageAlt: card.imageAlt,
-                    footer: card.footerLink
+                    footer: card.footerLink,
+                    highlight: card.highlight,
+                    seal: card.seal,
+                    stats: card.stats
                   }}
                 />
               );

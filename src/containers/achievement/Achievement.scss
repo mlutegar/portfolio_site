@@ -17,6 +17,22 @@
   color: $subTitle;
 }
 
+.achievement-cards-div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-auto-rows: 1fr;
+  align-items: stretch;
+  gap: 1.5rem;
+}
+
+/* Grade estável de 3 colunas em telas largas, permitindo que o
+   card em destaque ocupe 2 colunas (vitrine principal). */
+@media (min-width: 900px) {
+  .achievement-cards-div {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 /* Media Query */
 @media (max-width: 1380px) {
   .achievement-heading {

@@ -212,6 +212,8 @@ const workExperiences = {
       company: "ABRAPA",
       companylogo: new URL("./assets/images/abrapa.webp", import.meta.url).href,
       date: "11/2025 – Atual",
+      current: true,
+      tech: ["CI/CD", "Fly.io", "Data Viz", "LGPD"],
       desc: "Arquitetura, desenvolvimento e manutenção da plataforma MAIA — sistema psicopedagógico de avaliação clínica utilizado em atendimento real de crianças, em parceria com pesquisadora da UFRJ.",
       descBullets: [
         "Implementação de pipeline de entrega contínua (CI/CD) e gerenciamento de infraestrutura em produção no Fly.io",
@@ -225,6 +227,7 @@ const workExperiences = {
       companylogo: new URL("./assets/images/limelabs.webp", import.meta.url)
         .href,
       date: "09/2024 – 06/2025",
+      tech: ["React", "TypeScript", "VTEX IO", "APIs"],
       desc: "Atuação direta no desenvolvimento de plataformas para clientes externos (VTEX IO), realizando levantamento de requisitos a partir do briefing, análise de escopo e entrega técnica.",
       descBullets: [
         "Integração de APIs complexas de checkout e arquitetura de componentes em React e TypeScript",
@@ -238,6 +241,8 @@ const workExperiences = {
       companylogo: new URL("./assets/images/ibmeclogo.webp", import.meta.url)
         .href,
       date: "08/2023 – Atual",
+      current: true,
+      tech: ["Sistemas Internos", "Redes", "Suporte"],
       desc: "Suporte especializado à infraestrutura técnica de laboratórios de redes e eletrônica, gerenciando ambientes e orientando usuários em atividades práticas.",
       descBullets: [
         "Desenvolvimento do sistema interno de gestão e governança de ativos (impressoras 3D, plotters e cortadoras laser)",
@@ -252,7 +257,12 @@ const workExperiences = {
         import.meta.url
       ).href,
       date: "08/2022 – 08/2023",
-      desc: "Criação e atualização de planilhas no Excel, elaboração de relatórios em Excel e Power BI para facilitar a tomada de decisão gerencial."
+      tech: ["Excel", "Power BI", "Análise de Dados"],
+      desc: "Criação e atualização de planilhas no Excel, elaboração de relatórios em Excel e Power BI para facilitar a tomada de decisão gerencial.",
+      descBullets: [
+        "Automação de planilhas e rotinas de consolidação de dados, reduzindo o esforço manual recorrente",
+        "Construção de dashboards em Power BI para apoiar a tomada de decisão gerencial"
+      ]
     }
   ]
 };
@@ -402,8 +412,21 @@ const achievementSection = {
   achievementsCards: [
     {
       title: "Destaque Acadêmico IBMEC – 6 períodos",
+      category: "Acadêmico",
+      date: "2022 – 2025",
+      highlight: true, // card em destaque (vitrine de troféus)
+      seal: "Top 3", // selo/medalha exibido no card
       subtitle:
-        "Reconhecido pela faculdade por estar entre os três alunos com maior CR do curso durante seis períodos: 2022.2, 2023.1, 2023.2, 2024.1, 2024.2 e 2025.2 — com médias de 10, 9.9, 9.6, 9.8, 9.8 e 10.",
+        "Reconhecido pela faculdade por estar entre os três alunos com maior CR do curso durante seis períodos consecutivos.",
+      // Médias por período viradas em selos visuais
+      stats: [
+        {label: "2022.2", value: "10"},
+        {label: "2023.1", value: "9.9"},
+        {label: "2023.2", value: "9.6"},
+        {label: "2024.1", value: "9.8"},
+        {label: "2024.2", value: "9.8"},
+        {label: "2025.2", value: "10"}
+      ],
       image: new URL("./assets/images/ibmec_star.webp", import.meta.url).href,
       imageAlt: "IBMEC Logo",
       footerLink: [
@@ -415,6 +438,8 @@ const achievementSection = {
     },
     {
       title: "Certificação Cisco",
+      category: "Certificação",
+      date: "2024",
       subtitle:
         "Networking Essentials Certificate - Certificação em fundamentos de redes.",
       image: new URL("./assets/images/cisco.webp", import.meta.url).href,
@@ -429,6 +454,8 @@ const achievementSection = {
 
     {
       title: "Formação Técnica Senac",
+      category: "Formação Técnica",
+      date: "2024",
       subtitle:
         "Técnico em T.I. - Formação completa em Tecnologia da Informação concluída em 2024.",
       image: new URL("./assets/images/senac.webp", import.meta.url).href,

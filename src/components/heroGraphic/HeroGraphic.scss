@@ -206,6 +206,11 @@
   }
   .code-body {
     font-size: 0.82rem;
+    overflow-x: hidden;
+  }
+  .code-body .ln {
+    white-space: pre-wrap;
+    word-break: break-word;
   }
   .badge-1,
   .badge-3 {

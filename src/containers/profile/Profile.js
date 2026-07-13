@@ -14,7 +14,7 @@ export default function Profile() {
   }
 
   useEffect(() => {
-    if (openSource.showGithubProfile === "true") {
+    if (openSource.display && openSource.showGithubProfile === "true") {
       const getProfileData = () => {
         fetch("/profile.json")
           .then(result => {
@@ -23,6 +23,11 @@ export default function Profile() {
             }
           })
           .then(response => {
+            if (!response || !response.data || !response.data.user) {
+              setProfileFunction("Error");
+              openSource.showGithubProfile = "false";
+              return;
+            }
             setProfileFunction(response.data.user);
           })
           .catch(function (error) {

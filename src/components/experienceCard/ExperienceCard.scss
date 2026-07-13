@@ -1,157 +1,257 @@
 @import "../../_globalColor";
 
-.experience-card,
-.experience-card-dark {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid $lightBorder1;
-  box-shadow: $lightBoxShadow 0px 8px 24px -12px;
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
+/* ---- Card shell ---- */
 
 .experience-card {
-  background-color: $lightBackground2;
+  position: relative;
+  background: $lightBackground2;
+  border-radius: 18px;
+  border: 1px solid $lightBorder1;
+  box-shadow: $lightBoxShadow 0px 10px 30px -16px;
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .experience-card-dark {
-  background-color: $darkBackground;
+  background: $darkBackground;
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
-.experience-card:hover,
-.experience-card-dark:hover {
+.experience-card:hover {
   transform: translateY(-6px);
-  box-shadow: $lightBoxShadowDark 0px 20px 36px -14px;
+  box-shadow: $lightBoxShadowDark 0px 24px 44px -18px;
 }
 
-/* ---- Header ---- */
+.experience-card:hover .xp-node {
+  box-shadow: 0 0 0 6px rgba(255, 107, 53, 0.18),
+    0 8px 22px -6px rgba(255, 107, 53, 0.75);
+}
 
-.experience-banner {
-  position: relative;
-  background: $experienceCardBannerLG;
-  padding: 1.75rem 1.5rem 3.25rem;
+.xp-card-inner {
+  padding: 1.6rem 1.6rem 1.75rem;
+}
+
+/* ---- Timeline node (logo on the spine) ---- */
+
+.xp-node {
+  position: absolute;
+  top: 1.6rem;
+  left: -66px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: $brandGradient;
+  padding: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 0 0 5px rgba(255, 107, 53, 0.12),
+    0 6px 16px -6px rgba(255, 107, 53, 0.6);
+  transition: box-shadow 0.28s ease;
+  z-index: 2;
 }
 
-/* legacy overlay no longer needed with the fixed gradient header */
-.experience-blurred_div,
-.experience-div-company {
-  display: none;
-}
-
-.experience-text-company {
-  margin: 0;
-  text-align: center;
-  color: $lightBackground1;
-  font-size: 1.35rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-shadow: 0 1px 3px rgba(15, 23, 42, 0.35);
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  max-width: 100%;
-}
-
-.experience-roundedimg {
-  position: absolute;
-  left: 50%;
-  bottom: -2.25rem;
-  transform: translateX(-50%);
-  width: 5.5rem;
-  height: 5.5rem;
+.xp-node-img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   background: #ffffff;
-  padding: 0.6rem;
   border-radius: 50%;
-  border: 3px solid #ffffff;
-  box-shadow: 0 0.5rem 1rem $lightBoxShadowDarker;
+  padding: 5px;
 }
 
-/* ---- Body ---- */
+/* ---- Content ---- */
 
-.experience-text-details {
+.xp-index {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  background: $brandGradient;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  margin-bottom: 0.35rem;
+}
+
+.xp-head {
   display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding: 3rem 1.5rem 1.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
 }
 
-.experience-text-role {
-  text-align: center;
+.xp-company {
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: $buttonColor;
+}
+
+.xp-date {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: $textColor;
+  opacity: 0.75;
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid $lightBorder1;
+  white-space: nowrap;
+}
+
+.xp-current {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0f9d58;
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(15, 157, 88, 0.12);
+  border: 1px solid rgba(15, 157, 88, 0.35);
+}
+
+.xp-current-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #0f9d58;
+  box-shadow: 0 0 0 0 rgba(15, 157, 88, 0.55);
+  animation: xp-pulse 2s ease-out infinite;
+}
+
+@keyframes xp-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(15, 157, 88, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 7px rgba(15, 157, 88, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(15, 157, 88, 0);
+  }
+}
+
+.xp-role {
+  margin: 0 0 0.6rem;
   color: $textColor;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.xp-desc {
   margin: 0;
-  line-height: 1.3;
-}
-
-.experience-text-date {
-  text-align: center;
   color: $textColor;
-  opacity: 0.7;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin: 0.4rem 0 1rem;
-}
-
-.experience-text-desc {
-  text-align: left;
-  color: $textColor;
+  opacity: 0.9;
   font-size: 0.95rem;
-  line-height: 1.55;
-  margin: 0;
+  line-height: 1.6;
 }
 
-.experience-text-details ul {
-  margin: 0.9rem 0 0;
-  padding-left: 1.15rem;
+.xp-bullets {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
 }
 
-.experience-text-details ul li {
-  text-align: left;
+.xp-bullet {
+  position: relative;
+  padding-left: 1.35rem;
+  margin-bottom: 0.55rem;
   font-size: 0.9rem;
   line-height: 1.5;
-  margin-bottom: 0.45rem;
   color: $textColor;
+  opacity: 0.92;
 }
 
-.experience-text-details ul li::marker {
+.xp-bullet::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  background: $brandGradient;
+}
+
+/* ---- Tech tags ---- */
+
+.xp-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 1.1rem 0 0;
+  padding: 0;
+}
+
+.xp-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   color: $buttonColor;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 107, 53, 0.1);
+  border: 1px solid rgba(255, 107, 53, 0.28);
+  white-space: nowrap;
+}
+
+.experience-card-dark .xp-tag {
+  color: #ffb492;
 }
 
 .dark-mode-text {
   color: $textColorDark !important;
 }
 
-/* Media Query */
+/* ---- Desktop zig-zag node placement ---- */
 
-@media (max-width: 1380px) {
-  .experience-text-role {
-    font-size: 1.1rem;
+@media (min-width: 900px) {
+  /* Odd items sit on the LEFT of the spine -> node on the right edge */
+  .xp-timeline-item:nth-child(odd) .xp-node {
+    left: auto;
+    right: -84px;
   }
-  .experience-text-company {
-    font-size: 1.2rem;
+  /* Even items sit on the RIGHT of the spine -> node on the left edge */
+  .xp-timeline-item:nth-child(even) .xp-node {
+    left: -84px;
+    right: auto;
   }
 }
 
+/* ---- Reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-card,
+  .xp-node {
+    transition: none;
+  }
+  .experience-card:hover {
+    transform: none;
+  }
+  .xp-current-dot {
+    animation: none;
+  }
+}
+
+/* ---- Small screens ---- */
+
 @media (max-width: 768px) {
-  .experience-text-role {
-    font-size: 1.1rem;
+  .xp-role {
+    font-size: 1.15rem;
   }
-  .experience-text-company {
-    font-size: 1.2rem;
-  }
-  .experience-text-desc {
-    font-size: 0.9rem;
+  .xp-card-inner {
+    padding: 1.35rem 1.3rem 1.5rem;
   }
 }

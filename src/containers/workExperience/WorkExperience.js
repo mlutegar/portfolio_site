@@ -13,27 +13,34 @@ export default function WorkExperience() {
         <div className="experience-container" id="workExperience">
           <div>
             <Fade bottom duration={800} distance="20px">
-              <h2 className="experience-heading">Experiências</h2>
+              <h2 className="experience-heading">
+                <span>Experiências</span>
+              </h2>
             </Fade>
-            <div className="experience-cards-div">
+            <ol className={isDark ? "xp-timeline xp-timeline--dark" : "xp-timeline"}>
               {workExperiences.experience.map((card, i) => {
                 return (
-                  <Fade key={i} bottom duration={800} delay={i * 120} distance="24px">
-                    <ExperienceCard
-                      isDark={isDark}
-                      cardInfo={{
-                        company: card.company,
-                        desc: card.desc,
-                        date: card.date,
-                        companylogo: card.companylogo,
-                        role: card.role,
-                        descBullets: card.descBullets
-                      }}
-                    />
-                  </Fade>
+                  <li className="xp-timeline-item" key={i}>
+                    <Fade bottom duration={800} delay={i * 120} distance="24px">
+                      <ExperienceCard
+                        isDark={isDark}
+                        index={i}
+                        cardInfo={{
+                          company: card.company,
+                          desc: card.desc,
+                          date: card.date,
+                          companylogo: card.companylogo,
+                          role: card.role,
+                          descBullets: card.descBullets,
+                          current: card.current,
+                          tech: card.tech
+                        }}
+                      />
+                    </Fade>
+                  </li>
                 );
               })}
-            </div>
+            </ol>
           </div>
         </div>
       </div>

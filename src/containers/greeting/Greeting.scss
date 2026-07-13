@@ -127,6 +127,8 @@
   animation-name: wave;
   display: inline-block;
   transform-origin: 70% 70%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 @keyframes wave {

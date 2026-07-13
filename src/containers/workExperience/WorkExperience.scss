@@ -1,33 +1,103 @@
-.experience-cards-div {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  align-items: stretch;
-  margin-top: 1rem;
-}
-
-.experience-cards-div > * {
-  height: 100%;
-}
-
-.experience-heading {
-  font-size: 56px;
-  font-weight: 400;
-  text-align: center;
-}
+@import "../../_globalColor";
 
 .experience-container {
   display: flex;
   flex-direction: column;
   width: 90%;
+  max-width: 1080px;
   padding: 20px 10px;
-  margin: 0px auto;
-  margin-top: 2rem;
+  margin: 2rem auto 0;
   align-items: center;
 }
 
 .experience-container > * {
-  flex: 1;
+  width: 100%;
+}
+
+/* ---- Heading ---- */
+
+.experience-heading {
+  font-size: 56px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  letter-spacing: -0.02em;
+}
+
+.experience-heading span {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.35rem;
+}
+
+.experience-heading span::after {
+  content: "";
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  bottom: 0;
+  height: 6px;
+  border-radius: 999px;
+  background: $brandGradient;
+  box-shadow: 0 6px 18px -6px rgba(255, 107, 53, 0.7);
+}
+
+/* ---- Timeline ---- */
+
+.xp-timeline {
+  position: relative;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* The glowing spine */
+.xp-timeline::before {
+  content: "";
+  position: absolute;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  left: 24px;
+  width: 4px;
+  border-radius: 999px;
+  background: $brandGradient;
+  box-shadow: 0 0 24px 0 rgba(255, 107, 53, 0.55);
+}
+
+.xp-timeline-item {
+  position: relative;
+  padding-left: 68px;
+  margin-bottom: 2.75rem;
+}
+
+.xp-timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Desktop: center spine + zig-zag */
+@media (min-width: 900px) {
+  .xp-timeline::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .xp-timeline-item {
+    width: 50%;
+    padding-left: 0;
+    margin-bottom: 3.5rem;
+  }
+
+  /* Odd items on the left */
+  .xp-timeline-item:nth-child(odd) {
+    left: 0;
+    padding-right: 56px;
+  }
+
+  /* Even items on the right */
+  .xp-timeline-item:nth-child(even) {
+    left: 50%;
+    padding-left: 56px;
+  }
 }
 
 /* Media Query */

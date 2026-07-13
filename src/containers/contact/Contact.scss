@@ -4,56 +4,26 @@
   margin-top: 4rem;
 }
 
-/* ---- Glass card ---------------------------------------------------------- */
-.contact-card {
-  position: relative;
-  overflow: hidden;
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 3.5rem 2.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  border-radius: var(--radius-lg, 20px);
-  border: 1px solid $lightBorder1;
-  background: color-mix(in srgb, var(--surface, #fff) 82%, transparent);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: var(--shadow-lg, 0 18px 40px rgba(15, 23, 42, 0.16));
-}
-
-/* soft brand glow behind the card content */
-.contact-glow {
+.visually-hidden {
   position: absolute;
-  top: -40%;
-  left: 50%;
-  width: 520px;
-  height: 520px;
-  transform: translateX(-50%);
-  pointer-events: none;
-  background: radial-gradient(
-    circle,
-    rgba(255, 107, 53, 0.28) 0%,
-    rgba(247, 147, 30, 0.12) 38%,
-    transparent 70%
-  );
-  filter: blur(20px);
-  z-index: 0;
-}
-
-.contact-card > *:not(.contact-glow) {
-  position: relative;
-  z-index: 1;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* ---- Header -------------------------------------------------------------- */
-.contact-header {
-  width: 100%;
+.contact-header-txt {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .contact-title {
-  font-size: 60px;
+  font-size: 56px;
   font-weight: 400;
   text-align: center;
   margin-bottom: 0.5rem;
@@ -63,148 +33,417 @@
   text-transform: uppercase;
   letter-spacing: 0.04em;
   font-size: 15px;
-  max-width: 46ch;
-  margin: 0 auto 0.5rem;
+  max-width: 50ch;
+  margin: 0 auto;
 }
 
-/* ---- Contact pills ------------------------------------------------------- */
-.contact-pills {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-  max-width: 440px;
-  margin: 2rem auto 2.25rem;
-}
+/* ---- Terminal window ----------------------------------------------------- */
+.term-window {
+  --term-bg: #0d1117;
+  --term-fg: #e6edf3;
+  --term-muted: #8b949e;
+  --term-green: #3fb950;
+  --term-accent: #ff6b35;
 
-.contact-pill {
-  display: flex;
-  align-items: stretch;
-  gap: 0.5rem;
-  width: 100%;
-}
-
-.contact-pill-main {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex: 1;
-  padding: 0.85rem 1.1rem;
-  border-radius: var(--radius-md, 12px);
-  border: 1px solid $lightBorder1;
-  background: color-mix(in srgb, var(--surface, #fff) 60%, transparent);
-  text-decoration: none;
-  text-align: left;
-  transition: transform var(--dur, 0.32s) var(--ease, ease),
-    box-shadow var(--dur, 0.32s) var(--ease, ease),
-    border-color var(--dur, 0.32s) var(--ease, ease);
-}
-
-.contact-pill-main:hover {
-  transform: translateY(-3px);
-  border-color: transparent;
-  box-shadow: 0 10px 26px rgba(255, 107, 53, 0.28);
-}
-
-.contact-pill-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  color: #fff;
-  font-size: 1.05rem;
-  background: $brandGradient;
-}
-
-.contact-pill-body {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
-.contact-pill-label {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: $subTitle;
-}
-
-.contact-pill-value {
-  font-size: 20px;
-  font-weight: 500;
-  color: $textColor;
+  max-width: 680px;
+  margin: 0 auto;
+  border-radius: 12px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  background: var(--term-bg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-lg, 0 20px 44px rgba(0, 0, 0, 0.45));
+  font-family: "SFMono-Regular", "Fira Code", Menlo, Consolas, monospace;
+  text-align: left;
 }
 
-.contact-card.dark-mode .contact-pill-value {
-  color: $textColorDark;
-}
-
-/* copy button */
-.contact-copy {
+/* title bar with traffic lights */
+.term-bar {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #161b22;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.term-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.term-red {
+  background: #ff5f56;
+}
+.term-yellow {
+  background: #ffbd2e;
+}
+.term-green {
+  background: #27c93f;
+}
+
+.term-bar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  color: var(--term-muted);
+  margin-right: 44px; /* balance the 3 dots on the left */
+}
+
+/* body */
+.term-body {
+  padding: 1.25rem 1.35rem 1.5rem;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--term-fg);
+}
+
+.term-line {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.term-line.is-hidden {
+  display: none;
+}
+
+.term-prompt {
+  font-weight: 600;
+}
+.term-user {
+  color: var(--term-green);
+}
+.term-at,
+.term-path {
+  color: var(--term-muted);
+}
+.term-host {
+  color: #58a6ff;
+}
+
+.term-cmd {
+  color: var(--term-fg);
+}
+
+/* syntax highlight for echoed commands */
+.term-program {
+  color: #79c0ff;
+}
+.term-flag {
+  color: var(--term-accent);
+}
+.term-arg {
+  color: var(--term-fg);
+}
+
+/* interactive input */
+.term-input-line {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: normal;
+}
+.term-input {
+  flex: 1;
+  min-width: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--term-fg);
+  background: transparent;
+  border: none;
+  outline: none;
+  caret-color: var(--term-accent);
+  padding: 0;
+}
+
+/* sound toggle in the title bar */
+.term-sound {
+  position: absolute;
+  right: 12px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 2px;
-  flex-shrink: 0;
-  width: 72px;
-  padding: 0.5rem;
-  border-radius: var(--radius-md, 12px);
-  border: 1px solid $lightBorder1;
+  width: 26px;
+  height: 22px;
+  border: none;
+  border-radius: 6px;
   background: transparent;
-  color: $subTitle;
+  color: var(--term-muted);
   cursor: pointer;
-  font-size: 1rem;
-  transition: color var(--dur-fast, 0.18s) var(--ease, ease),
-    border-color var(--dur-fast, 0.18s) var(--ease, ease),
-    background var(--dur-fast, 0.18s) var(--ease, ease);
+  font-size: 12px;
+  transition: color 0.18s ease, background 0.18s ease;
+}
+.term-sound:hover {
+  color: var(--term-fg);
+  background: rgba(255, 255, 255, 0.06);
+}
+.term-bar {
+  position: relative;
 }
 
-.contact-copy:hover {
-  color: $buttonColor;
-  border-color: $buttonColor;
+/* help / plain text output */
+.term-help ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 1.2rem;
+}
+.term-help li {
+  color: var(--term-muted);
+}
+.term-help b {
+  color: var(--term-accent);
+}
+.term-text {
+  display: block;
+  padding-left: 1.2rem;
+  color: var(--term-fg);
+}
+.term-text b {
+  color: var(--term-accent);
 }
 
-.contact-copy.copied {
+.term-error {
+  font-size: 12px;
+  color: #ff7b72;
+}
+
+/* blinking caret */
+.term-caret {
+  display: inline-block;
+  width: 9px;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--term-accent);
+  animation: term-blink 1s steps(1) infinite;
+}
+
+@keyframes term-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* command output rows */
+.term-output {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0.35rem 0 0.65rem 1.2rem;
+  animation: term-reveal 0.4s var(--ease, ease) both;
+}
+
+@keyframes term-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.term-out-icon {
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 0.85rem;
   color: #fff;
-  border-color: transparent;
-  background: $brandGradient;
+  flex-shrink: 0;
+}
+.term-out-icon.whatsapp {
+  background: #25d366;
+}
+.term-out-icon.email {
+  background: var(--term-accent);
 }
 
-.contact-copy-text {
-  font-size: 11px;
-  letter-spacing: 0.02em;
+.term-value {
+  color: var(--term-fg);
+  text-decoration: none;
+  font-size: 1.05rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.25);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.term-value:hover {
+  color: var(--term-accent);
+  border-color: var(--term-accent);
+}
+
+.term-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  font-family: inherit;
+  font-size: 12px;
+  color: var(--term-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.term-copy:hover {
+  color: var(--term-fg);
+  border-color: var(--term-accent);
+}
+.term-copy.copied {
+  color: #fff;
+  background: var(--term-green);
+  border-color: var(--term-green);
+}
+
+/* social row inside terminal */
+.term-social {
+  padding-left: 1.2rem;
+}
+.term-social .social-media-div {
+  justify-content: flex-start;
+}
+
+/* ---- Terminal form ------------------------------------------------------- */
+.term-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.4rem 0 0.25rem 1.2rem;
+  animation: term-reveal 0.4s var(--ease, ease) both;
+}
+
+.term-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.term-field-label {
+  font-size: 12px;
+  color: var(--term-green);
+}
+
+.term-field input,
+.term-field textarea {
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--term-fg);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 0.55rem 0.7rem;
+  resize: vertical;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.term-field input::placeholder,
+.term-field textarea::placeholder {
+  color: rgba(139, 148, 158, 0.7);
+}
+.term-field input:focus,
+.term-field textarea:focus {
+  outline: none;
+  border-color: var(--term-accent);
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.18);
+}
+
+.term-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.25rem;
+}
+
+.term-send {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.1rem;
+  cursor: pointer;
+  text-decoration: none;
+  background: $brandGradient;
+  transition: transform 0.2s var(--ease, ease),
+    box-shadow 0.2s var(--ease, ease);
+}
+.term-send:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(255, 107, 53, 0.35);
+}
+.term-send-alt {
+  background: #25d366;
+}
+.term-send-alt:hover {
+  box-shadow: 0 10px 22px rgba(37, 211, 102, 0.35);
+}
+.term-send-ghost {
+  background: transparent;
+  color: var(--term-fg);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+.term-send-ghost:hover {
+  border-color: var(--term-accent);
+  box-shadow: none;
+}
+.term-send.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: auto;
+}
+.term-send.is-disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.term-idle {
+  padding-top: 0.2rem;
+}
+
+/* Respect reduced-motion: stop the blinking caret */
+@media (prefers-reduced-motion: reduce) {
+  .term-caret {
+    animation: none;
+  }
 }
 
 /* ---- Responsive ---------------------------------------------------------- */
 @media (max-width: 768px) {
-  .contact-card {
-    padding: 2.5rem 1.25rem;
-  }
-
   .contact-title {
-    font-size: 38px;
+    font-size: 36px;
   }
-
   .contact-subtitle {
-    font-size: 14px;
+    font-size: 13px;
   }
-
-  .contact-pill-value {
-    font-size: 17px;
+  .term-body {
+    font-size: 13px;
+    padding: 1rem 1rem 1.25rem;
   }
-
-  .contact-copy {
-    width: 60px;
+  .term-value {
+    font-size: 0.95rem;
+    word-break: break-all;
   }
-
-  .contact-copy-text {
-    display: none;
+  .term-output,
+  .term-form,
+  .term-social {
+    padding-left: 0.5rem;
+  }
+  .term-actions {
+    flex-direction: column;
+  }
+  .term-send {
+    justify-content: center;
   }
 }
