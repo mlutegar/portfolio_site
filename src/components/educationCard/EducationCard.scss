@@ -1,7 +1,7 @@
-@import "../../_globalColor";
+﻿@use "../../_globalColor" as *;
 
 /* ============================================================
-   Vertical timeline — education
+   Vertical timeline â€” education
    Each reveal wrapper holds one timeline item. The connecting
    line is drawn per-item as a pseudo-element and truncated on
    the first / last item so it starts and ends at the markers.

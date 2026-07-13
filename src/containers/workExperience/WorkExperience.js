@@ -37,12 +37,46 @@ export default function WorkExperience() {
       }
     };
 
-    update();
-    window.addEventListener("scroll", onScroll, {passive: true});
-    window.addEventListener("resize", onScroll);
-    return () => {
+    // Só escuta o scroll enquanto a timeline está (ou esteve) visível,
+    // evitando cálculos em toda a página quando a seção está fora da tela.
+    let listening = false;
+    const startListening = () => {
+      if (listening) return;
+      listening = true;
+      window.addEventListener("scroll", onScroll, {passive: true});
+      window.addEventListener("resize", onScroll);
+    };
+    const stopListening = () => {
+      if (!listening) return;
+      listening = false;
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+    };
+
+    if (typeof IntersectionObserver === "undefined") {
+      update();
+      startListening();
+      return () => stopListening();
+    }
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            update();
+            startListening();
+          } else {
+            stopListening();
+          }
+        });
+      },
+      {rootMargin: "0px 0px -10% 0px"}
+    );
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+      stopListening();
     };
   }, []);
 
@@ -58,12 +92,18 @@ export default function WorkExperience() {
             </Fade>
             <ol
               ref={timelineRef}
-              className={isDark ? "xp-timeline xp-timeline--dark" : "xp-timeline"}
+              aria-label="Linha do tempo de experiência profissional"
+              className={
+                isDark ? "xp-timeline xp-timeline--dark" : "xp-timeline"
+              }
             >
               <span className="xp-timeline-fill" aria-hidden="true" />
               {workExperiences.experience.map((card, i) => {
                 return (
-                  <li className="xp-timeline-item" key={i}>
+                  <li
+                    className="xp-timeline-item"
+                    key={`${card.company}-${card.date}`}
+                  >
                     <Fade bottom duration={800} delay={i * 120} distance="24px">
                       <ExperienceCard
                         isDark={isDark}

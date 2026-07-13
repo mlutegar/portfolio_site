@@ -35,11 +35,18 @@ export default function SoftwareSkill() {
   const rowA = skills.filter((_, i) => i % 2 === 0);
   const rowB = skills.filter((_, i) => i % 2 === 1);
 
-  const iconStyle = (skillName) => ({color: BRAND_COLORS[skillName]});
+  const iconStyle = skillName => ({color: BRAND_COLORS[skillName]});
 
   const renderPill = (skill, i) => (
-    <li key={i} className="skill-pill" name={skill.skillName}>
-      <i className={skill.fontAwesomeClassname} style={iconStyle(skill.skillName)}></i>
+    <li
+      key={`${skill.skillName}-${i}`}
+      className="skill-pill"
+      name={skill.skillName}
+    >
+      <i
+        className={skill.fontAwesomeClassname}
+        style={iconStyle(skill.skillName)}
+      ></i>
       <p>{skill.skillName}</p>
     </li>
   );
@@ -49,9 +56,9 @@ export default function SoftwareSkill() {
       {/* Desktop / tablet: grid original */}
       <div className="software-skills-main-div">
         <ul className="dev-icons">
-          {skills.map((skill, i) => (
+          {skills.map(skill => (
             <li
-              key={i}
+              key={skill.skillName}
               className="software-skill-inline"
               name={skill.skillName}
             >
@@ -69,7 +76,7 @@ export default function SoftwareSkill() {
       <div
         className={`skills-marquee${paused ? " is-paused" : ""}`}
         style={{"--marquee-duration": MARQUEE_DURATION}}
-        onClick={() => setPaused((p) => !p)}
+        onClick={() => setPaused(p => !p)}
         aria-hidden="true"
       >
         <div className="marquee-row">

@@ -28,7 +28,7 @@ async function copyText(value) {
     document.execCommand("copy");
     document.body.removeChild(el);
     return true;
-  } catch (e) {
+  } catch {
     return false;
   }
 }
@@ -144,7 +144,7 @@ export default function Contact() {
       gain.connect(ctx.destination);
       osc.start();
       osc.stop(ctx.currentTime + 0.015);
-    } catch (e) {
+    } catch {
       /* ignore */
     }
   };
@@ -489,7 +489,10 @@ export default function Contact() {
     try {
       const res = await fetch(formAction, {
         method: "POST",
-        headers: {Accept: "application/json", "Content-Type": "application/json"},
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify({
           name: form.name,
           email: form.email,
@@ -502,13 +505,11 @@ export default function Contact() {
       setFormOpen(false);
       pushOut(
         textOut(
-          <>
-            ✓ Mensagem enviada! Obrigado — respondo assim que possível. 🚀
-          </>
+          <>✓ Mensagem enviada! Obrigado — respondo assim que possível. 🚀</>
         )
       );
       announce("Mensagem enviada com sucesso");
-    } catch (err) {
+    } catch {
       pushOut(
         textOut(
           <>
@@ -601,9 +602,7 @@ export default function Contact() {
                   <input
                     type="text"
                     value={form.name}
-                    onChange={e =>
-                      setForm(f => ({...f, name: e.target.value}))
-                    }
+                    onChange={e => setForm(f => ({...f, name: e.target.value}))}
                     onKeyDown={beep}
                     placeholder="Seu nome"
                     autoComplete="name"
@@ -663,7 +662,9 @@ export default function Contact() {
                     </button>
                   ) : (
                     <a
-                      className={canSend ? "term-send" : "term-send is-disabled"}
+                      className={
+                        canSend ? "term-send" : "term-send is-disabled"
+                      }
                       href={canSend ? mailtoHref : undefined}
                       aria-disabled={!canSend}
                       onClick={onSend}

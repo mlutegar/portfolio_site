@@ -1,4 +1,4 @@
-@import "../../_globalColor";
+﻿@use "../../_globalColor" as *;
 
 .experience-container {
   display: flex;
@@ -84,8 +84,27 @@
   pointer-events: none;
 }
 
+/* Ponto de brilho que segue a ponta do preenchimento conforme o scroll */
+.xp-timeline-fill::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transform: translate(-50%, 50%);
+  background: #fff;
+  box-shadow: 0 0 12px 2px rgba(255, 107, 53, 0.9),
+    0 0 0 3px rgba(255, 107, 53, 0.35);
+  opacity: calc(var(--xp-progress));
+}
+
 .xp-timeline-item {
   position: relative;
+  /* Eleva o item (e a bolinha do nó) acima da linha de preenchimento
+     (.xp-timeline-fill, z-index: 1) para que a linha passe por trás do nó. */
+  z-index: 2;
   padding-left: 68px;
   margin-bottom: 2.75rem;
 }

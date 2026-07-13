@@ -1,7 +1,7 @@
-@import "../../_globalColor";
+﻿@use "../../_globalColor" as *;
 
 /* =========================================================
-   Mural de Conquistas — herói + credenciais
+   Mural de Conquistas â€” herÃ³i + credenciais
    ========================================================= */
 
 /* ---------- Bases compartilhadas ---------- */
@@ -47,7 +47,7 @@
   color: $subTitle;
 }
 
-/* ---------- Footer / botão de link ---------- */
+/* ---------- Footer / botÃ£o de link ---------- */
 .certificate-card-footer {
   display: flex;
   align-items: center;
@@ -87,7 +87,7 @@
 }
 
 /* =========================================================
-   Card Herói (conquista em destaque)
+   Card HerÃ³i (conquista em destaque)
    ========================================================= */
 .achievement-hero {
   position: relative;
@@ -177,7 +177,7 @@
   box-shadow: 0 6px 14px -6px rgba(255, 107, 53, 0.7);
 }
 
-/* Painel do gráfico */
+/* Painel do grÃ¡fico */
 .hero-chart-panel {
   display: flex;
   flex-direction: column;
@@ -200,7 +200,7 @@
   color: $subTitle;
 }
 
-/* Mini-gráfico de barras */
+/* Mini-grÃ¡fico de barras */
 .cr-chart {
   display: grid;
   grid-auto-flow: column;
@@ -314,7 +314,7 @@
   max-height: 100%;
   object-fit: contain;
 }
-/* Fallback emoji quando o card não tem logo (ex.: publicações) */
+/* Fallback emoji quando o card nÃ£o tem logo (ex.: publicaÃ§Ãµes) */
 .card-logo-emoji {
   line-height: 1;
 }
@@ -345,7 +345,7 @@
 .credential-body .card-title {
   font-size: 1.15rem;
 }
-/* Descrição com limite de linhas → cards de credencial com altura uniforme */
+/* DescriÃ§Ã£o com limite de linhas â†’ cards de credencial com altura uniforme */
 .credential-body .card-subtitle {
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -353,7 +353,7 @@
   overflow: hidden;
 }
 
-/* Ícone dentro do badge de categoria */
+/* Ãcone dentro do badge de categoria */
 .certificate-category-icon {
   margin-right: 0.35em;
   font-size: 0.9em;
@@ -361,7 +361,7 @@
 }
 
 /* =========================================================
-   Métricas-herói (números animados)
+   MÃ©tricas-herÃ³i (nÃºmeros animados)
    ========================================================= */
 .hero-metrics {
   display: flex;
@@ -393,10 +393,8 @@
   color: $subTitle;
 }
 
-/* Fallback de contraste caso o navegador não recorte o gradiente no texto */
-@supports not (
-  (-webkit-background-clip: text) or (background-clip: text)
-) {
+/* Fallback de contraste caso o navegador nÃ£o recorte o gradiente no texto */
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
   .hero-metric-value,
   .cr-bar-value {
     -webkit-text-fill-color: $buttonColor;
@@ -452,7 +450,7 @@
 }
 
 /* =========================================================
-   Rodapé do card + botão "Citar (BibTeX)"
+   RodapÃ© do card + botÃ£o "Citar (BibTeX)"
    ========================================================= */
 .credential-footer-row {
   margin-top: auto;
@@ -502,7 +500,7 @@
   border-color: rgba(74, 222, 128, 0.28);
 }
 
-/* Contador de artigos abaixo do subtítulo da seção */
+/* Contador de artigos abaixo do subtÃ­tulo da seÃ§Ã£o */
 .publications-count {
   margin-top: 0.4rem;
   font-size: 0.85rem;

@@ -1,4 +1,4 @@
-@import "../../_globalColor";
+﻿@use "../../_globalColor" as *;
 
 .greet-main {
   width: 90%;
@@ -106,7 +106,7 @@
   font-weight: 700;
   font-size: clamp(1.8rem, 4vw, 2.6rem);
   line-height: 1;
-  /* fallback sólido: garante contraste se o clip de texto falhar */
+  /* fallback sÃ³lido: garante contraste se o clip de texto falhar */
   color: var(--brand);
 }
 
@@ -195,7 +195,7 @@
   .greeting-stats {
     margin-top: 16px;
   }
-  /* glow decorativo menor no mobile para aliviar a composição/pintura */
+  /* glow decorativo menor no mobile para aliviar a composiÃ§Ã£o/pintura */
   .greet-main::before {
     width: 260px;
     height: 260px;

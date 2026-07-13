@@ -1,0 +1,318 @@
+@use "../../_globalColor" as *;
+
+.publication-card {
+  --pub-accent: #{$buttonColor};
+  position: relative;
+  display: grid;
+  grid-template-columns: 108px 1fr;
+  align-items: stretch;
+  border-radius: 20px;
+  overflow: hidden;
+  background: $lightBackground2;
+  border: 1px solid $lightBorder1;
+  box-shadow: $lightBoxShadow 0px 12px 34px -24px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.publication-card::before {
+  // fina linha de acento no topo, revelada no hover
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: $brandGradient;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.publication-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 107, 53, 0.45);
+  box-shadow: $lightBoxShadowDarker 0px 26px 50px -28px;
+}
+
+.publication-card:hover::before {
+  transform: scaleX(1);
+}
+
+.publication-card.dark-mode:hover {
+  box-shadow: rgba(255, 107, 53, 0.18) 0px 26px 50px -26px;
+}
+
+/* ---------- Trilho lateral ---------- */
+.pub-rail {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.4rem 0.6rem;
+  background: linear-gradient(
+    160deg,
+    rgba(255, 107, 53, 0.14) 0%,
+    rgba(247, 147, 30, 0.06) 100%
+  );
+  border-right: 1px solid $lightBorder1;
+  overflow: hidden;
+}
+
+.pub-rail-watermark {
+  position: absolute;
+  top: -0.35em;
+  left: -0.1em;
+  font-size: 5.5rem;
+  line-height: 1;
+  color: rgba(255, 107, 53, 0.14);
+  font-family: Georgia, "Times New Roman", serif;
+  pointer-events: none;
+  user-select: none;
+}
+
+.pub-ordinal {
+  position: relative;
+  font-family: var(--font-display), sans-serif;
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  background: $brandGradient;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pub-year {
+  position: relative;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #fff;
+  background: $brandGradient;
+  padding: 0.24em 0.7em;
+  border-radius: 999px;
+  box-shadow: rgba(255, 107, 53, 0.35) 0px 6px 16px -6px;
+}
+
+/* ---------- Corpo ---------- */
+.pub-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.5rem 1.6rem;
+  min-width: 0;
+}
+
+.pub-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  align-self: flex-start;
+  font-family: "SFMono-Regular", "Consolas", "Roboto Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $buttonColor;
+  background: rgba(255, 107, 53, 0.1);
+  border: 1px solid rgba(255, 107, 53, 0.24);
+  padding: 0.32em 0.7em;
+  border-radius: 8px;
+}
+
+.pub-eyebrow-icon {
+  font-size: 0.9rem;
+}
+
+.publication-card .card-title {
+  margin: 0.1rem 0 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.28;
+  color: $titleColor;
+}
+
+.pub-authors {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: $subTitle;
+}
+
+.pub-author.is-self {
+  font-weight: 700;
+  color: $textColor;
+}
+
+.pub-author-sep {
+  color: $subTitle;
+}
+
+.pub-abstract {
+  margin: 0.15rem 0 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: $cardSubtitle;
+  font-size: 0.95rem;
+  line-height: 1.58;
+}
+
+/* ---------- Chips ---------- */
+.pub-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+}
+
+.pub-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: $cardSubtitle;
+  background: rgba(148, 163, 184, 0.14);
+  border: 1px solid $lightBorder1;
+  padding: 0.3em 0.7em;
+  border-radius: 999px;
+}
+
+.pub-chip.is-author {
+  color: $buttonColor;
+  background: rgba(255, 107, 53, 0.1);
+  border-color: rgba(255, 107, 53, 0.3);
+}
+
+.pub-chip.is-verified {
+  color: #16a34a;
+  background: rgba(22, 163, 74, 0.1);
+  border-color: rgba(22, 163, 74, 0.3);
+}
+
+.publication-card.dark-mode .pub-chip.is-verified {
+  color: #4ade80;
+}
+
+/* ---------- Ações ---------- */
+.pub-actions {
+  margin-top: auto;
+  padding-top: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1.1rem;
+  border-top: 1px solid $lightBorder1;
+}
+
+.pub-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.1rem;
+}
+
+.pub-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: $buttonColor;
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.pub-link:hover {
+  color: $buttonHover;
+}
+
+.pub-link-arrow {
+  transition: transform 0.22s ease;
+}
+
+.pub-link:hover .pub-link-arrow {
+  transform: translateX(4px);
+}
+
+.pub-cite-button {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: $cardSubtitle;
+  background: rgba(148, 163, 184, 0.12);
+  border: 1px solid $lightBorder1;
+  border-radius: 10px;
+  padding: 0.42em 0.9em;
+  cursor: pointer;
+  transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+
+.pub-cite-button:hover {
+  color: $buttonColor;
+  border-color: $buttonColor;
+}
+
+.pub-cite-button.copied {
+  color: #16a34a;
+  background: rgba(22, 163, 74, 0.1);
+  border-color: rgba(22, 163, 74, 0.3);
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 768px) {
+  .publication-card {
+    grid-template-columns: 1fr;
+  }
+
+  .pub-rail {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.9rem;
+    padding: 0.8rem 1.2rem;
+    border-right: none;
+    border-bottom: 1px solid $lightBorder1;
+  }
+
+  .pub-rail-watermark {
+    display: none;
+  }
+
+  .pub-ordinal {
+    font-size: 1.9rem;
+  }
+
+  .pub-body {
+    padding: 1.2rem 1.2rem 1.3rem;
+  }
+
+  .publication-card .card-title {
+    font-size: 1.15rem;
+  }
+
+  .pub-cite-button {
+    margin-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .publication-card,
+  .publication-card::before,
+  .pub-link-arrow {
+    transition: none;
+  }
+
+  .publication-card:hover {
+    transform: none;
+  }
+}

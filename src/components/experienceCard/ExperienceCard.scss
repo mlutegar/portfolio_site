@@ -1,4 +1,4 @@
-@import "../../_globalColor";
+﻿@use "../../_globalColor" as *;
 
 /* ---- Card shell ---- */
 
@@ -8,8 +8,7 @@
   border-radius: 18px;
   border: 1px solid $lightBorder1;
   box-shadow: $lightBoxShadow 0px 10px 30px -16px;
-  transition:
-    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -61,6 +60,32 @@
   padding: 5px;
 }
 
+/* Conector curto ligando o nó ao card (apenas layout mobile de coluna única) */
+@media (max-width: 899px) {
+  .xp-node::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -18px;
+    width: 18px;
+    height: 2px;
+    transform: translateY(-50%);
+    background: $brandGradient;
+    opacity: 0.75;
+  }
+}
+
+/* ---- Foco por teclado ---- */
+.experience-card:focus-within {
+  border-color: rgba(255, 107, 53, 0.45);
+}
+
+.xp-tag:focus-visible,
+.experience-card:focus-visible {
+  outline: 2px solid $buttonColor;
+  outline-offset: 3px;
+}
+
 /* ---- Content ---- */
 
 .xp-index {
@@ -101,42 +126,6 @@
   border-radius: 999px;
   border: 1px solid $lightBorder1;
   white-space: nowrap;
-}
-
-.xp-current {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.68rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #0f9d58;
-  padding: 0.22rem 0.6rem;
-  border-radius: 999px;
-  background: rgba(15, 157, 88, 0.12);
-  border: 1px solid rgba(15, 157, 88, 0.35);
-}
-
-.xp-current-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #0f9d58;
-  box-shadow: 0 0 0 0 rgba(15, 157, 88, 0.55);
-  animation: xp-pulse 2s ease-out infinite;
-}
-
-@keyframes xp-pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(15, 157, 88, 0.55);
-  }
-  70% {
-    box-shadow: 0 0 0 7px rgba(15, 157, 88, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(15, 157, 88, 0);
-  }
 }
 
 /* ---- "Atual" live badge ---- */
@@ -197,9 +186,7 @@
   border: 1px solid rgba(255, 107, 53, 0.25);
   padding: 0.28rem 0.65rem;
   border-radius: 999px;
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .xp-tag:hover {
@@ -258,33 +245,6 @@
   background: $brandGradient;
 }
 
-/* ---- Tech tags ---- */
-
-.xp-tags {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  margin: 1.1rem 0 0;
-  padding: 0;
-}
-
-.xp-tag {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: $buttonColor;
-  padding: 0.28rem 0.7rem;
-  border-radius: 999px;
-  background: rgba(255, 107, 53, 0.1);
-  border: 1px solid rgba(255, 107, 53, 0.28);
-  white-space: nowrap;
-}
-
-.experience-card-dark .xp-tag {
-  color: #ffb492;
-}
-
 .dark-mode-text {
   color: $textColorDark !important;
 }
@@ -314,9 +274,6 @@
   }
   .experience-card:hover {
     transform: none;
-  }
-  .xp-current-dot {
-    animation: none;
   }
   .xp-current-dot {
     animation: none;

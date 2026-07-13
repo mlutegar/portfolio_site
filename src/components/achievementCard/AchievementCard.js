@@ -92,9 +92,9 @@ function FooterLinks({footer}) {
   if (links.length === 0) return null;
   return (
     <div className="certificate-card-footer">
-      {links.map((v, i) => (
+      {links.map(v => (
         <a
-          key={i}
+          key={v.url}
           className="certificate-tag"
           href={v.url}
           target={v.url.startsWith("#") ? "_self" : "_blank"}
@@ -204,8 +204,8 @@ function AchievementHero({cardInfo, isDark}) {
 
         {Array.isArray(heroMetrics) && heroMetrics.length > 0 && (
           <div className="hero-metrics">
-            {heroMetrics.map((m, i) => (
-              <Metric key={i} {...m} active={inView} />
+            {heroMetrics.map(m => (
+              <Metric key={m.label} {...m} active={inView} />
             ))}
           </div>
         )}
@@ -218,7 +218,7 @@ function AchievementHero({cardInfo, isDark}) {
           <span className="hero-chart-caption">Média (CR) por período</span>
           <div className="cr-chart">
             {stats.map((s, i) => (
-              <div className="cr-bar-col" key={i}>
+              <div className="cr-bar-col" key={s.label}>
                 <span className="cr-bar-value">{s.value}</span>
                 <span className="cr-bar-track">
                   <span
@@ -277,12 +277,15 @@ function CredentialCard({cardInfo, isDark}) {
         {(authorRole || (Array.isArray(tags) && tags.length > 0)) && (
           <div className="credential-tags">
             {authorRole && (
-              <span className="credential-chip is-author" title="Papel de autoria">
+              <span
+                className="credential-chip is-author"
+                title="Papel de autoria"
+              >
                 <span aria-hidden="true">✍️</span> {authorRole}
               </span>
             )}
-            {(tags || []).map((t, i) => (
-              <span className="credential-chip" key={i}>
+            {(tags || []).map(t => (
+              <span className="credential-chip" key={t}>
                 {t}
               </span>
             ))}

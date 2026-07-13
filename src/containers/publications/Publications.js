@@ -1,11 +1,10 @@
 import React, {useContext} from "react";
-// Reaproveita o CSS da seção de Conquistas (mesmas classes de layout).
-import "../achievement/Achievement.scss";
-import AchievementCard from "../../components/achievementCard/AchievementCard";
+import "./Publications.scss";
+import PublicationCard from "../../components/publicationCard/PublicationCard";
 import {publicationsSection} from "../../portfolio";
 import {Fade} from "../../components/reveal/Reveal";
 import StyleContext from "../../contexts/StyleContext";
-import {toCardInfo, buildBibtex} from "../../utils";
+import {buildBibtex} from "../../utils";
 
 // Structured data (schema.org) para Google Acadêmico / rich results.
 function buildJsonLd(publications) {
@@ -53,16 +52,15 @@ export default function Publications() {
         {/* Dados estruturados para mecanismos de busca acadêmicos */}
         <script
           type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
         />
-        <div className="achievement-main-div">
-          <div className="achievement-header">
+        <div className="publications-main-div">
+          <div className="publications-header">
             <h1
               className={
                 isDark
-                  ? "dark-mode heading achievement-heading"
-                  : "heading achievement-heading"
+                  ? "dark-mode heading publications-heading"
+                  : "heading publications-heading"
               }
             >
               {publicationsSection.title}
@@ -70,8 +68,8 @@ export default function Publications() {
             <p
               className={
                 isDark
-                  ? "dark-mode subTitle achievement-subtitle"
-                  : "subTitle achievement-subtitle"
+                  ? "dark-mode subTitle publications-subtitle"
+                  : "subTitle publications-subtitle"
               }
             >
               {publicationsSection.subtitle}
@@ -80,19 +78,15 @@ export default function Publications() {
               {count} {count === 1 ? "artigo publicado" : "artigos publicados"}
             </p>
           </div>
-          <div className="achievement-cards-div">
-            <div className="credentials-row">
-              {publications.map((card, i) => (
-                <AchievementCard
-                  key={`pub-${i}`}
-                  isDark={isDark}
-                  cardInfo={toCardInfo({
-                    ...card,
-                    citation: buildBibtex(card)
-                  })}
-                />
-              ))}
-            </div>
+          <div className="publications-list">
+            {publications.map((pub, i) => (
+              <PublicationCard
+                key={`pub-${i}`}
+                index={i}
+                isDark={isDark}
+                pub={{...pub, citation: buildBibtex(pub)}}
+              />
+            ))}
           </div>
         </div>
       </div>

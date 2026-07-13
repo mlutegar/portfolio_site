@@ -5,16 +5,16 @@ import "./EducationCard.scss";
 export default function EducationCard({school}) {
   const GetDescBullets = ({descBullets}) => {
     return descBullets
-      ? descBullets.map((item, i) => (
-          <li key={i} className="edu-timeline-bullet">
+      ? descBullets.map(item => (
+          <li key={item} className="edu-timeline-bullet">
             {item}
           </li>
         ))
       : null;
   };
 
-  if (!school.logo)
-    console.error(
+  if (!school.logo && import.meta.env.DEV)
+    console.warn(
       `Image of ${school.schoolName} is missing in education section`
     );
 

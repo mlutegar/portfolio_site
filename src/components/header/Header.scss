@@ -1,10 +1,20 @@
-@import "../../_globalColor";
+﻿@use "../../_globalColor" as *;
 
 /* sticky header wrapper */
 .header-wrapper {
   position: sticky;
   top: 0;
   z-index: 100;
+}
+
+/* Enquanto o menu mobile estÃ¡ aberto o body vira position:fixed (scroll-lock
+   que preserva a posiÃ§Ã£o). Para a barra nÃ£o sumir junto, o wrapper tambÃ©m Ã©
+   fixado ao topo da viewport. */
+.header-wrapper--menu-open {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 /* header */
@@ -87,6 +97,8 @@
   text-decoration: none;
   margin-top: 10px;
   line-height: normal;
+  position: relative;
+  z-index: 3;
 }
 
 .header .logo-name {
@@ -99,14 +111,15 @@
 
 /* menu */
 
-/* No mobile o menu é um overlay ancorado à viewport, logo abaixo da barra do
-   header (--header-h é medido em JS). Assim ele nunca depende do contexto
-   sticky nem some acima da tela quando o usuário está rolado para baixo. */
+/* No mobile o menu Ã© um overlay ancorado Ã  viewport, logo abaixo da barra do
+   header (--header-h Ã© medido em JS). Assim ele nunca depende do contexto
+   sticky nem some acima da tela quando o usuÃ¡rio estÃ¡ rolado para baixo. */
 .header .menu {
   position: fixed;
   top: var(--header-h, 64px);
   left: 0;
   right: 0;
+  z-index: 2;
   clear: both;
   max-height: 0;
   overflow-y: auto;
@@ -114,6 +127,24 @@
   background-color: var(--bg-1);
   box-shadow: var(--shadow-sm);
   transition: max-height 0.25s ease-out;
+}
+
+/* Backdrop que cobre o restante da pÃ¡gina; fecha o menu ao tocar fora. */
+.header .menu-backdrop {
+  position: fixed;
+  top: var(--header-h, 64px);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+.header .menu-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* menu icon */
@@ -124,6 +155,7 @@
   float: right;
   padding: 28px 20px;
   position: relative;
+  z-index: 3;
   user-select: none;
 }
 
@@ -177,7 +209,9 @@
 }
 
 .header .menu-btn:checked ~ .menu {
+  /* 100vh como fallback; 100dvh acompanha a barra de endereÃ§o dinÃ¢mica do iOS */
   max-height: calc(100vh - var(--header-h, 64px));
+  max-height: calc(100dvh - var(--header-h, 64px));
 }
 
 .header .menu-btn:checked ~ .menu-icon .navicon {
@@ -207,6 +241,7 @@
   }
   .header .menu {
     position: static;
+    z-index: auto;
     max-height: none;
     overflow: visible;
     background-color: transparent;
@@ -214,8 +249,13 @@
     display: flex;
     align-items: center;
   }
-  .header .menu-icon {
+  .header .menu-icon,
+  .header .menu-backdrop {
     display: none;
+  }
+  /* No desktop o menu nunca abre; o wrapper permanece sticky. */
+  .header-wrapper--menu-open {
+    position: sticky;
   }
 }
 @media (max-width: 960px) and (min-width: 768px) {

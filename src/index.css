@@ -125,10 +125,15 @@ body {
     color var(--dur) var(--ease);
 }
 
-/* Trava o scroll de fundo enquanto o menu mobile está aberto. Mantemos apenas
-   overflow:hidden (sem position:fixed) para não quebrar o position:sticky do
-   header, que precisa continuar visível no topo da viewport. */
+/* Trava o scroll de fundo enquanto o menu mobile está aberto.
+   position:fixed + left/right/width mantém o layout no lugar e preserva a
+   posição de scroll (o offset `top: -Ypx` é definido inline pelo Header). O
+   header não some porque o wrapper também vira fixed (header-wrapper--menu-open). */
 body.no-scroll {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
   overflow: hidden;
   touch-action: none;
 }

@@ -27,7 +27,7 @@ export async function copyText(value) {
     document.execCommand("copy");
     document.body.removeChild(el);
     return true;
-  } catch (e) {
+  } catch {
     return false;
   }
 }

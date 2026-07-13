@@ -1,19 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import "./ScrollProgress.scss";
+import {useScrollY} from "../../hooks/useScrollY";
 
 export default function ScrollProgress() {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const scrollTop = window.scrollY;
-      const height = document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(height > 0 ? (scrollTop / height) * 100 : 0);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, {passive: true});
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const scrollY = useScrollY();
+  const height = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = height > 0 ? (scrollY / height) * 100 : 0;
 
   return (
     <div className="scroll-progress" aria-hidden="true">

@@ -1,4 +1,4 @@
-@import "../../_globalColor";
+﻿@use "../../_globalColor" as *;
 
 .case-main {
   width: 90%;
@@ -143,6 +143,7 @@
   line-height: 1.7;
   margin: 0;
   font-size: 1.05rem;
+  max-width: 70ch; // limita a largura da linha para leitura confortÃ¡vel em telas largas
 }
 
 .case-list {
@@ -158,6 +159,7 @@
   padding-left: 30px;
   color: var(--text-color);
   line-height: 1.6;
+  max-width: 70ch;
 }
 .case-list li::before {
   content: "";

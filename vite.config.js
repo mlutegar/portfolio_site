@@ -6,6 +6,13 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   base: "/portfolio_site/",
   plugins: [react()],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: "modern-compiler"
+      }
+    }
+  },
   // This project keeps JSX inside .js files (legacy from Create React App).
   // esbuild must load .js as JSX both for source and dependency pre-bundling.
   esbuild: {

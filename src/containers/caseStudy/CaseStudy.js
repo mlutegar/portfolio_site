@@ -64,6 +64,11 @@ export default function CaseStudy() {
           property="og:description"
           content={cs.summary || project.projectDesc || project.projectName}
         />
+        <meta property="og:type" content="article" />
+        {project.image && <meta property="og:image" content={project.image} />}
+        {project.image && (
+          <meta name="twitter:card" content="summary_large_image" />
+        )}
       </Helmet>
       <ScrollProgress />
       <Header />
@@ -115,8 +120,8 @@ export default function CaseStudy() {
 
         {cs.stack?.length > 0 && (
           <ul className="case-stack" aria-label="Tecnologias">
-            {cs.stack.map((tech, i) => (
-              <li key={i}>{tech}</li>
+            {cs.stack.map(tech => (
+              <li key={tech}>{tech}</li>
             ))}
           </ul>
         )}
@@ -140,8 +145,8 @@ export default function CaseStudy() {
             <section className="case-section">
               <h2>Solução</h2>
               <ul className="case-list">
-                {cs.solution.map((item, i) => (
-                  <li key={i}>{item}</li>
+                {cs.solution.map(item => (
+                  <li key={item}>{item}</li>
                 ))}
               </ul>
             </section>
@@ -151,8 +156,8 @@ export default function CaseStudy() {
             <section className="case-section">
               <h2>Resultados</h2>
               <ul className="case-list">
-                {cs.results.map((item, i) => (
-                  <li key={i}>{item}</li>
+                {cs.results.map(item => (
+                  <li key={item}>{item}</li>
                 ))}
               </ul>
             </section>
@@ -165,7 +170,7 @@ export default function CaseStudy() {
             <div className="case-gallery">
               {cs.gallery.map((src, i) => (
                 <img
-                  key={i}
+                  key={src}
                   src={src}
                   alt={`${project.projectName} — imagem ${i + 1}`}
                   loading="lazy"

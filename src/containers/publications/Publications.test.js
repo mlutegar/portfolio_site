@@ -14,7 +14,7 @@ function renderPublications() {
 
 it("renders one card per publication", () => {
   const {container} = renderPublications();
-  const cards = container.querySelectorAll(".credential-card");
+  const cards = container.querySelectorAll(".publication-card");
   expect(cards.length).toBe(publicationsSection.publications.length);
 });
 
@@ -31,7 +31,7 @@ it("renders each publication title and its DOI link", () => {
   });
 });
 
-it("marks English titles with lang=\"en\"", () => {
+it('marks English titles with lang="en"', () => {
   const {container} = renderPublications();
   const enTitles = container.querySelectorAll('.card-title[lang="en"]');
   expect(enTitles.length).toBeGreaterThan(0);
@@ -39,9 +39,7 @@ it("marks English titles with lang=\"en\"", () => {
 
 it("injects ScholarlyArticle JSON-LD structured data", () => {
   const {container} = renderPublications();
-  const script = container.querySelector(
-    'script[type="application/ld+json"]'
-  );
+  const script = container.querySelector('script[type="application/ld+json"]');
   expect(script).toBeTruthy();
   const data = JSON.parse(script.textContent);
   expect(data["@graph"][0]["@type"]).toBe("ScholarlyArticle");

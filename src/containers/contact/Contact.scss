@@ -1,4 +1,4 @@
-@import "../../_globalColor";
+﻿@use "../../_globalColor" as *;
 
 .contact-margin-top {
   margin-top: 4rem;
@@ -458,10 +458,10 @@
   }
   .term-send {
     justify-content: center;
-    /* alvo de toque confortável */
+    /* alvo de toque confortÃ¡vel */
     padding: 0.8rem 1.1rem;
   }
-  /* iOS dá zoom ao focar campos < 16px */
+  /* iOS dÃ¡ zoom ao focar campos < 16px */
   .term-field input,
   .term-field textarea {
     font-size: 16px;

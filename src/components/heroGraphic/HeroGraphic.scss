@@ -1,6 +1,6 @@
-@import "../../_globalColor";
+﻿@use "../../_globalColor" as *;
 
-/* conteúdo apenas para leitores de tela (visual é aria-hidden) */
+/* conteÃºdo apenas para leitores de tela (visual Ã© aria-hidden) */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -148,7 +148,7 @@
 }
 
 /* wrapper dos badges: cobre o .hero-graphic para os badges se posicionarem
-   de forma absoluta em relação a ele (sem depender de display: contents) */
+   de forma absoluta em relaÃ§Ã£o a ele (sem depender de display: contents) */
 .badge-row {
   position: absolute;
   inset: 0;
@@ -234,13 +234,13 @@
   .hero-graphic {
     min-height: 0;
     padding: 28px 12px;
-    /* empilha o card e a linha de badges para os badges não cobrirem o código */
+    /* empilha o card e a linha de badges para os badges nÃ£o cobrirem o cÃ³digo */
     flex-direction: column;
   }
   .code-window {
     max-width: 100%;
   }
-  /* blur pesado é caro em telas pequenas — reduz o raio */
+  /* blur pesado Ã© caro em telas pequenas â€” reduz o raio */
   .hero-glow {
     filter: blur(48px);
   }

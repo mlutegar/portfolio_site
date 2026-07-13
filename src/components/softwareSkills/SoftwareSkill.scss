@@ -1,4 +1,4 @@
-@import "../../_globalColor";
+﻿@use "../../_globalColor" as *;
 
 .dev-icons {
   padding-left: 0;
@@ -142,7 +142,7 @@
   }
 }
 
-/* Acessibilidade: sem animação -> scroll lateral com snap */
+/* Acessibilidade: sem animaÃ§Ã£o -> scroll lateral com snap */
 @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
   .marquee-track {
     animation: none;
