@@ -4,6 +4,8 @@ import AchievementCard from "../../components/achievementCard/AchievementCard";
 import {achievementSection} from "../../portfolio";
 import {Fade} from "../../components/reveal/Reveal";
 import StyleContext from "../../contexts/StyleContext";
+import {toCardInfo} from "../../utils";
+
 export default function Achievement() {
   const {isDark} = useContext(StyleContext);
   if (!achievementSection.display) {
@@ -40,18 +42,7 @@ export default function Achievement() {
                 <AchievementCard
                   key={`hero-${i}`}
                   isDark={isDark}
-                  cardInfo={{
-                    title: card.title,
-                    category: card.category,
-                    date: card.date,
-                    description: card.subtitle,
-                    image: card.image,
-                    imageAlt: card.imageAlt,
-                    footer: card.footerLink,
-                    highlight: card.highlight,
-                    seal: card.seal,
-                    stats: card.stats
-                  }}
+                  cardInfo={toCardInfo(card)}
                 />
               ))}
 
@@ -62,18 +53,7 @@ export default function Achievement() {
                   <AchievementCard
                     key={`cred-${i}`}
                     isDark={isDark}
-                    cardInfo={{
-                      title: card.title,
-                      category: card.category,
-                      date: card.date,
-                      description: card.subtitle,
-                      image: card.image,
-                      imageAlt: card.imageAlt,
-                      footer: card.footerLink,
-                      highlight: card.highlight,
-                      seal: card.seal,
-                      stats: card.stats
-                    }}
+                    cardInfo={toCardInfo(card)}
                   />
                 ))}
             </div>

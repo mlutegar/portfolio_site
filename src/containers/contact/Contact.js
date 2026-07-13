@@ -108,6 +108,7 @@ export default function Contact() {
   const [form, setForm] = useState({name: "", email: "", message: ""});
   const [soundOn, setSoundOn] = useState(false);
   const [live, setLive] = useState("");
+  const [sending, setSending] = useState(false);
 
   const idRef = useRef(0);
   const rootRef = useRef(null);
@@ -124,6 +125,7 @@ export default function Contact() {
 
   const hasPhone = Boolean(contactInfo.number);
   const waHref = `https://wa.me/${socialMediaLinks.whatsapp}`;
+  const formAction = contactInfo.form_action || "";
 
   /* ---- small typing beep (opt-in) ------------------------------------- */
   const beep = () => {
@@ -474,6 +476,53 @@ export default function Contact() {
     announce("Abrindo cliente de e-mail");
   };
 
+  // Real submission when a form endpoint (Formspree/Web3Forms/etc.) is set.
+  const onPost = async () => {
+    if (!canSend || sending) {
+      if (!canSend) {
+        announce("Preencha uma mensagem e um e-mail válido antes de enviar.");
+      }
+      return;
+    }
+    setSending(true);
+    announce("Enviando mensagem…");
+    try {
+      const res = await fetch(formAction, {
+        method: "POST",
+        headers: {Accept: "application/json", "Content-Type": "application/json"},
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          subject: composed.subject
+        })
+      });
+      if (!res.ok) throw new Error(`status ${res.status}`);
+      setForm({name: "", email: "", message: ""});
+      setFormOpen(false);
+      pushOut(
+        textOut(
+          <>
+            ✓ Mensagem enviada! Obrigado — respondo assim que possível. 🚀
+          </>
+        )
+      );
+      announce("Mensagem enviada com sucesso");
+    } catch (err) {
+      pushOut(
+        textOut(
+          <>
+            ✗ Falha ao enviar. Tente novamente ou use <b>copiar mensagem</b> e
+            envie para {contactInfo.email_address}.
+          </>
+        )
+      );
+      announce("Falha ao enviar a mensagem");
+    } finally {
+      setSending(false);
+    }
+  };
+
   return (
     <Fade bottom duration={1000} distance="20px">
       <div className="main contact-margin-top" id="contact" ref={rootRef}>
@@ -552,7 +601,9 @@ export default function Contact() {
                   <input
                     type="text"
                     value={form.name}
-                    onChange={e => setForm({...form, name: e.target.value})}
+                    onChange={e =>
+                      setForm(f => ({...f, name: e.target.value}))
+                    }
                     onKeyDown={beep}
                     placeholder="Seu nome"
                     autoComplete="name"
@@ -563,7 +614,9 @@ export default function Contact() {
                   <input
                     type="email"
                     value={form.email}
-                    onChange={e => setForm({...form, email: e.target.value})}
+                    onChange={e =>
+                      setForm(f => ({...f, email: e.target.value}))
+                    }
                     onKeyDown={beep}
                     placeholder="voce@exemplo.com"
                     autoComplete="email"
@@ -578,22 +631,47 @@ export default function Contact() {
                   <textarea
                     rows={3}
                     value={form.message}
-                    onChange={e => setForm({...form, message: e.target.value})}
+                    onChange={e =>
+                      setForm(f => ({...f, message: e.target.value}))
+                    }
                     onKeyDown={beep}
                     placeholder="Escreva sua mensagem…"
                     required
                   />
                 </label>
                 <div className="term-actions">
-                  <a
-                    className={canSend ? "term-send" : "term-send is-disabled"}
-                    href={canSend ? mailtoHref : undefined}
-                    aria-disabled={!canSend}
-                    onClick={onSend}
-                  >
-                    <i className="fas fa-paper-plane" aria-hidden="true" />
-                    Enviar mensagem
-                  </a>
+                  {formAction ? (
+                    <button
+                      type="button"
+                      className={
+                        canSend && !sending
+                          ? "term-send"
+                          : "term-send is-disabled"
+                      }
+                      aria-disabled={!canSend || sending}
+                      onClick={onPost}
+                    >
+                      <i
+                        className={
+                          sending
+                            ? "fas fa-spinner fa-spin"
+                            : "fas fa-paper-plane"
+                        }
+                        aria-hidden="true"
+                      />
+                      {sending ? "Enviando…" : "Enviar mensagem"}
+                    </button>
+                  ) : (
+                    <a
+                      className={canSend ? "term-send" : "term-send is-disabled"}
+                      href={canSend ? mailtoHref : undefined}
+                      aria-disabled={!canSend}
+                      onClick={onSend}
+                    >
+                      <i className="fas fa-paper-plane" aria-hidden="true" />
+                      Enviar mensagem
+                    </a>
+                  )}
                   <button
                     type="button"
                     className="term-send term-send-ghost"

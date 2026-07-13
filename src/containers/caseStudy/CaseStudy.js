@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext} from "react";
 import {useParams, Link} from "react-router-dom";
 import {Helmet} from "react-helmet-async";
 import "./CaseStudy.scss";
@@ -15,9 +15,7 @@ export default function CaseStudy() {
   const {slug} = useParams();
   const {isDark} = useContext(StyleContext);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [slug]);
+  // O reset de scroll no topo é feito globalmente pelo <ScrollToTop /> em App.js.
 
   const idx = works.projects.findIndex(p => slugify(p.projectName) === slug);
   const project = idx >= 0 ? works.projects[idx] : null;

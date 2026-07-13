@@ -13,17 +13,6 @@ export default function Footer() {
           Feito com <span className="footer-heart">{emoji("❤️")}</span> por
           Michel Lutegar © 2026
         </p>
-        <p className={isDark ? "dark-mode footer-text" : "footer-text"}>
-          Baseado no template{" "}
-          <a
-            href="https://github.com/saadpasta/developerFolio"
-            target="_blank"
-            rel="noreferrer"
-          >
-            developerFolio
-          </a>{" "}
-          da equipe DeveloperFolio
-        </p>
       </div>
     </Fade>
   );

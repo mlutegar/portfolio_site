@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import "./AchievementCard.scss";
+import {copyText} from "../../utils";
 
 // Converte a média (ex.: "9.6") em altura relativa da barra.
 // Eixo começa em 9 para evidenciar a diferença entre os períodos.
@@ -110,7 +111,42 @@ function FooterLinks({footer}) {
   );
 }
 
-function CardLogo({className, image, imageAlt}) {
+// Botão "Citar (BibTeX)": copia a referência para a área de transferência.
+function CiteButton({citation}) {
+  const [copied, setCopied] = useState(false);
+  const timer = useRef(null);
+  useEffect(() => () => clearTimeout(timer.current), []);
+  if (!citation) return null;
+  const onClick = async () => {
+    const ok = await copyText(citation);
+    if (!ok) return;
+    setCopied(true);
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => setCopied(false), 2000);
+  };
+  return (
+    <button
+      type="button"
+      className={`cite-button${copied ? " copied" : ""}`}
+      onClick={onClick}
+      aria-label="Copiar citação em BibTeX"
+    >
+      <span aria-hidden="true">{copied ? "✓" : "❝"}</span>
+      {copied ? "Citação copiada" : "Citar (BibTeX)"}
+    </button>
+  );
+}
+
+function CardLogo({className, image, imageAlt, fallbackIcon}) {
+  // Sem imagem (ex.: publicações sem logo do evento): mostra um emoji no lugar
+  // de uma <img> quebrada.
+  if (!image) {
+    return (
+      <span className={`${className} card-logo-emoji`} aria-hidden="true">
+        {fallbackIcon || "📄"}
+      </span>
+    );
+  }
   return (
     <span className={className}>
       <img
@@ -127,6 +163,7 @@ function CardLogo({className, image, imageAlt}) {
 function AchievementHero({cardInfo, isDark}) {
   const {
     title,
+    titleLang,
     category,
     categoryIcon,
     date,
@@ -153,8 +190,15 @@ function AchievementHero({cardInfo, isDark}) {
           {date && <span className="certificate-date">{date}</span>}
         </div>
         <div className="hero-title-row">
-          <CardLogo className="hero-logo" image={image} imageAlt={imageAlt} />
-          <h3 className="card-title">{title}</h3>
+          <CardLogo
+            className="hero-logo"
+            image={image}
+            imageAlt={imageAlt}
+            fallbackIcon={categoryIcon}
+          />
+          <h3 className="card-title" lang={titleLang || undefined}>
+            {title}
+          </h3>
         </div>
         <p className="card-subtitle">{description}</p>
 
@@ -199,6 +243,7 @@ function AchievementHero({cardInfo, isDark}) {
 function CredentialCard({cardInfo, isDark}) {
   const {
     title,
+    titleLang,
     category,
     categoryIcon,
     date,
@@ -207,6 +252,8 @@ function CredentialCard({cardInfo, isDark}) {
     imageAlt,
     tags,
     verified,
+    authorRole,
+    citation,
     footer
   } = cardInfo;
   return (
@@ -216,17 +263,25 @@ function CredentialCard({cardInfo, isDark}) {
           className="credential-logo"
           image={image}
           imageAlt={imageAlt}
+          fallbackIcon={categoryIcon}
         />
         {date && <span className="credential-year">{date}</span>}
       </div>
       <div className="credential-body">
         <CategoryBadge category={category} icon={categoryIcon} />
-        <h4 className="card-title">{title}</h4>
+        <h4 className="card-title" lang={titleLang || undefined}>
+          {title}
+        </h4>
         <p className="card-subtitle">{description}</p>
 
-        {Array.isArray(tags) && tags.length > 0 && (
+        {(authorRole || (Array.isArray(tags) && tags.length > 0)) && (
           <div className="credential-tags">
-            {tags.map((t, i) => (
+            {authorRole && (
+              <span className="credential-chip is-author" title="Papel de autoria">
+                <span aria-hidden="true">✍️</span> {authorRole}
+              </span>
+            )}
+            {(tags || []).map((t, i) => (
               <span className="credential-chip" key={i}>
                 {t}
               </span>
@@ -242,7 +297,10 @@ function CredentialCard({cardInfo, isDark}) {
           </div>
         )}
       </div>
-      <FooterLinks footer={footer} />
+      <div className="credential-footer-row">
+        <FooterLinks footer={footer} />
+        <CiteButton citation={citation} />
+      </div>
     </div>
   );
 }

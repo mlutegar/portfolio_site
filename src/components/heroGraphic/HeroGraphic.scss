@@ -1,5 +1,22 @@
 @import "../../_globalColor";
 
+/* conteúdo apenas para leitores de tela (visual é aria-hidden) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.hero-graphic-wrap {
+  width: 100%;
+}
+
 .hero-graphic {
   position: relative;
   width: 100%;
@@ -130,6 +147,15 @@
   animation: blink 1.1s steps(1) infinite;
 }
 
+/* wrapper dos badges: cobre o .hero-graphic para os badges se posicionarem
+   de forma absoluta em relação a ele (sem depender de display: contents) */
+.badge-row {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
 /* floating tech badges */
 .tech-badge {
   position: absolute;
@@ -152,22 +178,22 @@
   color: var(--brand);
 }
 
-.badge-1 {
+.badge-row .tech-badge:nth-child(1) {
   top: 8%;
   left: 2%;
   animation-delay: 0s;
 }
-.badge-2 {
+.badge-row .tech-badge:nth-child(2) {
   top: 22%;
   right: 0%;
   animation-delay: 0.8s;
 }
-.badge-3 {
+.badge-row .tech-badge:nth-child(3) {
   bottom: 20%;
   left: 0%;
   animation-delay: 1.6s;
 }
-.badge-4 {
+.badge-row .tech-badge:nth-child(4) {
   bottom: 6%;
   right: 6%;
   animation-delay: 2.4s;
@@ -208,6 +234,8 @@
   .hero-graphic {
     min-height: 0;
     padding: 28px 12px;
+    /* empilha o card e a linha de badges para os badges não cobrirem o código */
+    flex-direction: column;
   }
   .code-window {
     max-width: 100%;
@@ -224,28 +252,33 @@
     white-space: pre-wrap;
     word-break: break-word;
   }
-  .badge-1,
-  .badge-3 {
-    left: -2%;
+  /* badges saem do posicionamento absoluto e viram uma linha abaixo do card */
+  .badge-row {
+    position: static;
+    inset: auto;
+    pointer-events: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 18px;
   }
-  .badge-2,
-  .badge-4 {
-    right: -2%;
-  }
-  /* mantém os badges de baixo dentro do card para não invadir as estatísticas */
-  .badge-3 {
-    bottom: 24%;
-  }
-  .badge-4 {
-    bottom: 16%;
+  .tech-badge {
+    position: static;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    animation: none;
+    font-size: 0.8rem;
+    padding: 8px 12px;
   }
 }
 
-@media (max-width: 420px) {
-  .tech-badge span {
-    display: none;
-  }
+@media (max-width: 360px) {
   .tech-badge {
-    padding: 10px;
+    font-size: 0.75rem;
+    padding: 7px 10px;
   }
 }

@@ -99,10 +99,21 @@
 
 /* menu */
 
+/* No mobile o menu é um overlay ancorado à viewport, logo abaixo da barra do
+   header (--header-h é medido em JS). Assim ele nunca depende do contexto
+   sticky nem some acima da tela quando o usuário está rolado para baixo. */
 .header .menu {
+  position: fixed;
+  top: var(--header-h, 64px);
+  left: 0;
+  right: 0;
   clear: both;
   max-height: 0;
-  transition: max-height 0.2s ease-out;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background-color: var(--bg-1);
+  box-shadow: var(--shadow-sm);
+  transition: max-height 0.25s ease-out;
 }
 
 /* menu icon */
@@ -166,7 +177,7 @@
 }
 
 .header .menu-btn:checked ~ .menu {
-  max-height: 486px;
+  max-height: calc(100vh - var(--header-h, 64px));
 }
 
 .header .menu-btn:checked ~ .menu-icon .navicon {
@@ -195,7 +206,11 @@
     justify-content: space-between;
   }
   .header .menu {
+    position: static;
     max-height: none;
+    overflow: visible;
+    background-color: transparent;
+    box-shadow: none;
     display: flex;
     align-items: center;
   }

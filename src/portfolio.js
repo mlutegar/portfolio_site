@@ -21,7 +21,7 @@ const greeting = {
   username: "Michel Lutegar",
   title: "Olá, eu sou Michel",
   subTitle: emoji(
-    "Sou Michel Lutegar, desenvolvedor Full-Stack. Especializo-me em criar aplicações web completas que geram resultados reais - desde plataformas de e-commerce que aumentam conversões até sistemas acadêmicos que otimizam processos, sempre priorizando código de qualidade e experiência do usuário."
+    "Sou o Michel, desenvolvedor Full-Stack. Pego a sua ideia e cuido pra que ela nasça bem, cresça rápido e chegue inteira até o usuário final. Sua visão, no ar e funcionando."
   ),
   resumeLink: "", // Set to empty to hide the button
   displayGreeting: true // Set false to hide this section, defaults to true
@@ -132,7 +132,7 @@ https://fontawesome.com/icons?d=gallery */
     },
     {
       skillName: "go",
-      fontAwesomeClassname: "fab fa-google"
+      fontAwesomeClassname: "fas fa-terminal"
     },
     {
       skillName: "c",
@@ -175,39 +175,6 @@ const educationInfo = {
       descBullets: ["Base sólida em desenvolvimento e infraestrutura de TI"]
     }
   ]
-};
-
-// Your top 3 proficient stacks/tech experience
-
-const techStack = {
-  viewSkillBars: true, //Set it to true to show Proficiency Section
-  experience: [
-    {
-      Stack: "Frontend/React", //Insert stack or technology you have experience in
-      level: 9 // Level from 0 to 10 (number of filled dots)
-    },
-    {
-      Stack: "Backend/Python",
-      level: 7
-    },
-    {
-      Stack: "Database/SQL",
-      level: 6
-    },
-    {
-      Stack: "Data & IA",
-      level: 5
-    },
-    {
-      Stack: "Design UI e UX",
-      level: 8
-    },
-    {
-      Stack: "DevOps",
-      level: 3
-    }
-  ],
-  displayCodersrank: false // Set true to display codersrank badges section need to changes your username in src/containers/skillProgress/skillProgress.js:17:62, defaults to false
 };
 
 // Work experience section
@@ -491,6 +458,89 @@ const achievementSection = {
   display: true // Set false to hide this section, defaults to true
 };
 
+// Publications Section
+
+const publicationsSection = {
+  title: emoji("Publicações 📚"),
+  subtitle:
+    "Artigos científicos revisados por pares em congressos brasileiros.",
+
+  publications: [
+    {
+      title:
+        "Investigating image pre-processing techniques to enhance Brazilian license plate recognition",
+      titleLang: "en", // título em inglês (leitores de tela / SEO)
+      category: "CBIC 2025",
+      categoryIcon: "📄",
+      date: "2025",
+      year: 2025,
+      authorRole: "1º autor",
+      venue:
+        "Anais do 16º Congresso Brasileiro de Inteligência Computacional (CBIC 2025)",
+      authors: [
+        "Michel Lutegar",
+        "André Coelho",
+        "Marceu Filho",
+        "Rigel Procópio Fernandes",
+        "Thiago Silva de Souza",
+        "Clayton J. A. Silva"
+      ],
+      doi: "10.21528/CBIC2025-1191901",
+      url: "https://sbia.org.br/eventos/cbic_2025/cbic2025-1191901/",
+      subtitle:
+        "Sistema embarcado de reconhecimento de placas em tempo real voltado à segurança pública, combinando detecção YOLO e OCR. Avalia 8 técnicas de pré-processamento de imagem para maximizar a acurácia do OCR em placas brasileiras.",
+      tags: ["OCR", "YOLO", "Visão Computacional", "Placas veiculares"],
+      verified: true, // exibe selo "Verificável" (revisado por pares)
+      footerLink: [
+        {
+          name: "Ver publicação",
+          url: "https://sbia.org.br/eventos/cbic_2025/cbic2025-1191901/"
+        },
+        {
+          name: "DOI",
+          url: "https://doi.org/10.21528/CBIC2025-1191901"
+        }
+      ]
+    },
+    {
+      title:
+        "Comparative Performance Analysis of LoRa and WiFi Technologies for CanSat Communication Systems",
+      titleLang: "en",
+      category: "SBrT 2025",
+      categoryIcon: "📡",
+      date: "2025",
+      year: 2025,
+      venue:
+        "XLIII Simpósio Brasileiro de Telecomunicações e Processamento de Sinais (SBrT 2025)",
+      authors: [
+        "Andre Costa Coelho",
+        "Marceu Veiga De Almeida Filho",
+        "Michel Lutegar Dorsi Pereira",
+        "Rigel Procópio Fernandes",
+        "Thiago Silva de Souza",
+        "Clayton Jones Alves Da Silva"
+      ],
+      doi: "10.14209/sbrt.2025.1571157335",
+      url: "https://biblioteca.sbrt.org.br/articles/4984",
+      subtitle:
+        "Análise comparativa empírica das tecnologias LoRa e WiFi para sistemas CanSat, medindo atraso, perda de pacotes e taxa de transmissão de 1 m a 200 m, com validação em campo por drone.",
+      tags: ["LoRa", "WiFi", "CanSat", "Telecomunicações", "IoT"],
+      verified: true,
+      footerLink: [
+        {
+          name: "Ver publicação",
+          url: "https://biblioteca.sbrt.org.br/articles/4984"
+        },
+        {
+          name: "DOI",
+          url: "https://doi.org/10.14209/sbrt.2025.1571157335"
+        }
+      ]
+    }
+  ],
+  display: true // Set false to hide this section, defaults to true
+};
+
 // Blogs Section
 
 const blogSection = {
@@ -561,7 +611,11 @@ const contactInfo = {
   subtitle:
     "Quer discutir um projeto ou apenas dizer olá? Minha caixa de entrada está aberta para todos.",
   number: "(21) 99879-5887",
-  email_address: import.meta.env.VITE_EMAIL || "mlutegar@gmail.com"
+  email_address: import.meta.env.VITE_EMAIL || "mlutegar@gmail.com",
+  // Optional: endpoint that accepts a POST with {name, email, message}
+  // (e.g. Formspree "https://formspree.io/f/xxxx" or Web3Forms).
+  // When empty, the form falls back to opening the user's mail client.
+  form_action: import.meta.env.VITE_CONTACT_FORM_ACTION || ""
 };
 
 // Twitter Section
@@ -581,11 +635,11 @@ export {
   splashScreen,
   skillsSection,
   educationInfo,
-  techStack,
   workExperiences,
   openSource,
   works,
   achievementSection,
+  publicationsSection,
   blogSection,
   talkSection,
   podcastSection,

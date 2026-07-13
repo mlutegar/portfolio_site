@@ -96,11 +96,19 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
   background-color: var(--bg-1);
+  /* clip recorta o excesso horizontal no nível raiz (pegando elementos
+     ancorados à viewport) SEM criar container de rolagem — então o
+     scroll vertical NÃO fica preso (diferente de overflow: hidden). */
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
-  overflow-x: hidden;
+  /* clip corta o excesso horizontal SEM criar um container de rolagem
+     (hidden no html/body pode prender o scroll vertical no mobile) */
+  overflow-x: clip;
+  max-width: 100%;
+  position: relative;
   font-family: var(--font-body);
   font-size: 18px;
   line-height: 1.6;
@@ -108,8 +116,41 @@ body {
   background-color: var(--bg-1);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* mobile: evita zoom-out ao rotacionar e realce cinza ao tocar */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: contain;
   transition: background-color var(--dur) var(--ease),
     color var(--dur) var(--ease);
+}
+
+/* Trava o scroll de fundo enquanto o menu mobile está aberto. Mantemos apenas
+   overflow:hidden (sem position:fixed) para não quebrar o position:sticky do
+   header, que precisa continuar visível no topo da viewport. */
+body.no-scroll {
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* Alvos de toque confortáveis (mín. 44px) em telas de toque */
+@media (hover: none) and (pointer: coarse) {
+  a,
+  button,
+  label,
+  input[type="checkbox"],
+  input[type="radio"] {
+    touch-action: manipulation;
+  }
+}
+
+/* iOS dá zoom automático ao focar campos com fonte < 16px — força 16px */
+@media (max-width: 768px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
 }
 
 h1,

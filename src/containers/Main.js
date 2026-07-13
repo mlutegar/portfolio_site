@@ -2,7 +2,6 @@ import React, {useEffect, useState, Suspense, lazy} from "react";
 import Header from "../components/header/Header";
 import Greeting from "./greeting/Greeting";
 import Skills from "./skills/Skills";
-import StackProgress from "./skillProgress/skillProgress";
 import Footer from "../components/footer/Footer";
 import ScrollToTopButton from "./topbutton/Top";
 import ScrollProgress from "../components/scrollProgress/ScrollProgress";
@@ -15,6 +14,7 @@ const Works = lazy(() => import("./works/Works"));
 const Education = lazy(() => import("./education/Education"));
 const WorkExperience = lazy(() => import("./workExperience/WorkExperience"));
 const Achievement = lazy(() => import("./achievement/Achievement"));
+const Publications = lazy(() => import("./publications/Publications"));
 const Profile = lazy(() => import("./profile/Profile"));
 
 const Main = () => {
@@ -49,10 +49,10 @@ const Main = () => {
         <Suspense fallback={<div style={{minHeight: "40vh"}} />}>
           <Works />
           <Skills />
-          <StackProgress />
           <Education />
           <WorkExperience />
           <Achievement />
+          <Publications />
           <Profile />
         </Suspense>
       </main>

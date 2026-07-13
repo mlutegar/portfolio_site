@@ -10,18 +10,25 @@ import useInView from "../../hooks/useInView";
 export default function HeroGraphic() {
   const [ref, inView] = useInView();
   const badges = [
-    {icon: "fab fa-react", label: "React", cls: "badge-1"},
-    {icon: "fab fa-python", label: "Django", cls: "badge-2"},
-    {icon: "fab fa-js", label: "TypeScript", cls: "badge-3"},
-    {icon: "fab fa-docker", label: "Docker", cls: "badge-4"}
+    {icon: "fab fa-react", label: "React"},
+    {icon: "fab fa-python", label: "Django"},
+    {icon: "fab fa-js", label: "TypeScript"},
+    {icon: "fab fa-docker", label: "Docker"}
   ];
 
   return (
-    <div
-      className={`hero-graphic${inView ? "" : " is-paused"}`}
-      ref={ref}
-      aria-hidden="true"
-    >
+    <div className="hero-graphic-wrap">
+      {/* equivalente textual acessível do visual decorativo abaixo */}
+      <p className="sr-only">
+        Michel Lutegar, Full-Stack Developer. Stack principal:{" "}
+        {badges.map(b => b.label).join(", ")}.
+      </p>
+
+      <div
+        className={`hero-graphic${inView ? "" : " is-paused"}`}
+        ref={ref}
+        aria-hidden="true"
+      >
       <div className="hero-glow" />
 
       <div className="code-window">
@@ -29,7 +36,7 @@ export default function HeroGraphic() {
           <span className="dot dot-red" />
           <span className="dot dot-yellow" />
           <span className="dot dot-green" />
-          <span className="code-tab">michel.js</span>
+          <span className="code-tab">michel.ts</span>
         </div>
 
         <pre className="code-body">
@@ -89,12 +96,15 @@ export default function HeroGraphic() {
         </pre>
       </div>
 
-      {badges.map(b => (
-        <div className={`tech-badge ${b.cls}`} key={b.label}>
-          <i className={b.icon} />
-          <span>{b.label}</span>
+        <div className="badge-row">
+          {badges.map(b => (
+            <div className="tech-badge" key={b.label}>
+              <i className={b.icon} />
+              <span>{b.label}</span>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 }

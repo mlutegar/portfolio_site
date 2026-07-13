@@ -314,6 +314,16 @@
   max-height: 100%;
   object-fit: contain;
 }
+/* Fallback emoji quando o card não tem logo (ex.: publicações) */
+.card-logo-emoji {
+  line-height: 1;
+}
+.hero-logo.card-logo-emoji {
+  font-size: 2rem;
+}
+.credential-logo.card-logo-emoji {
+  font-size: 1.6rem;
+}
 .credential-year {
   font-size: 0.72rem;
   font-weight: 700;
@@ -429,6 +439,77 @@
   color: #4ade80;
   background: rgba(74, 222, 128, 0.12);
   border-color: rgba(74, 222, 128, 0.28);
+}
+.credential-chip.is-author {
+  color: $buttonColor;
+  background: rgba(255, 107, 53, 0.1);
+  border-color: rgba(255, 107, 53, 0.3);
+}
+.dark-mode .credential-chip.is-author {
+  color: #ffb492;
+  background: rgba(255, 107, 53, 0.14);
+  border-color: rgba(255, 107, 53, 0.34);
+}
+
+/* =========================================================
+   Rodapé do card + botão "Citar (BibTeX)"
+   ========================================================= */
+.credential-footer-row {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.55rem;
+}
+.credential-footer-row .certificate-card-footer {
+  margin-top: 0;
+  padding-top: 0.9rem;
+}
+.cite-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: $cardSubtitle;
+  background: rgba(148, 163, 184, 0.12);
+  border: 1px solid $lightBorder1;
+  border-radius: 10px;
+  padding: 0.4em 0.9em;
+  cursor: pointer;
+  transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+.cite-button:hover {
+  color: $buttonColor;
+  border-color: $buttonColor;
+}
+.cite-button:focus-visible {
+  outline: 2px solid $buttonColor;
+  outline-offset: 2px;
+}
+.cite-button.copied {
+  color: #16a34a;
+  background: rgba(22, 163, 74, 0.1);
+  border-color: rgba(22, 163, 74, 0.3);
+}
+.dark-mode .cite-button {
+  background: rgba(255, 255, 255, 0.06);
+}
+.dark-mode .cite-button.copied {
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.12);
+  border-color: rgba(74, 222, 128, 0.28);
+}
+
+/* Contador de artigos abaixo do subtítulo da seção */
+.publications-count {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: $buttonColor;
 }
 
 /* =========================================================
