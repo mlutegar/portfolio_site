@@ -34,10 +34,11 @@ export default function Achievement() {
             </p>
           </div>
           <div className="achievement-cards-div">
-            {achievementSection.achievementsCards.map((card, i) => {
-              return (
+            {achievementSection.achievementsCards
+              .filter(card => card.highlight)
+              .map((card, i) => (
                 <AchievementCard
-                  key={i}
+                  key={`hero-${i}`}
                   isDark={isDark}
                   cardInfo={{
                     title: card.title,
@@ -52,8 +53,30 @@ export default function Achievement() {
                     stats: card.stats
                   }}
                 />
-              );
-            })}
+              ))}
+
+            <div className="credentials-row">
+              {achievementSection.achievementsCards
+                .filter(card => !card.highlight)
+                .map((card, i) => (
+                  <AchievementCard
+                    key={`cred-${i}`}
+                    isDark={isDark}
+                    cardInfo={{
+                      title: card.title,
+                      category: card.category,
+                      date: card.date,
+                      description: card.subtitle,
+                      image: card.image,
+                      imageAlt: card.imageAlt,
+                      footer: card.footerLink,
+                      highlight: card.highlight,
+                      seal: card.seal,
+                      stats: card.stats
+                    }}
+                  />
+                ))}
+            </div>
           </div>
         </div>
       </div>

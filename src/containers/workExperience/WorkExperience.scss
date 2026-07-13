@@ -49,9 +49,10 @@
   list-style: none;
   margin: 0 auto;
   padding: 0;
+  --xp-progress: 0;
 }
 
-/* The glowing spine */
+/* The dim spine track */
 .xp-timeline::before {
   content: "";
   position: absolute;
@@ -60,8 +61,27 @@
   left: 24px;
   width: 4px;
   border-radius: 999px;
+  background: rgba(148, 163, 184, 0.25);
+}
+
+.xp-timeline--dark::before {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* The bright gradient fill that grows with scroll */
+.xp-timeline-fill {
+  content: "";
+  position: absolute;
+  top: 0.5rem;
+  left: 24px;
+  width: 4px;
+  height: calc((100% - 1rem) * var(--xp-progress));
+  border-radius: 999px;
   background: $brandGradient;
   box-shadow: 0 0 24px 0 rgba(255, 107, 53, 0.55);
+  transition: height 0.15s linear;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .xp-timeline-item {
@@ -76,7 +96,8 @@
 
 /* Desktop: center spine + zig-zag */
 @media (min-width: 900px) {
-  .xp-timeline::before {
+  .xp-timeline::before,
+  .xp-timeline-fill {
     left: 50%;
     transform: translateX(-50%);
   }

@@ -22,6 +22,13 @@
   z-index: 0;
 }
 
+/* pause infinite animations while the hero is scrolled out of view */
+.hero-graphic.is-paused .code-window,
+.hero-graphic.is-paused .tech-badge,
+.hero-graphic.is-paused .cursor {
+  animation-play-state: paused;
+}
+
 /* code editor window */
 .code-window {
   position: relative;
@@ -199,10 +206,15 @@
 
 @media (max-width: 768px) {
   .hero-graphic {
-    min-height: 360px;
+    min-height: 0;
+    padding: 28px 12px;
   }
   .code-window {
     max-width: 100%;
+  }
+  /* blur pesado é caro em telas pequenas — reduz o raio */
+  .hero-glow {
+    filter: blur(48px);
   }
   .code-body {
     font-size: 0.82rem;
@@ -219,6 +231,13 @@
   .badge-2,
   .badge-4 {
     right: -2%;
+  }
+  /* mantém os badges de baixo dentro do card para não invadir as estatísticas */
+  .badge-3 {
+    bottom: 24%;
+  }
+  .badge-4 {
+    bottom: 16%;
   }
 }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import "./HeroGraphic.scss";
+import useInView from "../../hooks/useInView";
 
 /**
  * Custom, dependency-free hero visual: an animated code-editor window with a
@@ -7,6 +8,7 @@ import "./HeroGraphic.scss";
  * Fully theme-aware and respects prefers-reduced-motion (global reset).
  */
 export default function HeroGraphic() {
+  const [ref, inView] = useInView();
   const badges = [
     {icon: "fab fa-react", label: "React", cls: "badge-1"},
     {icon: "fab fa-python", label: "Django", cls: "badge-2"},
@@ -15,7 +17,11 @@ export default function HeroGraphic() {
   ];
 
   return (
-    <div className="hero-graphic" aria-hidden="true">
+    <div
+      className={`hero-graphic${inView ? "" : " is-paused"}`}
+      ref={ref}
+      aria-hidden="true"
+    >
       <div className="hero-glow" />
 
       <div className="code-window">

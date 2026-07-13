@@ -27,6 +27,14 @@ const greeting = {
   displayGreeting: true // Set false to hide this section, defaults to true
 };
 
+// Highlight stats shown below the hero
+const greetingStats = [
+  {value: "8+", label: "Projetos entregues"},
+  {value: "4", label: "Empresas"},
+  {value: "6", label: "Períodos Top-3 (CR)"},
+  {value: "3+", label: "Anos de experiência"}
+];
+
 // Social Media Links
 
 const socialMediaLinks = {
@@ -413,12 +421,19 @@ const achievementSection = {
     {
       title: "Destaque Acadêmico IBMEC – 6 períodos",
       category: "Acadêmico",
+      categoryIcon: "🎓",
       date: "2022 – 2025",
       highlight: true, // card em destaque (vitrine de troféus)
       seal: "Top 3", // selo/medalha exibido no card
+      sealLabel: "Reconhecimento Top 3 da turma", // rótulo acessível
       subtitle:
         "Reconhecido pela faculdade por estar entre os três alunos com maior CR do curso durante seis períodos consecutivos.",
-      // Médias por período viradas em selos visuais
+      // Métricas-herói (números animam ao entrar na viewport)
+      heroMetrics: [
+        {value: 9.85, decimals: 2, label: "CR médio"},
+        {value: 6, decimals: 0, label: "semestres no Top 3"}
+      ],
+      // Médias por período viradas em barras/selos visuais
       stats: [
         {label: "2022.2", value: "10"},
         {label: "2023.1", value: "9.9"},
@@ -431,23 +446,26 @@ const achievementSection = {
       imageAlt: "IBMEC Logo",
       footerLink: [
         {
-          name: "Mais informações",
-          url: ""
+          name: "Ver formação",
+          url: "#education"
         }
       ]
     },
     {
       title: "Certificação Cisco",
       category: "Certificação",
+      categoryIcon: "🌐",
       date: "2024",
       subtitle:
         "Networking Essentials Certificate - Certificação em fundamentos de redes.",
+      tags: ["Redes", "Networking Essentials"],
+      verified: true, // exibe selo "Verificável"
       image: new URL("./assets/images/cisco.webp", import.meta.url).href,
       imageAlt: "Cisco Logo",
       footerLink: [
         {
           name: "Ver Certificação",
-          url: ""
+          url: "https://www.linkedin.com/in/mlutegar/details/certifications/"
         }
       ]
     },
@@ -455,12 +473,19 @@ const achievementSection = {
     {
       title: "Formação Técnica Senac",
       category: "Formação Técnica",
+      categoryIcon: "🛠️",
       date: "2024",
       subtitle:
         "Técnico em T.I. - Formação completa em Tecnologia da Informação concluída em 2024.",
+      tags: ["Técnico em T.I.", "Infraestrutura"],
       image: new URL("./assets/images/senac.webp", import.meta.url).href,
       imageAlt: "Senac Logo",
-      footerLink: [{name: "Certificado", url: ""}]
+      footerLink: [
+        {
+          name: "Certificado",
+          url: "https://www.linkedin.com/in/mlutegar/details/certifications/"
+        }
+      ]
     }
   ],
   display: true // Set false to hide this section, defaults to true
@@ -551,6 +576,7 @@ const isHireable = true; // Set false if you are not looking for a job. Also isH
 export {
   illustration,
   greeting,
+  greetingStats,
   socialMediaLinks,
   splashScreen,
   skillsSection,

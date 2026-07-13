@@ -29,3 +29,121 @@
 .software-skill-inline > i:hover ~ p {
   color: $skillsColor;
 }
+
+/* Marquee mobile: escondido no desktop */
+.skills-marquee {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Esconde o grid antigo e mostra o marquee animado */
+  .dev-icons {
+    display: none;
+  }
+
+  .skills-marquee {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    overflow: hidden;
+    padding: 4px 0;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 12%,
+      #000 88%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 12%,
+      #000 88%,
+      transparent 100%
+    );
+  }
+
+  .marquee-row {
+    display: flex;
+    overflow: hidden;
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 10px;
+    width: max-content;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    animation: marquee-left 30s linear infinite;
+    will-change: transform;
+  }
+
+  .marquee-row--reverse .marquee-track {
+    animation-name: marquee-right;
+  }
+
+  .marquee-track:active {
+    animation-play-state: paused;
+  }
+
+  .skill-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex: 0 0 auto;
+    padding: 8px 14px;
+    border-radius: 999px;
+    white-space: nowrap;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    font-size: 1.3rem;
+  }
+
+  .skill-pill > i {
+    color: $subTitle;
+    line-height: 1;
+  }
+
+  .skill-pill > p {
+    margin: 0;
+    color: $subTitle;
+    font-size: 11px;
+    line-height: 1;
+  }
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Acessibilidade: sem animação -> scroll lateral com snap */
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+    transform: none;
+  }
+  .marquee-row {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .skill-pill {
+    scroll-snap-align: start;
+  }
+}

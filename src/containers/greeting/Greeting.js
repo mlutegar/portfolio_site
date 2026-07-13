@@ -5,24 +5,23 @@ import "./Greeting.scss";
 import HeroGraphic from "../../components/heroGraphic/HeroGraphic";
 import SocialMedia from "../../components/socialMedia/SocialMedia";
 import Button from "../../components/button/Button";
-import {greeting, socialMediaLinks} from "../../portfolio";
+import {greeting, greetingStats, socialMediaLinks} from "../../portfolio";
 import StyleContext from "../../contexts/StyleContext";
-
-const stats = [
-  {value: "8+", label: "Projetos entregues"},
-  {value: "4", label: "Empresas"},
-  {value: "6", label: "Períodos Top-3 (CR)"},
-  {value: "3+", label: "Anos de experiência"}
-];
+import useInView from "../../hooks/useInView";
 
 export default function Greeting() {
   const {isDark} = useContext(StyleContext);
+  const [inViewRef, inView] = useInView();
   if (!greeting.displayGreeting) {
     return null;
   }
   return (
     <Fade bottom duration={1000} distance="40px">
-      <div className="greet-main" id="greeting">
+      <div
+        className={`greet-main${inView ? "" : " is-paused"}`}
+        id="greeting"
+        ref={inViewRef}
+      >
         <div className="greeting-main">
           <div className="greeting-text-div">
             <div>
@@ -31,7 +30,9 @@ export default function Greeting() {
               >
                 {" "}
                 {greeting.title}{" "}
-                <span className="wave-emoji">{emoji("👋")}</span>
+                <span className="wave-emoji" aria-hidden="true">
+                  {emoji("👋", {props: {alt: ""}})}
+                </span>
               </h1>
               <p
                 className={
@@ -54,15 +55,6 @@ export default function Greeting() {
                     variant="outline"
                   />
                 )}
-                {greeting.resumeLink && (
-                  <a
-                    href={new URL("./resume.pdf", import.meta.url).href}
-                    download="Michel-Lutegar-CV.pdf"
-                    className="download-link-button"
-                  >
-                    <Button text="Baixar CV" variant="outline" />
-                  </a>
-                )}
               </div>
             </div>
           </div>
@@ -71,8 +63,8 @@ export default function Greeting() {
           </div>
         </div>
         <div className="greeting-stats" aria-label="Destaques">
-          {stats.map((s, i) => (
-            <div className="stat-item" key={i}>
+          {greetingStats.map(s => (
+            <div className="stat-item" key={s.label}>
               <span className="stat-value">{s.value}</span>
               <span className="stat-label">{s.label}</span>
             </div>

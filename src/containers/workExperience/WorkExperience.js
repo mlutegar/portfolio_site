@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect, useRef} from "react";
 import "./WorkExperience.scss";
 import ExperienceCard from "../../components/experienceCard/ExperienceCard";
 import {workExperiences} from "../../portfolio";
@@ -7,6 +7,45 @@ import StyleContext from "../../contexts/StyleContext";
 
 export default function WorkExperience() {
   const {isDark} = useContext(StyleContext);
+  const timelineRef = useRef(null);
+
+  useEffect(() => {
+    const el = timelineRef.current;
+    if (!el) return undefined;
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (reduceMotion) {
+      el.style.setProperty("--xp-progress", "1");
+      return undefined;
+    }
+
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const rect = el.getBoundingClientRect();
+      const anchor = window.innerHeight * 0.6;
+      const raw = (anchor - rect.top) / rect.height;
+      const progress = Math.min(1, Math.max(0, raw));
+      el.style.setProperty("--xp-progress", progress.toFixed(3));
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(update);
+      }
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, {passive: true});
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
   if (workExperiences.display) {
     return (
       <div id="experience">
@@ -17,7 +56,11 @@ export default function WorkExperience() {
                 <span>Experiências</span>
               </h2>
             </Fade>
-            <ol className={isDark ? "xp-timeline xp-timeline--dark" : "xp-timeline"}>
+            <ol
+              ref={timelineRef}
+              className={isDark ? "xp-timeline xp-timeline--dark" : "xp-timeline"}
+            >
+              <span className="xp-timeline-fill" aria-hidden="true" />
               {workExperiences.experience.map((card, i) => {
                 return (
                   <li className="xp-timeline-item" key={i}>

@@ -139,6 +139,80 @@
   }
 }
 
+/* ---- "Atual" live badge ---- */
+
+.xp-current {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  background: $brandGradient;
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px -4px rgba(255, 107, 53, 0.65);
+}
+
+.xp-current-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8);
+  animation: xp-pulse 1.8s ease-out infinite;
+}
+
+@keyframes xp-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 7px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+/* ---- Tech tags ---- */
+
+.xp-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 1.1rem 0 0;
+  padding: 0;
+}
+
+.xp-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: $buttonColor;
+  background: rgba(255, 107, 53, 0.1);
+  border: 1px solid rgba(255, 107, 53, 0.25);
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.xp-tag:hover {
+  background: rgba(255, 107, 53, 0.18);
+  transform: translateY(-2px);
+}
+
+.experience-card-dark .xp-tag {
+  color: #ffb492;
+  background: rgba(255, 107, 53, 0.14);
+  border-color: rgba(255, 107, 53, 0.3);
+}
+
 .xp-role {
   margin: 0 0 0.6rem;
   color: $textColor;
@@ -234,11 +308,15 @@
 
 @media (prefers-reduced-motion: reduce) {
   .experience-card,
-  .xp-node {
+  .xp-node,
+  .xp-tag {
     transition: none;
   }
   .experience-card:hover {
     transform: none;
+  }
+  .xp-current-dot {
+    animation: none;
   }
   .xp-current-dot {
     animation: none;

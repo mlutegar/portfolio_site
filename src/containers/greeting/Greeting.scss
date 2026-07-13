@@ -94,6 +94,11 @@
   align-items: center;
   text-align: center;
   gap: 6px;
+  transition: transform var(--dur) var(--ease);
+}
+
+.stat-item:hover {
+  transform: translateY(-4px);
 }
 
 .stat-value {
@@ -101,10 +106,17 @@
   font-weight: 700;
   font-size: clamp(1.8rem, 4vw, 2.6rem);
   line-height: 1;
-  background: var(--brand-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  /* fallback sólido: garante contraste se o clip de texto falhar */
+  color: var(--brand);
+}
+
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  .stat-value {
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .stat-label {
@@ -129,6 +141,11 @@
   transform-origin: 70% 70%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+}
+
+/* pause the wave while the hero is scrolled out of view */
+.greet-main.is-paused .wave-emoji {
+  animation-play-state: paused;
 }
 
 @keyframes wave {
@@ -172,7 +189,16 @@
     display: block;
   }
   .greeting-image-div {
-    height: 256px;
+    height: auto;
+    margin-bottom: 0;
+  }
+  .greeting-stats {
+    margin-top: 16px;
+  }
+  /* glow decorativo menor no mobile para aliviar a composição/pintura */
+  .greet-main::before {
+    width: 260px;
+    height: 260px;
   }
 }
 

@@ -2,6 +2,7 @@
 
 .contact-margin-top {
   margin-top: 4rem;
+  padding: 0 16px;
 }
 
 .visually-hidden {
@@ -334,6 +335,8 @@
 
 .term-field input,
 .term-field textarea {
+  width: 100%;
+  box-sizing: border-box;
   font-family: inherit;
   font-size: 0.95rem;
   color: var(--term-fg);
