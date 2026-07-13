@@ -1,10 +1,12 @@
 import {defineConfig} from "vite";
 import react from "@vitejs/plugin-react";
 
-// The site is deployed to GitHub Pages under /portfolio_site/.
-// `base` must match so asset URLs resolve correctly in production.
+// O site é publicado via GitHub Pages sob o domínio próprio mlutegar.com, que é
+// servido na RAIZ do host (domínios customizados não usam o caminho /repo/).
+// Por isso `base` precisa ser "/", senão os assets são pedidos em
+// /portfolio_site/... e dão 404. Um arquivo public/CNAME preserva o domínio.
 export default defineConfig({
-  base: "/portfolio_site/",
+  base: "/",
   plugins: [react()],
   css: {
     preprocessorOptions: {

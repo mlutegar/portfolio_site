@@ -19,7 +19,7 @@
       "sizes": "384x384"
     }
   ],
-  "start_url": "/portfolio_site/",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#ff6b35",
   "background_color": "#ffffff"
