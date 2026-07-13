@@ -1,5 +1,5 @@
-import React, {useContext} from "react";
-import Headroom from "react-headroom";
+import React, {useContext, useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 import "./Header.scss";
 import StyleContext from "../../contexts/StyleContext";
 import {
@@ -12,6 +12,7 @@ import {
   resumeSection
 } from "../../portfolio";
 import LogoSvg from "../../assets/svg/Logo";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 function Header() {
   const {isDark} = useContext(StyleContext);
@@ -23,19 +24,33 @@ function Header() {
   const viewTalks = talkSection.display;
   const viewResume = resumeSection.display;
 
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, {passive: true});
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const headerClass = [
+    "header",
+    isDark ? "dark-menu" : "",
+    scrolled ? "header--scrolled" : ""
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <Headroom>
-      <header className={isDark ? "dark-menu header" : "header"}>
-        <a href="/" className="logo">
-          <LogoSvg
-            lutegar={isDark ? "white" : "black"}
-          />
-        </a>
+    <div className="header-wrapper">
+      <header className={headerClass}>
+        <Link to="/" className="logo" aria-label="Ir para o início">
+          <LogoSvg lutegar={isDark ? "white" : "black"} />
+        </Link>
         <input className="menu-btn" type="checkbox" id="menu-btn" />
         <label
           className="menu-icon"
           htmlFor="menu-btn"
-          style={{color: "white"}}
+          aria-label="Abrir menu de navegação"
         >
           <span className={isDark ? "navicon navicon-dark" : "navicon"}></span>
         </label>
@@ -78,9 +93,12 @@ function Header() {
           <li>
             <a href="#contact">Contato</a>
           </li>
+          <li className="header-toggle-li">
+            <ToggleSwitch />
+          </li>
         </ul>
       </header>
-    </Headroom>
+    </div>
   );
 }
 export default Header;

@@ -18,6 +18,8 @@ export default function AchievementCard({cardInfo, isDark}) {
           src={cardInfo.image}
           alt={cardInfo.imageAlt || "Card Thumbnail"}
           className="card-image"
+          loading="lazy"
+          decoding="async"
         ></img>
       </div>
       <div className="certificate-detail-div">

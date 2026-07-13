@@ -1,134 +1,196 @@
 @import "../../_globalColor";
 
-.education-card {
-  display: flex;
-  flex-direction: row;
+/* ============================================================
+   Vertical timeline — education
+   Each reveal wrapper holds one timeline item. The connecting
+   line is drawn per-item as a pseudo-element and truncated on
+   the first / last item so it starts and ends at the markers.
+   ============================================================ */
+
+$marker-size: 72px;
+$marker-center: 36px;
+
+.edu-timeline-reveal {
+  display: block;
 }
 
-.education-card:hover + .education-card-border {
-  border-color: $educationCardBorder;
-  width: 100%;
-  -webkit-transition: width 0.6s ease-in-out;
-  -moz-transition: width 0.6s ease-in-out;
-  -o-transition: width 0.6s ease-in-out;
-  transition: width 0.6s ease-in-out;
+.edu-timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: $marker-size 1fr;
+  align-items: start;
+  gap: var(--space-6);
+  padding-bottom: var(--space-8);
 }
 
-.education-card-border {
-  height: 30px;
-  width: 80%;
-  border-top: 2px solid $lightBorder1;
-  margin-bottom: 20px;
-  -webkit-transition: width 0.6s ease-in-out;
-  -moz-transition: width 0.6s ease-in-out;
-  -o-transition: width 0.6s ease-in-out;
-  transition: width 0.6s ease-in-out;
+/* connecting vertical line */
+.edu-timeline-item::before {
+  content: "";
+  position: absolute;
+  left: $marker-center - 1px;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background: var(--border-subtle);
+  z-index: 0;
 }
 
-.education-head {
-  display: flex;
-  flex-direction: row;
+.edu-timeline-reveal:first-child .edu-timeline-item::before {
+  top: $marker-center;
+  height: calc(100% - #{$marker-center});
 }
 
-.education-text-school {
-  margin: 0;
-  font-size: 28px;
-  font-weight: 700;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  height: 27px;
+.edu-timeline-reveal:last-child .edu-timeline-item {
+  padding-bottom: 0;
+}
+.edu-timeline-reveal:last-child .edu-timeline-item::before {
+  height: $marker-center;
 }
 
-.education-roundedimg {
-  object-fit: cover;
-  margin-right: 2rem;
-  width: 6rem;
-  height: 6rem;
-  box-shadow: 0 0.5rem 1rem $lightBoxShadowDarker;
+/* node / marker holding the institution logo */
+.edu-timeline-marker {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: $marker-size;
+  height: $marker-size;
   border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
 }
 
-.education-card-right {
-  max-width: 70%;
+.edu-timeline-logo {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: contain;
 }
 
-.education-text-subHeader {
-  color: $textColor;
+/* content card */
+.edu-timeline-card {
+  position: relative;
+  z-index: 1;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+/* subtle arrow pointing back to the marker */
+.edu-timeline-card::before {
+  content: "";
+  position: absolute;
+  top: 26px;
+  left: -8px;
+  width: 14px;
+  height: 14px;
+  background: var(--surface);
+  border-left: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  transform: rotate(45deg);
+}
+
+.edu-timeline-item:hover .edu-timeline-card {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--brand);
+}
+.edu-timeline-item:hover .edu-timeline-marker {
+  border-color: var(--brand);
+  box-shadow: var(--shadow-md);
+}
+
+.edu-timeline-duration {
+  display: inline-block;
+  margin-bottom: var(--space-2);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--brand);
+  background: color-mix(in srgb, var(--brand) 12%, transparent);
+}
+
+.edu-timeline-school {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
   font-weight: 700;
-  font-size: 19px;
-  margin: 0px;
-  padding-top: 0.8rem;
-  line-height: normal;
+  line-height: 1.2;
+  color: var(--title-color);
 }
 
-.education-text-duration {
-  color: $titleColor;
-  font-size: 19px;
-  margin: 0px;
-  padding-top: 0.5rem;
+.edu-timeline-subheader {
+  margin: var(--space-1) 0 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--brand);
 }
 
-.education-text-desc {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+.edu-timeline-desc {
+  margin: var(--space-3) 0 0;
+  color: var(--text-color);
 }
 
-.education-text-bullets > ul {
-  margin-top: 0.5rem;
+.edu-timeline-bullets {
+  margin: var(--space-3) 0 0;
+  padding-left: 1.2rem;
 }
 
-/* Media Query */
-
-@media (max-width: 1380px) {
-  .education-card {
-    flex-direction: column;
-    padding-bottom: 10px;
-  }
-  .education-card-right {
-    max-width: 90%;
-  }
-  .education-card-border {
-    width: 90%;
-  }
-  .education-text-subHeader {
-    padding-top: 0.5rem;
-    font-size: 16px;
-  }
-  .education-text-school {
-    font-size: 20px;
-    height: 23px;
-  }
-  .education-text-duration {
-    font-size: 16px;
-  }
-  .education-roundedimg {
-    width: 4rem;
-    height: 4rem;
-    margin-bottom: 0.5rem;
-    margin-right: 0px;
-  }
+.edu-timeline-bullet {
+  color: var(--card-subtitle);
+  margin-bottom: var(--space-1);
 }
 
+/* ---------- responsive ---------- */
 @media (max-width: 768px) {
-  .education-card {
-    text-align: center;
+  $marker-size-sm: 52px;
+  $marker-center-sm: 26px;
+
+  .edu-timeline-item {
+    grid-template-columns: $marker-size-sm 1fr;
+    gap: var(--space-4);
+    padding-bottom: var(--space-6);
   }
-  .education-card-right {
-    max-width: 100%;
+  .edu-timeline-item::before {
+    left: $marker-center-sm - 1px;
   }
-  .education-card-border {
-    width: 100%;
+  .edu-timeline-reveal:first-child .edu-timeline-item::before {
+    top: $marker-center-sm;
+    height: calc(100% - #{$marker-center-sm});
   }
-  .education-roundedimg {
-    margin-top: 10px;
-    width: 4rem;
-    height: 4rem;
-    margin-bottom: 1rem;
-    margin-right: 0;
+  .edu-timeline-reveal:last-child .edu-timeline-item::before {
+    height: $marker-center-sm;
   }
-  .education-text-bullets > ul {
-    max-width: 80%;
-    margin: auto;
+  .edu-timeline-marker {
+    width: $marker-size-sm;
+    height: $marker-size-sm;
+  }
+  .edu-timeline-logo {
+    width: 34px;
+    height: 34px;
+  }
+  .edu-timeline-card {
+    padding: var(--space-4);
+  }
+  .edu-timeline-card::before {
+    top: 20px;
+    left: -7px;
+    width: 12px;
+    height: 12px;
+  }
+  .edu-timeline-school {
+    font-size: 1.3rem;
+  }
+  .edu-timeline-subheader {
+    font-size: 1rem;
   }
 }

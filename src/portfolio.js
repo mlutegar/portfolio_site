@@ -3,14 +3,12 @@
 // To change portfolio colors globally go to the  _globalColor.scss file
 
 import emoji from "react-easy-emoji";
-import splashAnimation from "./assets/lottie/splashAnimation"; // Rename to your file name for custom animation
 
 // Splash Screen
 
 const splashScreen = {
   enabled: true, // set false to disable splash screen
-  animation: splashAnimation,
-  duration: 2000 // Set animation duration as per your animation
+  duration: 1400 // Set animation duration as per your animation
 };
 
 // Summary And Greeting Section
@@ -25,17 +23,18 @@ const greeting = {
   subTitle: emoji(
     "Sou Michel Lutegar, desenvolvedor Full-Stack. Especializo-me em criar aplicações web completas que geram resultados reais - desde plataformas de e-commerce que aumentam conversões até sistemas acadêmicos que otimizam processos, sempre priorizando código de qualidade e experiência do usuário."
   ),
-  resumeLink:
-    "", // Set to empty to hide the button
+  resumeLink: "", // Set to empty to hide the button
   displayGreeting: true // Set false to hide this section, defaults to true
 };
 
 // Social Media Links
 
 const socialMediaLinks = {
-  github: `https://github.com/${process.env.REACT_APP_GITHUB_USERNAME || "mlutegar"}`,
+  github: `https://github.com/${
+    import.meta.env.VITE_GITHUB_USERNAME || "mlutegar"
+  }`,
   linkedin: "https://www.linkedin.com/in/mlutegar/",
-  gmail: process.env.REACT_APP_EMAIL || "mlutegar@gmail.com",
+  gmail: import.meta.env.VITE_EMAIL || "mlutegar@gmail.com",
   whatsapp: "5521998795887", // Substitua pelo seu número com código do país
   gitlab: "",
   facebook: "",
@@ -55,7 +54,9 @@ const skillsSection = {
     emoji(
       "⚡ Desenvolvimento de interfaces front-end interativas com React/JSX, HTML5, CSS3 e TypeScript"
     ),
-    emoji("⚡ Criação de APIs REST e back-end robustos com Django/Python e FastAPI"),
+    emoji(
+      "⚡ Criação de APIs REST e back-end robustos com Django/Python e FastAPI"
+    ),
     emoji(
       "⚡ Integração com bancos de dados MySQL, desenvolvimento de jogos e soluções de e-commerce"
     )
@@ -148,7 +149,7 @@ const educationInfo = {
   schools: [
     {
       schoolName: "IBMEC",
-      logo: require("./assets/images/ibmeclogo.png"),
+      logo: new URL("./assets/images/ibmeclogo.webp", import.meta.url).href,
       subHeader: "Engenharia da Computação",
       duration: "2022 - 2026 (Previsão)",
       desc: "Reconhecido pela faculdade por estar entre os três alunos com maior Coeficiente de Rendimento (CR) do curso durante seis períodos (2022.2, 2023.1, 2023.2, 2024.1, 2024.2 e 2025.2).",
@@ -159,7 +160,7 @@ const educationInfo = {
     },
     {
       schoolName: "Senac",
-      logo: require("./assets/images/senac.png"),
+      logo: new URL("./assets/images/senac.webp", import.meta.url).href,
       subHeader: "Técnico em T.I.",
       duration: "Concluído em 06/2024",
       desc: "Formação técnica completa em Tecnologia da Informação.",
@@ -171,7 +172,7 @@ const educationInfo = {
 // Your top 3 proficient stacks/tech experience
 
 const techStack = {
-  viewSkillBars: false, //Set it to true to show Proficiency Section
+  viewSkillBars: true, //Set it to true to show Proficiency Section
   experience: [
     {
       Stack: "Frontend/React", //Insert stack or technology you have experience in
@@ -209,7 +210,7 @@ const workExperiences = {
     {
       role: "Desenvolvedor de Sistemas & Analista Fullstack",
       company: "ABRAPA",
-      companylogo: require("./assets/images/abrapa.png"),
+      companylogo: new URL("./assets/images/abrapa.webp", import.meta.url).href,
       date: "11/2025 – Atual",
       desc: "Arquitetura, desenvolvimento e manutenção da plataforma MAIA — sistema psicopedagógico de avaliação clínica utilizado em atendimento real de crianças, em parceria com pesquisadora da UFRJ.",
       descBullets: [
@@ -221,7 +222,8 @@ const workExperiences = {
     {
       role: "Desenvolvedor Front-End / E-commerce",
       company: "Lime Labs",
-      companylogo: require("./assets/images/limelabs.jpg"),
+      companylogo: new URL("./assets/images/limelabs.webp", import.meta.url)
+        .href,
       date: "09/2024 – 06/2025",
       desc: "Atuação direta no desenvolvimento de plataformas para clientes externos (VTEX IO), realizando levantamento de requisitos a partir do briefing, análise de escopo e entrega técnica.",
       descBullets: [
@@ -233,7 +235,8 @@ const workExperiences = {
     {
       role: "Técnico de Laboratório & Desenvolvedor",
       company: "IBMEC",
-      companylogo: require("./assets/images/ibmeclogo.png"),
+      companylogo: new URL("./assets/images/ibmeclogo.webp", import.meta.url)
+        .href,
       date: "08/2023 – Atual",
       desc: "Suporte especializado à infraestrutura técnica de laboratórios de redes e eletrônica, gerenciando ambientes e orientando usuários em atividades práticas.",
       descBullets: [
@@ -244,7 +247,10 @@ const workExperiences = {
     {
       role: "Estagiário em Análise de Dados",
       company: "Editora Globo",
-      companylogo: require("./assets/images/editora_globo.webp"),
+      companylogo: new URL(
+        "./assets/images/editora_globo.webp",
+        import.meta.url
+      ).href,
       date: "08/2022 – 08/2023",
       desc: "Criação e atualização de planilhas no Excel, elaboração de relatórios em Excel e Power BI para facilitar a tomada de decisão gerencial."
     }
@@ -266,9 +272,10 @@ const works = {
   subtitle: "Uma coleção de projetos que eu trabalhei.",
   projects: [
     {
-      image: require("./assets/images/useriu.jpg"),
+      image: new URL("./assets/images/useriu.webp", import.meta.url).href,
       projectName: "Useriu",
-      projectDesc: "Site de roupas femininas com design vibrante e navegação intuitiva. Desenvolvido com React para proporcionar uma experiência de compra moderna e responsiva.",
+      projectDesc:
+        "Site de roupas femininas com design vibrante e navegação intuitiva. Desenvolvido com React para proporcionar uma experiência de compra moderna e responsiva.",
       footerLink: [
         {
           name: "Visitar Site",
@@ -277,9 +284,10 @@ const works = {
       ]
     },
     {
-      image: require("./assets/images/pilotage.png"),
+      image: new URL("./assets/images/pilotage.webp", import.meta.url).href,
       projectName: "Pilotage",
-      projectDesc: "Site institucional para empresa autorizada pela CVM, focada em gestão de recursos financeiros. Desenvolvido com WordPress para máxima flexibilidade de conteúdo.",
+      projectDesc:
+        "Site institucional para empresa autorizada pela CVM, focada em gestão de recursos financeiros. Desenvolvido com WordPress para máxima flexibilidade de conteúdo.",
       footerLink: [
         {
           name: "Visitar Site",
@@ -288,9 +296,10 @@ const works = {
       ]
     },
     {
-      image: require("./assets/images/charlote.png"),
+      image: new URL("./assets/images/charlote.webp", import.meta.url).href,
       projectName: "Charlote",
-      projectDesc: "Site para marca de salgadinhos com catálogo de produtos e design atrativo. Implementado com Tailwind CSS para um visual moderno e performance otimizada.",
+      projectDesc:
+        "Site para marca de salgadinhos com catálogo de produtos e design atrativo. Implementado com Tailwind CSS para um visual moderno e performance otimizada.",
       footerLink: [
         {
           name: "Visitar Site",
@@ -299,9 +308,10 @@ const works = {
       ]
     },
     {
-      image: require("./assets/images/pvr.jpg"),
+      image: new URL("./assets/images/pvr.webp", import.meta.url).href,
       projectName: "PVR Capital",
-      projectDesc: "Site institucional para empresa de soluções financeiras com foco em emissão de dívida e M&A. Backend desenvolvido em Node.js para robustez e escalabilidade.",
+      projectDesc:
+        "Site institucional para empresa de soluções financeiras com foco em emissão de dívida e M&A. Backend desenvolvido em Node.js para robustez e escalabilidade.",
       footerLink: [
         {
           name: "Visitar Site",
@@ -310,9 +320,10 @@ const works = {
       ]
     },
     {
-      image: require("./assets/images/brazilroute.png"),
+      image: new URL("./assets/images/brazilroute.webp", import.meta.url).href,
       projectName: "Brazilroute",
-      projectDesc: "Site para consultoria estratégica voltada a empresas de tecnologia expandindo no Brasil. Desenvolvido em React com design profissional que reflete parceria estratégica.",
+      projectDesc:
+        "Site para consultoria estratégica voltada a empresas de tecnologia expandindo no Brasil. Desenvolvido em React com design profissional que reflete parceria estratégica.",
       footerLink: [
         {
           name: "Visitar Site",
@@ -321,46 +332,58 @@ const works = {
       ]
     },
     {
-      image: require("./assets/images/ibmec.png"),
+      image: new URL("./assets/images/ibmec.webp", import.meta.url).href,
       projectName: "IBMEC Empréstimos",
-      projectDesc: "Sistema completo para cadastro de alunos e gestão de empréstimo/devolução de equipamentos com painel em React e API Django Rest Framework.",
+      projectDesc:
+        "Sistema completo para cadastro de alunos e gestão de empréstimo/devolução de equipamentos com painel em React e API Django Rest Framework.",
       footerLink: [
         {
           name: "Ver Projeto",
-          url: `https://github.com/${process.env.REACT_APP_GITHUB_USERNAME || "mlutegar"}`
+          url: `https://github.com/${
+            import.meta.env.VITE_GITHUB_USERNAME || "mlutegar"
+          }`
         }
       ]
     },
     {
-      image: require("./assets/images/ufrj.png"),
+      image: new URL("./assets/images/ufrj.webp", import.meta.url).href,
       projectName: "UFRJ - Pesquisa",
-      projectDesc: "Apoio no desenvolvimento de jogo multiplayer para tese de doutorado (UFRJ) em neurociência, criado como instrumento para mensurar a colaboração em grupo.",
+      projectDesc:
+        "Apoio no desenvolvimento de jogo multiplayer para tese de doutorado (UFRJ) em neurociência, criado como instrumento para mensurar a colaboração em grupo.",
       footerLink: [
         {
           name: "Ver Projeto",
-          url: `https://github.com/${process.env.REACT_APP_GITHUB_USERNAME || "mlutegar"}`
+          url: `https://github.com/${
+            import.meta.env.VITE_GITHUB_USERNAME || "mlutegar"
+          }`
         }
       ]
     },
     {
-      image: require("./assets/images/tedx.png"),
+      image: new URL("./assets/images/tedx.webp", import.meta.url).href,
       projectName: "Cronograma TEDx",
-      projectDesc: "Cronograma dinâmico com exibição de palestrantes e quizzes, desenvolvido com React Hooks e backend Django para gestão de conteúdos.",
+      projectDesc:
+        "Cronograma dinâmico com exibição de palestrantes e quizzes, desenvolvido com React Hooks e backend Django para gestão de conteúdos.",
       footerLink: [
         {
           name: "Ver Projeto",
-          url: `https://github.com/${process.env.REACT_APP_GITHUB_USERNAME || "mlutegar"}`
+          url: `https://github.com/${
+            import.meta.env.VITE_GITHUB_USERNAME || "mlutegar"
+          }`
         }
       ]
     },
     {
-      image: require("./assets/images/okka.png"),
+      image: new URL("./assets/images/okka.webp", import.meta.url).href,
       projectName: "Okka Relatórios",
-      projectDesc: "Web app para registro de atividades corporativas com workflow de aprovação em múltiplos níveis e exportação de relatórios em PDF.",
+      projectDesc:
+        "Web app para registro de atividades corporativas com workflow de aprovação em múltiplos níveis e exportação de relatórios em PDF.",
       footerLink: [
         {
           name: "Ver Projeto",
-          url: `https://github.com/${process.env.REACT_APP_GITHUB_USERNAME || "mlutegar"}`
+          url: `https://github.com/${
+            import.meta.env.VITE_GITHUB_USERNAME || "mlutegar"
+          }`
         }
       ]
     }
@@ -381,7 +404,7 @@ const achievementSection = {
       title: "Destaque Acadêmico IBMEC – 6 períodos",
       subtitle:
         "Reconhecido pela faculdade por estar entre os três alunos com maior CR do curso durante seis períodos: 2022.2, 2023.1, 2023.2, 2024.1, 2024.2 e 2025.2 — com médias de 10, 9.9, 9.6, 9.8, 9.8 e 10.",
-      image: require("./assets/images/ibmec_star.png"),
+      image: new URL("./assets/images/ibmec_star.webp", import.meta.url).href,
       imageAlt: "IBMEC Logo",
       footerLink: [
         {
@@ -394,7 +417,7 @@ const achievementSection = {
       title: "Certificação Cisco",
       subtitle:
         "Networking Essentials Certificate - Certificação em fundamentos de redes.",
-      image: require("./assets/images/cisco.png"),
+      image: new URL("./assets/images/cisco.webp", import.meta.url).href,
       imageAlt: "Cisco Logo",
       footerLink: [
         {
@@ -406,12 +429,11 @@ const achievementSection = {
 
     {
       title: "Formação Técnica Senac",
-      subtitle: "Técnico em T.I. - Formação completa em Tecnologia da Informação concluída em 2024.",
-      image: require("./assets/images/senac.png"),
+      subtitle:
+        "Técnico em T.I. - Formação completa em Tecnologia da Informação concluída em 2024.",
+      image: new URL("./assets/images/senac.webp", import.meta.url).href,
       imageAlt: "Senac Logo",
-      footerLink: [
-        {name: "Certificado", url: ""}
-      ]
+      footerLink: [{name: "Certificado", url: ""}]
     }
   ],
   display: true // Set false to hide this section, defaults to true
@@ -487,7 +509,7 @@ const contactInfo = {
   subtitle:
     "Quer discutir um projeto ou apenas dizer olá? Minha caixa de entrada está aberta para todos.",
   number: "(21) 99879-5887",
-  email_address: process.env.REACT_APP_EMAIL || "mlutegar@gmail.com"
+  email_address: import.meta.env.VITE_EMAIL || "mlutegar@gmail.com"
 };
 
 // Twitter Section

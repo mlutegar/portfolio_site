@@ -1,28 +1,43 @@
 @import "../../_globalColor";
 
 .main-button {
-  background-color: $buttonColor;
-  border: solid 1px $buttonColor;
-  color: $textColorDark;
-  font-weight: 700;
+  background: $brandGradient;
+  border: solid 2px transparent;
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   width: max-content;
-  padding: 13px 22px;
-  margin-right: 50px;
-  text-transform: uppercase;
-  border-radius: 6px;
+  padding: 13px 26px;
   text-align: center;
   text-decoration: none;
-  display: block;
-  margin-top: 20px;
+  display: inline-block;
+  margin-top: 4px;
   font-size: 1rem;
+  border-radius: var(--radius-pill);
   cursor: pointer;
-  transition: all 0.3s ease-in-out 0s;
+  box-shadow: 0 6px 18px rgba(255, 107, 53, 0.32);
+  transition: transform var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease), filter var(--dur-fast) var(--ease);
 }
 .main-button:hover {
-  background-color: $darkBoxShadow2;
-  color: $buttonColor;
-  transition: all 0.3s ease 0s;
   transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(255, 107, 53, 0.4);
+  filter: brightness(1.05);
+}
+.main-button:active {
+  transform: translateY(-1px);
+}
+
+/* secondary / outline variant */
+.main-button--outline {
+  background: transparent;
+  color: var(--brand);
+  border: 2px solid var(--brand);
+  box-shadow: none;
+}
+.main-button--outline:hover {
+  background: rgba(255, 107, 53, 0.08);
+  filter: none;
 }
 .project-button {
   display: flex;

@@ -4,34 +4,61 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  background: var(--bg-1);
 }
 
-.splash-animation-container {
-  height: 50vh;
+.splash-brand {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 240px;
+  height: 240px;
+  animation: splash-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.splash-title-container {
-  font-size: 2.5rem;
-  text-decoration: none;
-}
-.splash-title {
-  font-family: "Agustina Regular", cursive;
-  font-weight: bold;
-  font-variant-ligatures: no-common-ligatures;
-  -webkit-font-variant-ligatures: no-common-ligatures;
-  padding: 0 20px;
+.splash-logo {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes fadeInScale {
-  0% {
+/* animated brand ring */
+.splash-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #ff6b35;
+  border-right-color: #f7931e;
+  animation: splash-spin 1s linear infinite;
+}
+.splash-ring::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 107, 53, 0.18) 0%,
+    rgba(255, 107, 53, 0) 70%
+  );
+}
+
+@keyframes splash-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes splash-in {
+  from {
     opacity: 0;
-    transform: scale(0.8);
+    transform: scale(0.85);
   }
-  50% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-  100% {
+  to {
     opacity: 1;
     transform: scale(1);
   }

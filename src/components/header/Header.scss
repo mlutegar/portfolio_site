@@ -1,14 +1,15 @@
 @import "../../_globalColor";
 
-/*React-headroom*/
-.headroom-wrapper {
-  max-height: 100px;
+/* sticky header wrapper */
+.header-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 /* header */
 
 .dark-menu {
-  background-color: $darkBackground !important;
   color: $textColorDark;
 }
 
@@ -18,13 +19,26 @@
 
 .dark-menu li a:hover {
   background-color: $buttonColor !important;
+  color: #fff !important;
 }
 
 .header {
-  background-color: $lightBackground1;
+  background-color: var(--bg-1);
   max-width: 100%;
-  padding: 15px 20px;
+  padding: 14px 24px;
   margin: 0px auto;
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+/* subtle glass + shadow once the user scrolls */
+.header--scrolled {
+  background-color: color-mix(in srgb, var(--bg-1) 82%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  backdrop-filter: saturate(180%) blur(12px);
+  box-shadow: var(--shadow-sm);
+  border-bottom-color: var(--border-subtle);
 }
 
 .header ul {
@@ -40,14 +54,29 @@
 
 .header li a {
   display: block;
-  padding: 15px 20px;
-  color: $textColor;
+  padding: 10px 16px;
+  margin: 4px 2px;
+  border-radius: var(--radius-sm);
+  color: var(--text-color);
+  font-weight: 500;
   text-decoration: none;
+  transition: background-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease);
 }
 
 .header li a:hover,
 .header .menu-btn:hover {
-  background-color: $headerHoverBG;
+  background-color: var(--header-hover);
+  color: var(--brand);
+}
+
+.header-toggle-li {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+.header-toggle-li:hover {
+  background: none;
 }
 
 .header .logo {
@@ -160,9 +189,6 @@
 /* 48em = 768px */
 
 @media (min-width: 48em) {
-  .header li {
-    float: left;
-  }
   .header {
     display: flex;
     align-items: center;
@@ -170,6 +196,8 @@
   }
   .header .menu {
     max-height: none;
+    display: flex;
+    align-items: center;
   }
   .header .menu-icon {
     display: none;

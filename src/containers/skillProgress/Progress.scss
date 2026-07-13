@@ -28,7 +28,10 @@
 }
 .skills-container {
   display: flex;
+  align-items: center;
+  gap: 40px;
   width: 90%;
+  max-width: 1200px;
   padding: 20px 10px;
   margin: 0px auto;
   margin-top: 2rem;
@@ -36,6 +39,38 @@
 .skills-container > * {
   flex: 1;
   margin-bottom: 30px;
+}
+
+.skills-heading {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--title-color);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* full-width proficiency layout (no illustration) */
+.skills-container--full {
+  display: block;
+}
+.skills-container--full .skills-bar {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.skills-container--full .skill-bar-row {
+  margin-bottom: 1.75rem;
+}
+@media (min-width: 820px) {
+  .skills-container--full .skills-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 48px;
+    max-width: 1000px;
+  }
+  .skills-container--full .skills-heading {
+    grid-column: 1 / -1;
+  }
 }
 
 .skills-image > img {

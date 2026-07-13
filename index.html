@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+
+    <!-- Apply the persisted theme before paint to avoid a light flash (FOUC).
+         Dark is the default when no preference has been saved yet. -->
+    <script type="text/javascript">
+      (function () {
+        try {
+          var stored = window.localStorage.getItem("isDark");
+          var isDark = stored === null ? true : JSON.parse(stored);
+          if (isDark) {
+            document.documentElement.classList.add("dark-mode");
+          }
+        } catch (e) {
+          document.documentElement.classList.add("dark-mode");
+        }
+      })();
+    </script>
+
+    <!-- Single Page Apps for GitHub Pages — decode the route from 404.html redirect -->
+    <script type="text/javascript">
+      (function (l) {
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(
+            null,
+            null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      })(window.location);
+    </script>
+
+    <!-- SEO -->
+    <title>Michel Lutegar | Desenvolvedor Full-Stack</title>
+    <meta name="title" content="Michel Lutegar | Desenvolvedor Full-Stack" />
+    <meta
+      name="description"
+      content="Portfólio de Michel Lutegar — Desenvolvedor Full-Stack (React/TypeScript & Django/Python). Projetos de e-commerce, sistemas acadêmicos e aplicações web completas."
+    />
+    <meta name="author" content="Michel Lutegar" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://mlutegar.github.io/portfolio_site"
+    />
+    <meta
+      property="og:title"
+      content="Michel Lutegar | Desenvolvedor Full-Stack"
+    />
+    <meta
+      property="og:description"
+      content="Portfólio de Michel Lutegar — Desenvolvedor Full-Stack. React/TypeScript & Django/Python."
+    />
+    <meta
+      property="og:image"
+      content="https://mlutegar.github.io/portfolio_site/og-image.png"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://mlutegar.github.io/portfolio_site"
+    />
+    <meta
+      property="twitter:title"
+      content="Michel Lutegar | Desenvolvedor Full-Stack"
+    />
+    <meta
+      property="twitter:description"
+      content="Portfólio de Michel Lutegar — Desenvolvedor Full-Stack. React/TypeScript & Django/Python."
+    />
+    <meta
+      property="twitter:image"
+      content="https://mlutegar.github.io/portfolio_site/og-image.png"
+    />
+
+    <meta name="msapplication-TileColor" content="#ff6b35" />
+    <!-- Default matches the dark theme (--bg-1); kept in sync at runtime in App.js -->
+    <meta name="theme-color" content="#0f172a" />
+
+    <!-- Customize icons -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon-32x32.png?v8=qAJ44G5Bm7"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon-16x16.png?v8=qAJ44G5Bm7"
+    />
+    <link
+      rel="mask-icon"
+      href="/safari-pinned-tab.svg?v8=qAJ44G5Bm7"
+      color="#885bd5"
+    />
+    <link rel="shortcut icon" href="/favicon.ico?v8=qAJ44G5Bm7" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-touch-icon.png?v8=qAJ44G5Bm7"
+    />
+
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.15.4/css/all.min.css"
+    />
+
+    <!-- Structured data (helps Google understand this is Michel's portfolio) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Michel Lutegar D'Orsi Pereiras",
+        "alternateName": "Michel Lutegar",
+        "url": "https://mlutegar.github.io/portfolio_site",
+        "jobTitle": "Desenvolvedor Full-Stack",
+        "email": "mailto:mlutegar@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Rio de Janeiro",
+          "addressRegion": "RJ",
+          "addressCountry": "BR"
+        },
+        "sameAs": [
+          "https://github.com/mlutegar",
+          "https://www.linkedin.com/in/mlutegar/"
+        ],
+        "knowsAbout": [
+          "React", "TypeScript", "JavaScript", "Django", "Python",
+          "FastAPI", "Node.js", "SQL", "Docker", "CI/CD"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/index.js"></script>
+  </body>
+</html>

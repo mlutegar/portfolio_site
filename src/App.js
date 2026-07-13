@@ -1,11 +1,45 @@
-import React from "react";
+import React, {Suspense, lazy, useEffect} from "react";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {HelmetProvider} from "react-helmet-async";
 import "./App.scss";
 import Main from "./containers/Main";
+import {StyleProvider} from "./contexts/StyleContext";
+import {useLocalStorage} from "./hooks/useLocalStorage";
+
+// Code-split the case-study route so it isn't part of the initial bundle.
+const CaseStudy = lazy(() => import("./containers/caseStudy/CaseStudy"));
 
 function App() {
+  const [isDark, setIsDark] = useLocalStorage("isDark", true);
+  const changeTheme = () => setIsDark(!isDark);
+
+  // Keep <html> (used by the anti-flash script) and the mobile browser UI bar
+  // in sync with the active theme.
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark-mode", isDark);
+    const themeColor = document.querySelector('meta[name="theme-color"]');
+    if (themeColor) {
+      themeColor.setAttribute("content", isDark ? "#0f172a" : "#ffffff");
+    }
+  }, [isDark]);
+
   return (
-    <div>
-      <Main />
+    <div className={isDark ? "dark-mode" : undefined}>
+      <HelmetProvider>
+        <StyleProvider value={{isDark: isDark, changeTheme: changeTheme}}>
+          <BrowserRouter
+            basename={import.meta.env.BASE_URL.replace(/\/$/, "") || "/"}
+            future={{v7_startTransition: true, v7_relativeSplatPath: true}}
+          >
+            <Suspense fallback={null}>
+              <Routes>
+                <Route path="/" element={<Main />} />
+                <Route path="/projeto/:slug" element={<CaseStudy />} />
+              </Routes>
+            </Suspense>
+          </BrowserRouter>
+        </StyleProvider>
+      </HelmetProvider>
     </div>
   );
 }

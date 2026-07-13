@@ -6,11 +6,24 @@
   overflow: hidden;
 }
 
+.skills-main-div--centered {
+  justify-content: center;
+}
+
+.skills-main-div--centered .skills-text-div {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .skills-text-div {
   margin-left: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.skills-main-div--centered .skills-text-subtitle {
+  text-align: center;
 }
 
 .skills-main-div > * {
@@ -24,12 +37,14 @@
 }
 
 .skills-heading {
-  font-size: 56px;
-  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--title-color);
   text-align: center;
 }
 .subTitle {
-  color: $subTitle;
+  color: var(--subtitle-color);
 }
 
 /* Media Query */

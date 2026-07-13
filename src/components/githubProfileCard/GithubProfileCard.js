@@ -3,7 +3,7 @@ import "./GithubProfileCard.scss";
 import SocialMedia from "../../components/socialMedia/SocialMedia";
 import {contactInfo, isHireable} from "../../portfolio";
 import emoji from "react-easy-emoji";
-import {Fade} from "react-reveal";
+import {Fade} from "../reveal/Reveal";
 
 export default function GithubProfileCard({prof}) {
   if (isHireable) {
@@ -53,6 +53,8 @@ export default function GithubProfileCard({prof}) {
               src={prof.avatarUrl}
               alt={prof.name}
               className="profile-image"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>

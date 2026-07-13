@@ -1,13 +1,19 @@
 import React, {useContext} from "react";
-import {Fade} from "react-reveal";
+import {Fade} from "../../components/reveal/Reveal";
 import emoji from "react-easy-emoji";
 import "./Greeting.scss";
-import welcome from "../../assets/lottie/welcome";
-import DisplayLottie from "../../components/displayLottie/DisplayLottie";
+import HeroGraphic from "../../components/heroGraphic/HeroGraphic";
 import SocialMedia from "../../components/socialMedia/SocialMedia";
 import Button from "../../components/button/Button";
-import {illustration, greeting} from "../../portfolio";
+import {greeting, socialMediaLinks} from "../../portfolio";
 import StyleContext from "../../contexts/StyleContext";
+
+const stats = [
+  {value: "8+", label: "Projetos entregues"},
+  {value: "4", label: "Empresas"},
+  {value: "6", label: "Períodos Top-3 (CR)"},
+  {value: "3+", label: "Anos de experiência"}
+];
 
 export default function Greeting() {
   const {isDark} = useContext(StyleContext);
@@ -39,29 +45,38 @@ export default function Greeting() {
               <div id="resume" className="empty-div"></div>
               <SocialMedia />
               <div className="button-greeting-div">
-                <Button text="Entre em contato comigo" href="#contact" />
+                <Button text="Entre em contato" href="#contact" />
+                {socialMediaLinks.linkedin && (
+                  <Button
+                    text="LinkedIn"
+                    href={socialMediaLinks.linkedin}
+                    newTab
+                    variant="outline"
+                  />
+                )}
                 {greeting.resumeLink && (
                   <a
-                    href={require("./resume.pdf")}
-                    download="Resume.pdf"
+                    href={new URL("./resume.pdf", import.meta.url).href}
+                    download="Michel-Lutegar-CV.pdf"
                     className="download-link-button"
                   >
-                    <Button text="Download my resume" />
+                    <Button text="Baixar CV" variant="outline" />
                   </a>
                 )}
               </div>
             </div>
           </div>
           <div className="greeting-image-div">
-            {illustration.animated ? (
-              <DisplayLottie animationData={welcome} />
-            ) : (
-              <img
-                alt="man sitting on table"
-                src={require("../../assets/images/manOnTable.svg")}
-              ></img>
-            )}
+            <HeroGraphic />
           </div>
+        </div>
+        <div className="greeting-stats" aria-label="Destaques">
+          {stats.map((s, i) => (
+            <div className="stat-item" key={i}>
+              <span className="stat-value">{s.value}</span>
+              <span className="stat-label">{s.label}</span>
+            </div>
+          ))}
         </div>
       </div>
     </Fade>

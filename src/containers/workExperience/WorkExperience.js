@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import "./WorkExperience.scss";
 import ExperienceCard from "../../components/experienceCard/ExperienceCard";
 import {workExperiences} from "../../portfolio";
-import {Fade} from "react-reveal";
+import {Fade} from "../../components/reveal/Reveal";
 import StyleContext from "../../contexts/StyleContext";
 
 export default function WorkExperience() {
@@ -10,15 +10,16 @@ export default function WorkExperience() {
   if (workExperiences.display) {
     return (
       <div id="experience">
-        <Fade bottom duration={1000} distance="20px">
-          <div className="experience-container" id="workExperience">
-            <div>
-              <h1 className="experience-heading">Experiências</h1>
-              <div className="experience-cards-div">
-                {workExperiences.experience.map((card, i) => {
-                  return (
+        <div className="experience-container" id="workExperience">
+          <div>
+            <Fade bottom duration={800} distance="20px">
+              <h2 className="experience-heading">Experiências</h2>
+            </Fade>
+            <div className="experience-cards-div">
+              {workExperiences.experience.map((card, i) => {
+                return (
+                  <Fade key={i} bottom duration={800} delay={i * 120} distance="24px">
                     <ExperienceCard
-                      key={i}
                       isDark={isDark}
                       cardInfo={{
                         company: card.company,
@@ -29,12 +30,12 @@ export default function WorkExperience() {
                         descBullets: card.descBullets
                       }}
                     />
-                  );
-                })}
-              </div>
+                  </Fade>
+                );
+              })}
             </div>
           </div>
-        </Fade>
+        </div>
       </div>
     );
   }

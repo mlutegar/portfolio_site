@@ -1,4 +1,11 @@
-src/serviceWorker.js
+# Build output & dependencies
+build
+dist
+node_modules
+coverage
+
+# Generated / vendored
 package-lock.json
 src/assets/lottie
-
+public/profile.json
+public/blogs.json

@@ -12,25 +12,184 @@
     url("./assets/fonts/Montserrat-Regular.ttf") format("woff");
   font-display: swap;
 }
+
+/* ============================================================
+   Design tokens — runtime theming via CSS custom properties
+   ============================================================ */
+:root {
+  /* brand */
+  --brand: #ff6b35;
+  --brand-hover: #ff8659;
+  --brand-2: #f7931e;
+  --brand-gradient: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+
+  /* light theme */
+  --bg-1: #ffffff;
+  --bg-2: #ffffff;
+  --bg-3: #f4f6fb;
+  --surface: #ffffff;
+  --title-color: #0f172a;
+  --text-color: #1e293b;
+  --subtitle-color: #64748b;
+  --card-subtitle: #475569;
+  --border-subtle: rgba(148, 163, 184, 0.28);
+  --progress-track: #e6e9f0;
+  --header-hover: #f1f5f9;
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06),
+    0 2px 8px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 6px 18px rgba(15, 23, 42, 0.1);
+  --shadow-lg: 0 18px 40px rgba(15, 23, 42, 0.16);
+
+  /* spacing scale (4px base) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 0.18s;
+  --dur: 0.32s;
+
+  /* fonts */
+  --font-display: "Space Grotesk", "Montserrat", sans-serif;
+  --font-body: "Inter", "Montserrat", sans-serif;
+}
+
+.dark-mode {
+  --bg-1: #0f172a;
+  --bg-2: #131c31;
+  --bg-3: #0b1120;
+  --surface: #1e293b;
+  --title-color: #f8fafc;
+  --text-color: #e2e8f0;
+  --subtitle-color: #94a3b8;
+  --card-subtitle: #cbd5e1;
+  --border-subtle: rgba(148, 163, 184, 0.22);
+  --progress-track: #334155;
+  --header-hover: #1e293b;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 20px 44px rgba(0, 0, 0, 0.55);
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-html,
-body {
-  scroll-behavior: smooth;
+
+* {
+  box-sizing: border-box;
 }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  background-color: var(--bg-1);
+}
+
 body {
   margin: 0;
-  font: 19px / 23px Montserrat, "Montserrat", sans-serif;
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--bg-1);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
 }
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Accessible keyboard focus */
+:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Skip-to-content link */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 10000;
+  background: var(--brand);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 var(--radius-sm) 0;
+  font-weight: 600;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: 0;
+}
+
 /* Media Query */
 @media (max-width: 1380px) {
-  html,
   body {
-    font-size: rem;
-    line-height: normal;
+    font-size: 16px;
+  }
+}
+
+/* Print / CV-friendly layout */
+@media print {
+  .header-wrapper,
+  .scroll-progress,
+  .skip-link,
+  .social-media-div,
+  .button-greeting-div,
+  .footer-div a,
+  #topButton,
+  .up-arrow {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 12pt;
+  }
+  * {
+    box-shadow: none !important;
+    background-image: none !important;
+  }
+  a {
+    color: #000 !important;
+    text-decoration: underline;
+  }
+  .greeting-stats {
+    border: 1px solid #ccc !important;
+  }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
 }

@@ -1,90 +1,210 @@
 @import "../../_globalColor";
 
-.contact-div-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.dark-mode a {
-  color: $textColorDark;
-}
-
-.contact-div-main > * {
-  flex: 1;
-}
-
-.contact-title {
-  font-size: 65px;
-  font-weight: 400;
-  text-align: center;
-}
-
-.contact-detail,
-.contact-detail-email {
-  margin-top: 20px;
-  font-size: 40px;
-  font-weight: 400;
-  color: $subTitle;
-  text-decoration: none;
-}
-
-.contact-detail:hover,
-.contact-detail-email:hover {
-  color: $textColor;
-  text-shadow: 2px 1px 2px $contactDetailHoverTS;
-  transition: all 0.3s;
-}
-
-.contact-subtitle {
-  text-transform: uppercase;
-}
-
-.contact-text-div {
-  margin-top: 1.5rem;
-}
-
 .contact-margin-top {
   margin-top: 4rem;
 }
 
-.contact-image-div > img {
-  max-width: 100%;
-  height: auto;
-  margin-left: 1.5rem;
-  margin-top: -4rem;
+/* ---- Glass card ---------------------------------------------------------- */
+.contact-card {
+  position: relative;
+  overflow: hidden;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 3.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: var(--radius-lg, 20px);
+  border: 1px solid $lightBorder1;
+  background: color-mix(in srgb, var(--surface, #fff) 82%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-lg, 0 18px 40px rgba(15, 23, 42, 0.16));
 }
 
-/* Media Query */
-@media (max-width: 1380px), (max-width: 768px) {
-  .contact-title {
-    font-size: 56px;
-    font-weight: 400;
-    text-align: center;
+/* soft brand glow behind the card content */
+.contact-glow {
+  position: absolute;
+  top: -40%;
+  left: 50%;
+  width: 520px;
+  height: 520px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgba(255, 107, 53, 0.28) 0%,
+    rgba(247, 147, 30, 0.12) 38%,
+    transparent 70%
+  );
+  filter: blur(20px);
+  z-index: 0;
+}
+
+.contact-card > *:not(.contact-glow) {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Header -------------------------------------------------------------- */
+.contact-header {
+  width: 100%;
+}
+
+.contact-title {
+  font-size: 60px;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.contact-subtitle {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 15px;
+  max-width: 46ch;
+  margin: 0 auto 0.5rem;
+}
+
+/* ---- Contact pills ------------------------------------------------------- */
+.contact-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 440px;
+  margin: 2rem auto 2.25rem;
+}
+
+.contact-pill {
+  display: flex;
+  align-items: stretch;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.contact-pill-main {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  padding: 0.85rem 1.1rem;
+  border-radius: var(--radius-md, 12px);
+  border: 1px solid $lightBorder1;
+  background: color-mix(in srgb, var(--surface, #fff) 60%, transparent);
+  text-decoration: none;
+  text-align: left;
+  transition: transform var(--dur, 0.32s) var(--ease, ease),
+    box-shadow var(--dur, 0.32s) var(--ease, ease),
+    border-color var(--dur, 0.32s) var(--ease, ease);
+}
+
+.contact-pill-main:hover {
+  transform: translateY(-3px);
+  border-color: transparent;
+  box-shadow: 0 10px 26px rgba(255, 107, 53, 0.28);
+}
+
+.contact-pill-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.05rem;
+  background: $brandGradient;
+}
+
+.contact-pill-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.contact-pill-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $subTitle;
+}
+
+.contact-pill-value {
+  font-size: 20px;
+  font-weight: 500;
+  color: $textColor;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.contact-card.dark-mode .contact-pill-value {
+  color: $textColorDark;
+}
+
+/* copy button */
+.contact-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  flex-shrink: 0;
+  width: 72px;
+  padding: 0.5rem;
+  border-radius: var(--radius-md, 12px);
+  border: 1px solid $lightBorder1;
+  background: transparent;
+  color: $subTitle;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: color var(--dur-fast, 0.18s) var(--ease, ease),
+    border-color var(--dur-fast, 0.18s) var(--ease, ease),
+    background var(--dur-fast, 0.18s) var(--ease, ease);
+}
+
+.contact-copy:hover {
+  color: $buttonColor;
+  border-color: $buttonColor;
+}
+
+.contact-copy.copied {
+  color: #fff;
+  border-color: transparent;
+  background: $brandGradient;
+}
+
+.contact-copy-text {
+  font-size: 11px;
+  letter-spacing: 0.02em;
+}
+
+/* ---- Responsive ---------------------------------------------------------- */
+@media (max-width: 768px) {
+  .contact-card {
+    padding: 2.5rem 1.25rem;
   }
 
   .contact-title {
-    font-size: 40px;
-    text-align: center;
+    font-size: 38px;
   }
 
   .contact-subtitle {
-    font-size: 16px;
-    line-height: normal;
-    text-align: center;
+    font-size: 14px;
   }
 
-  .contact-text-div {
-    text-align: center;
-    margin-top: 1.5rem;
+  .contact-pill-value {
+    font-size: 17px;
   }
 
-  .contact-detail,
-  .contact-detail-email {
-    font-size: 20px;
+  .contact-copy {
+    width: 60px;
   }
 
-  .contact-image-div {
+  .contact-copy-text {
     display: none;
   }
 }

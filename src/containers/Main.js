@@ -1,28 +1,23 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, Suspense, lazy} from "react";
 import Header from "../components/header/Header";
 import Greeting from "./greeting/Greeting";
 import Skills from "./skills/Skills";
 import StackProgress from "./skillProgress/skillProgress";
-import WorkExperience from "./workExperience/WorkExperience";
-import Works from "./works/Works";
-import Achievement from "./achievement/Achievement";
-import Blogs from "./blogs/Blogs";
 import Footer from "../components/footer/Footer";
-import Talks from "./talks/Talks";
-import Podcast from "./podcast/Podcast";
-import Education from "./education/Education";
 import ScrollToTopButton from "./topbutton/Top";
-import Twitter from "./twitter-embed/twitter";
-import Profile from "./profile/Profile";
+import ScrollProgress from "../components/scrollProgress/ScrollProgress";
 import SplashScreen from "./splashScreen/SplashScreen";
 import {splashScreen} from "../portfolio";
-import {StyleProvider} from "../contexts/StyleContext";
-import {useLocalStorage} from "../hooks/useLocalStorage";
 import "./Main.scss";
 
+// Below-the-fold sections are code-split to keep the initial bundle small.
+const Works = lazy(() => import("./works/Works"));
+const Education = lazy(() => import("./education/Education"));
+const WorkExperience = lazy(() => import("./workExperience/WorkExperience"));
+const Achievement = lazy(() => import("./achievement/Achievement"));
+const Profile = lazy(() => import("./profile/Profile"));
+
 const Main = () => {
-  const darkPref = window.matchMedia("(prefers-color-scheme: dark)");
-  const [isDark, setIsDark] = useLocalStorage("isDark", darkPref.matches);
   const [isShowingSplashAnimation, setIsShowingSplashAnimation] =
     useState(true);
 
@@ -38,36 +33,32 @@ const Main = () => {
     }
   }, []);
 
-  const changeTheme = () => {
-    setIsDark(!isDark);
-  };
+  if (isShowingSplashAnimation && splashScreen.enabled) {
+    return <SplashScreen />;
+  }
 
   return (
-    <div className={isDark ? "dark-mode" : null}>
-      <StyleProvider value={{isDark: isDark, changeTheme: changeTheme}}>
-        {isShowingSplashAnimation && splashScreen.enabled ? (
-          <SplashScreen />
-        ) : (
-          <>
-            <Header />
-            <Greeting />
-            <Works />
-            <Skills />
-            <StackProgress />
-            <Education />
-            <WorkExperience />
-            <Achievement />
-            <Blogs />
-            <Talks />
-            <Twitter />
-            <Podcast />
-            <Profile />
-            <Footer />
-            <ScrollToTopButton />
-          </>
-        )}
-      </StyleProvider>
-    </div>
+    <>
+      <a href="#main-content" className="skip-link">
+        Pular para o conteúdo
+      </a>
+      <ScrollProgress />
+      <Header />
+      <main id="main-content">
+        <Greeting />
+        <Suspense fallback={<div style={{minHeight: "40vh"}} />}>
+          <Works />
+          <Skills />
+          <StackProgress />
+          <Education />
+          <WorkExperience />
+          <Achievement />
+          <Profile />
+        </Suspense>
+      </main>
+      <Footer />
+      <ScrollToTopButton />
+    </>
   );
 };
 

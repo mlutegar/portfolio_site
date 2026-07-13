@@ -20,7 +20,6 @@ if (USE_GITHUB_DATA === "true") {
   if (GITHUB_USERNAME === undefined) {
     throw new Error(ERR.noUserName);
   }
-  
 
   console.log(`Fetching profile data for ${GITHUB_USERNAME}`);
   var data = JSON.stringify({
